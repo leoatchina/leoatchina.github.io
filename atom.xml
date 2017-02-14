@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-14T07:08:20.108Z</updated>
+  <updated>2017-02-14T07:56:03.742Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -16,16 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python_thread_sync</title>
+    <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
+    <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
+    <published>2017-02-14T07:55:14.000Z</published>
+    <updated>2017-02-14T07:56:03.742Z</updated>
+    
+    <content type="html"><![CDATA[<p>python 的线程有很多种</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python 的线程有很多种&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="python" scheme="http://leoatchina.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://leoatchina.github.io/tags/python/"/>
+    
+      <category term="thread" scheme="http://leoatchina.github.io/tags/thread/"/>
+    
+  </entry>
+  
+  <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</id>
     <published>2017-02-14T06:58:08.494Z</published>
-    <updated>2017-02-14T07:08:20.108Z</updated>
+    <updated>2017-02-14T07:25:58.307Z</updated>
     
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
 <blockquote>
-<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
+<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a></p>
+<p>python get-pip.py</p>
 </blockquote>
 <p><strong>2. 安装 sslocal</strong></p>
 <blockquote>
