@@ -318,19 +318,24 @@
 </blockquote>
 <p><strong>3. 配置sslocal</strong></p>
 <blockquote>
-<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">&quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">&quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">&quot;local_port&quot;:1080,#本地端口</div><div class="line">&quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">&quot;timeout&quot;:600,#等待超时</div><div class="line">&quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p><strong>4. 启动sslocal，并加入开机启动</strong></p>
 <blockquote>
-<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
+<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;</p>
+<p>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
 </blockquote>
 <p><strong>5. 编译安装最新版 proxychains4</strong></p>
 <blockquote>
-<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-4.11.tar.bz2" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-4.11.tar.bz2</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
+<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a></p>
+<p>tar zxf proxychains-ng-4.11.tar.bz2</p>
+<p>cd proxychains-ng-4.11</p>
+<p>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
 </blockquote>
 <p><strong>6. 编辑proxychains4配置文件</strong></p>
 <blockquote>
-<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
+<p>vim /usr/local/etc/proxychains.conf</p>
+<p>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
 </blockquote>
 <p><strong>7. 测试下你的代理</strong></p>
 <blockquote>
