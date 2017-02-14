@@ -111,7 +111,7 @@ wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
 2. 安装 sslocal
 
 pip install shadowso">
-<meta property="og:updated_time" content="2017-02-14T07:05:25.916Z">
+<meta property="og:updated_time" content="2017-02-14T07:08:20.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sslocal+proxychains4解决阿里云vps访问github过慢问题">
 <meta name="twitter:description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
@@ -380,7 +380,7 @@ pip install shadowso">
 </blockquote>
 <p><strong>3. 配置sslocal</strong></p>
 <blockquote>
-<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p><strong>4. 启动sslocal，并加入开机启动</strong></p>
 <blockquote>
