@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-14T06:48:38.159Z</updated>
+  <updated>2017-02-14T07:00:28.137Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
+    <link href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/"/>
+    <id>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</id>
+    <published>2017-02-14T06:58:08.000Z</published>
+    <updated>2017-02-14T07:00:28.137Z</updated>
+    
+    <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
+<p><strong>1. 安装pip</strong></p>
+<blockquote>
+<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
+</blockquote>
+<p><strong>2. 安装 sslocal</strong></p>
+<blockquote>
+<p>pip install shadowsocks</p>
+</blockquote>
+<p><strong>3. 配置sslocal</strong></p>
+<blockquote>
+<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">&quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">&quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">&quot;local_port&quot;:1080,#本地端口</div><div class="line">&quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">&quot;timeout&quot;:600,#等待超时</div><div class="line">&quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
+<blockquote>
+<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
+</blockquote>
+<p><strong>5. 编译安装最新版 proxychains4</strong></p>
+<blockquote>
+<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-4.11.tar.bz2" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-4.11.tar.bz2</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
+</blockquote>
+<p><strong>6. 编辑proxychains4配置文件</strong></p>
+<blockquote>
+<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
+</blockquote>
+<p><strong>7. 测试下你的代理</strong></p>
+<blockquote>
+<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
+</blockquote>
+<p>如果配置正确，返回你的ss服务器的ip地址</p>
+<p><strong>8. 用proxychain4+git下载</strong></p>
+<blockquote>
+<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
+</blockquote>
+<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;阿里云从github clone一些软件后再编译安装 ，速度都很慢。&lt;br&gt;试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 安装pip&lt;/strong&gt;&lt;/p&gt;
+&lt;blo
+    
+    </summary>
+    
+    
+      <category term="sslocal" scheme="http://leoatchina.github.io/tags/sslocal/"/>
+    
+      <category term="gfwlist" scheme="http://leoatchina.github.io/tags/gfwlist/"/>
+    
+      <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
+    
+      <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
+    
+      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>安装新版htslib、bcftools、samtools</title>
