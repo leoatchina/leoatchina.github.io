@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-14T07:56:03.742Z</updated>
+  <updated>2017-02-14T13:42:56.628Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,15 +20,17 @@
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
     <published>2017-02-14T07:55:14.000Z</published>
-    <updated>2017-02-14T07:56:03.742Z</updated>
+    <updated>2017-02-14T13:42:56.628Z</updated>
     
-    <content type="html"><![CDATA[<p>python 的线程有很多种</p>
-]]></content>
+    <content type="html"><![CDATA[<h3 id="Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues"><a href="#Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues" class="headerlink" title="Python线程同步机制: Locks, RLocks, Semaphores, Conditions, Events和Queues"></a>Python线程同步机制: Locks, RLocks, Semaphores, Conditions, Events和Queues</h3><blockquote>
+<p>翻译自Laurent Luce的博客<br>原文名称：Python threads synchronization: Locks, RLocks, Semaphores, Conditions, Events and Queues<br><a href="http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/" target="_blank" rel="external">原文连接</a></p>
+</blockquote>
+<p>本文详细地阐述了python线程同步机制，你将学习到python的下列同步机制：Lock，RLock，Semaphore,Condition，Event和Queue，还有Python内部是怎样实现这些机制的。</p>
+<h4 id="线程-Threading"><a href="#线程-Threading" class="headerlink" title="线程(Threading)"></a>线程(Threading)</h4>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;python 的线程有很多种&lt;/p&gt;
-
+      &lt;h3 id=&quot;Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues&quot;&gt;&lt;a href=&quot;#Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queu
     
     </summary>
     
