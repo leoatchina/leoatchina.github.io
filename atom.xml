@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-15T02:51:54.522Z</updated>
+  <updated>2017-02-15T03:29:30.323Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
     <published>2017-02-15T01:43:18.000Z</published>
-    <updated>2017-02-15T02:51:54.522Z</updated>
+    <updated>2017-02-15T03:29:30.323Z</updated>
     
     <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。</p>
 <ol>
@@ -46,8 +46,7 @@
 </li>
 <li><p>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4</p>
 <blockquote>
-<p>make -j8<br>我的cpu跑到了差不多满100%</p>
-<p><img src="update-centos-gcc-compile-myself\aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
+<p>make -j8<br>我的cpu跑到了差不多满100%<br><img src="update-centos-gcc-compile-myself\aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
 </blockquote>
 </li>
 <li><p>安装</p>
