@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-14T13:42:56.628Z</updated>
+  <updated>2017-02-15T02:05:18.720Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos升级gcc</title>
+    <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
+    <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
+    <published>2017-02-15T01:43:18.000Z</published>
+    <updated>2017-02-15T02:05:18.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。搜索了一后，编译安装最新版</p>
+<ol>
+<li>下载最新版gcc并解压<blockquote>
+<p>wget -c <a href="http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2" target="_blank" rel="external">http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2</a></p>
+<p>tar jxvf gcc-6.3.0.tar.bz2</p>
+</blockquote>
+</li>
+<li>下载另外所需文件<blockquote>
+<p>cd gcc-6.3.0</p>
+<p>./contrib/download_prerequisites　</p>
+</blockquote>
+</li>
+<li>建立一个目录供编译出的文件存放<blockquote>
+<p>mkdir gcc-build-6.3.0</p>
+<p>cd gcc-build-6.3.0</p>
+</blockquote>
+</li>
+<li>生成Makefile文件,注意我把prefix设置成了 <strong>/usr</strong>,直接把gcc装到对应的目录，不需要ln -s了<blockquote>
+<p>../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib –prefix=/usr</p>
+</blockquote>
+</li>
+<li>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4<blockquote>
+<p>make -j8</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。搜索了一后，编译安装最新版&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载最新版gcc并解压&lt;blockquote&gt;
+&lt;p&gt;wget -c &lt;a href=&quot;http:
+    
+    </summary>
+    
+      <category term="linux" scheme="http://leoatchina.github.io/categories/linux/"/>
+    
+    
+      <category term="gcc" scheme="http://leoatchina.github.io/tags/gcc/"/>
+    
+      <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
+    
+      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
+    
+      <category term="编译" scheme="http://leoatchina.github.io/tags/%E7%BC%96%E8%AF%91/"/>
+    
+      <category term="c++" scheme="http://leoatchina.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>python_thread_sync</title>
