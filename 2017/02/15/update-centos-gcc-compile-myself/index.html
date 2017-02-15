@@ -109,7 +109,7 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
 
 下载另外所需文件
 cd gcc-6.3.0">
-<meta property="og:updated_time" content="2017-02-15T02:07:10.379Z">
+<meta property="og:updated_time" content="2017-02-15T02:12:24.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos升级gcc">
 <meta name="twitter:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。搜索了一后，编译安装最新版
@@ -374,13 +374,11 @@ cd gcc-6.3.0">
 </blockquote>
 </li>
 <li>下载另外所需文件<blockquote>
-<p>cd gcc-6.3.0</p>
-<p>./contrib/download_prerequisites　</p>
+<p>cd gcc-6.3.0<br>./contrib/download_prerequisites　</p>
 </blockquote>
 </li>
 <li>建立一个目录供编译出的文件存放<blockquote>
-<p>mkdir gcc-build-6.3.0</p>
-<p>cd gcc-build-6.3.0</p>
+<p>mkdir gcc-build-6.3.0<br>cd gcc-build-6.3.0</p>
 </blockquote>
 </li>
 <li>生成Makefile文件,注意我把prefix设置成了 <strong>/usr</strong>,直接把gcc装到对应的目录，不需要ln -s了<blockquote>

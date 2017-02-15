@@ -92,12 +92,11 @@
 <meta name="description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
 1. 安装pip
 
-wget -c https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
+wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
 
 2. 安装 sslocal
 
-pip install shadows">
+pip install shadowso">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sslocal+proxychains4解决阿里云vps访问github过慢问题">
 <meta property="og:url" content="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/index.html">
@@ -105,24 +104,22 @@ pip install shadows">
 <meta property="og:description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
 1. 安装pip
 
-wget -c https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
+wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
 
 2. 安装 sslocal
 
-pip install shadows">
-<meta property="og:updated_time" content="2017-02-14T07:25:58.307Z">
+pip install shadowso">
+<meta property="og:updated_time" content="2017-02-15T02:26:05.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sslocal+proxychains4解决阿里云vps访问github过慢问题">
 <meta name="twitter:description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
 1. 安装pip
 
-wget -c https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
+wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
 
 2. 安装 sslocal
 
-pip install shadows">
+pip install shadowso">
 
 
 
@@ -373,8 +370,7 @@ pip install shadows">
         <p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
 <blockquote>
-<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a></p>
-<p>python get-pip.py</p>
+<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
 </blockquote>
 <p><strong>2. 安装 sslocal</strong></p>
 <blockquote>
@@ -386,20 +382,15 @@ pip install shadows">
 </blockquote>
 <p><strong>4. 启动sslocal，并加入开机启动</strong></p>
 <blockquote>
-<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;</p>
-<p>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
+<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
 </blockquote>
 <p><strong>5. 编译安装最新版 proxychains4</strong></p>
 <blockquote>
-<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a></p>
-<p>tar zxf proxychains-ng-4.11.tar.bz2</p>
-<p>cd proxychains-ng-4.11</p>
-<p>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
+<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
 </blockquote>
 <p><strong>6. 编辑proxychains4配置文件</strong></p>
 <blockquote>
-<p>vim /usr/local/etc/proxychains.conf</p>
-<p>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
+<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
 </blockquote>
 <p><strong>7. 测试下你的代理</strong></p>
 <blockquote>

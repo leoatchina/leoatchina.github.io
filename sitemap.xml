@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</loc>
+    
+    <lastmod>2017-02-15T02:26:05.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</loc>
     
-    <lastmod>2017-02-15T02:07:10.379Z</lastmod>
+    <lastmod>2017-02-15T02:12:24.619Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://leoatchina.github.io/2017/02/14/python-thread-sync/</loc>
     
     <lastmod>2017-02-14T13:42:56.628Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</loc>
-    
-    <lastmod>2017-02-14T07:25:58.307Z</lastmod>
     
   </url>
   
