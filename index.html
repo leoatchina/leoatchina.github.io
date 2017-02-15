@@ -381,9 +381,9 @@
 <p>sudo make install  </p>
 </blockquote>
 </li>
-<li><p>检查</p>
+<li><p>检查,如</p>
 <blockquote>
-<p>gcc –version<br>whereis gcc<br>which gcc</p>
+<p>gcc –version<br>c++ –version<br>cc –version<br>whereis gcc<br>which gcc</p>
 </blockquote>
 </li>
 </ol>
@@ -951,7 +951,28 @@
       
         
           
-            <p>leoatchina第一次用hexo进行博客写作，使用了[next](<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a></p>
+            <p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<br><img src="/2017/01/29/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
 
           
         
