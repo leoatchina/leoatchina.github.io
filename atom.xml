@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-15T02:12:24.619Z</updated>
+  <updated>2017-02-15T02:50:23.236Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
     <published>2017-02-15T01:43:18.000Z</published>
-    <updated>2017-02-15T02:12:24.619Z</updated>
+    <updated>2017-02-15T02:50:23.236Z</updated>
     
-    <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。搜索了一后，编译安装最新版</p>
+    <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。</p>
 <ol>
 <li>下载最新版gcc并解压<blockquote>
 <p>wget -c <a href="http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2" target="_blank" rel="external">http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2</a><br>tar jxvf gcc-6.3.0.tar.bz2</p>
@@ -40,8 +40,22 @@
 <p>../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib –prefix=/usr</p>
 </blockquote>
 </li>
-<li>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4<blockquote>
-<p>make -j8</p>
+<li><p>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4</p>
+<blockquote>
+<p>make -j8<br>我的cpu跑到了差不多满了<br><img src="update-centos-gcc-compile-myself\229e0e467c23849269d3811fd6a24b1a.png" alt=""></p>
+</blockquote>
+</li>
+<li><p>安装</p>
+<blockquote>
+<p>sudo make install  </p>
+</blockquote>
+</li>
+<li>检查<blockquote>
+<p>gcc –version<br>whereis gcc<br>which gcc</p>
+</blockquote>
+</li>
+<li>测试<blockquote>
+<p>test<br>test2<br>test3 </p>
 </blockquote>
 </li>
 </ol>
@@ -49,10 +63,10 @@
     
     <summary type="html">
     
-      &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。搜索了一后，编译安装最新版&lt;/p&gt;
+      &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;下载最新版gcc并解压&lt;blockquote&gt;
-&lt;p&gt;wget -c &lt;a href=&quot;http:
+&lt;p&gt;wge
     
     </summary>
     
@@ -104,7 +118,7 @@
     <link href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</id>
     <published>2017-02-14T06:58:08.494Z</published>
-    <updated>2017-02-15T02:26:05.156Z</updated>
+    <updated>2017-02-15T02:34:38.791Z</updated>
     
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
