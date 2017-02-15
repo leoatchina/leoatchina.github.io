@@ -92,10 +92,11 @@
 <meta name="description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
+
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下载">
+下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos升级gcc">
 <meta property="og:url" content="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/index.html">
@@ -103,22 +104,24 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
 <meta property="og:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
+
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下载">
-<meta property="og:image" content="http://leoatchina.github.io/update-centos-gcc-compile-myself\229e0e467c23849269d3811fd6a24b1a.png">
-<meta property="og:updated_time" content="2017-02-15T02:50:23.236Z">
+下">
+<meta property="og:image" content="http://leoatchina.github.io/update-centos-gcc-compile-myself\aa67e42e4668d405cd430d0e656364ac.png">
+<meta property="og:updated_time" content="2017-02-15T02:51:54.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos升级gcc">
 <meta name="twitter:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
+
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下载">
-<meta name="twitter:image" content="http://leoatchina.github.io/update-centos-gcc-compile-myself\229e0e467c23849269d3811fd6a24b1a.png">
+下">
+<meta name="twitter:image" content="http://leoatchina.github.io/update-centos-gcc-compile-myself\aa67e42e4668d405cd430d0e656364ac.png">
 
 
 
@@ -368,25 +371,30 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
       
         <p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。</p>
 <ol>
-<li>下载最新版gcc并解压<blockquote>
+<li><p>下载最新版gcc并解压</p>
+<blockquote>
 <p>wget -c <a href="http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2" target="_blank" rel="external">http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2</a><br>tar jxvf gcc-6.3.0.tar.bz2</p>
 </blockquote>
 </li>
-<li>下载另外所需文件<blockquote>
+<li><p>下载另外所需文件</p>
+<blockquote>
 <p>cd gcc-6.3.0<br>./contrib/download_prerequisites　</p>
 </blockquote>
 </li>
-<li>建立一个目录供编译出的文件存放<blockquote>
+<li><p>建立一个目录供编译出的文件存放</p>
+<blockquote>
 <p>mkdir gcc-build-6.3.0<br>cd gcc-build-6.3.0</p>
 </blockquote>
 </li>
-<li>生成Makefile文件,注意我把prefix设置成了 <strong>/usr</strong>,直接把gcc装到对应的目录，不需要ln -s了<blockquote>
+<li><p>生成Makefile文件,注意我把prefix设置成了 <strong>/usr</strong>,直接把gcc装到对应的目录，不需要ln -s了</p>
+<blockquote>
 <p>../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib –prefix=/usr</p>
 </blockquote>
 </li>
 <li><p>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4</p>
 <blockquote>
-<p>make -j8<br>我的cpu跑到了差不多满了<br><img src="update-centos-gcc-compile-myself\229e0e467c23849269d3811fd6a24b1a.png" alt=""></p>
+<p>make -j8<br>我的cpu跑到了差不多满100%</p>
+<p><img src="update-centos-gcc-compile-myself\aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
 </blockquote>
 </li>
 <li><p>安装</p>
@@ -394,11 +402,13 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
 <p>sudo make install  </p>
 </blockquote>
 </li>
-<li>检查<blockquote>
+<li><p>检查</p>
+<blockquote>
 <p>gcc –version<br>whereis gcc<br>which gcc</p>
 </blockquote>
 </li>
-<li>测试<blockquote>
+<li><p>测试</p>
+<blockquote>
 <p>test<br>test2<br>test3 </p>
 </blockquote>
 </li>
