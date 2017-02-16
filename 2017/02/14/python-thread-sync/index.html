@@ -95,7 +95,7 @@
 <meta property="og:url" content="http://leoatchina.github.io/2017/02/14/python-thread-sync/index.html">
 <meta property="og:site_name" content="leo的博客">
 <meta property="og:description" content="Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。对Python虚拟机的访问是由全局解释锁（GIL）控制的">
-<meta property="og:updated_time" content="2017-02-16T05:36:45.183Z">
+<meta property="og:updated_time" content="2017-02-16T06:25:38.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python_thread_sync">
 <meta name="twitter:description" content="Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。对Python虚拟机的访问是由全局解释锁（GIL）控制的">
@@ -364,7 +364,7 @@
 <blockquote>
 <p>有Thread、Lock、Rock、Condition、Event、Semaphore、BoundedSemphore、Timer、Barrier等一系列可用对象  </p>
 </blockquote>
-<h4 id="Thread对象"><a href="#Thread对象" class="headerlink" title="Thread对象"></a>Thread对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 建立对象</span></div><div class="line">t = threading.Thread(target = function, args = (arg1,arg2))</div><div class="line"><span class="comment"># 一般来说，Thread对象建立之后，不是马上启动的，是用start方法启动</span></div><div class="line">t.start()</div><div class="line"><span class="comment"># 加入主线程，如果不加入，会在主线程退出后仍然运行</span></div><div class="line">t.join()</div></pre></td></tr></table></figure>
+<h4 id="Thread对象"><a href="#Thread对象" class="headerlink" title="Thread对象"></a>Thread对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 建立对象</span></div><div class="line">t = threading.Thread(target = function, args = (arg1,arg2))</div><div class="line"><span class="comment"># 一般来说，Thread线程对象建立之后，不是马上启动的，是用start方法启动</span></div><div class="line">t.start()</div><div class="line"><span class="comment"># 加入主线程，如果不加入，在主线程退出后仍然运行。join()方法只有在你需要等待线程完成的时候才是有用的</span></div><div class="line"><span class="comment"># join如果不被调用 ，将会一直被运行</span></div><div class="line">t.join()</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -485,7 +485,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

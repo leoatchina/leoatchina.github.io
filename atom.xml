@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-16T05:42:21.107Z</updated>
+  <updated>2017-02-16T06:02:10.857Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>atom-shortcuts-windows</title>
+    <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/"/>
+    <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/</id>
+    <published>2017-02-16T06:00:08.000Z</published>
+    <updated>2017-02-16T06:02:10.857Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>‘ctrl-shift-s’ 保存所有打开的文件<br>‘ctrl-shift-o’ 打开目录<br>‘ctrl-p’ 从添加的项目中查找文件<br>‘ctrl-f’ 向下翻页<br>‘ctrl-b’ 向上翻页<br>alt-b 或 ctrl-left 移动到单词开始<br>alt-f 或 ctrl-right 移动到单词末尾<br>ctrl-g 移动到指定行<br>ctrl-j 将下一行与当前行合并<br>ctrl-up, ctrl-down 使当前行向上或者向下移动<br>ctrl-enter,ctrl-shift-enter在当前行的下一行或上一行插入新的一行<br>ctrl-k ctrl-l使当前字符小写<br>ctrl-k ctrl-u使当前字符大写<br>ctrl-shift-D 复制当前行到下一行<br>ctrl-shift-K 删除当前行<br>ctrl-u删除到当前行开始<br>alt-backspace或ctrl-alt-h删除到当前子单词开始<br>alt-delete或ctrl-alt-d删除到当前子单词结束<br>ctrl-backspace或ctrl-w或alt-h删除到当前单词开始<br>alt-d或ctrl-delete删除到当前子单词开始<br>alt-left: ‘editor:move-to-previous-subword-boundary’<br>alt-right: ‘editor:move-to-next-subword-boundary’<br>alt-shift-left: ‘editor:select-to-previous-subword-boundary’<br>alt-shift-right: ‘editor:select-to-next-subword-boundary’</p>
+<p>选取<br>alt-shift-B或 ctrl-shift-left 选取至字符开始<br>alt-shift-F或ctrl-shift-right 选取至字符结束<br>ctrl-a 全选<br>alt-f3选取文档中和当前单词相同的所有单词<br>shift-end 选取至本行结束<br>ctrl-l 选取一行，继续按回选取下一行<br>ctrl-d 选取文档中和当前单词相同的下一处</p>
+<p>目录树操作<br>ctrl-\ 或 ctrl-k ctrl-b 显示或隐藏目录树<br>a 在目录树下添加文件<br>d 将当前文件另存为<br>alt-right 和 alt-left 展开(隐藏)所有目录<br>ctrl-k left 在左半视图中打开文件<br>ctrl-k down在下半视图中打开文件<br>ctrl-k up 在上半视图中打开文件<br>ctrl-k right 在右半视图中打开文件<br>ctrl-shift-C 复制当前文件绝对路径</p>
+<p>其它<br>ctrl-m 相应括号之间，html tag之间等跳转<br>ctrl-alt-up, ctrl-alt-down 增加上（下）一行光标<br>ctrl-shift-u 调出切换编码选项<br>ctrl-f 在buffer中查找<br>ctrl-shift-f 在整个工程中查找<br>alt-ctrl-[ 折叠<br>alt-ctrl-] 展开<br>ctrl-alt-i调用控制台<br>ctrl-/注释<br>ctrl-alt-c打开color-picker</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件操作&quot;&gt;&lt;a href=&quot;#文件操作&quot; class=&quot;headerlink&quot; title=&quot;文件操作&quot;&gt;&lt;/a&gt;文件操作&lt;/h2&gt;&lt;p&gt;‘ctrl-shift-s’ 保存所有打开的文件&lt;br&gt;‘ctrl-shift-o’ 打开目录&lt;br&gt;‘ctrl-p’ 从添
+    
+    </summary>
+    
+    
+      <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
+    
+      <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
+    
+  </entry>
   
   <entry>
     <title>Atom MacOs 快捷键</title>
@@ -156,7 +182,7 @@
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
     <published>2017-02-14T07:55:14.000Z</published>
-    <updated>2017-02-16T05:36:45.183Z</updated>
+    <updated>2017-02-16T06:25:38.817Z</updated>
     
     <content type="html"><![CDATA[<p>Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。<br>对Python虚拟机的访问是由全局解释锁（GIL）控制的。这个锁就是用来保证同时只能有一个线程运行的。在多线程环境中，Python虚拟机将按下面所述的方式执行。</p>
 <ol>
@@ -176,7 +202,7 @@
 <blockquote>
 <p>有Thread、Lock、Rock、Condition、Event、Semaphore、BoundedSemphore、Timer、Barrier等一系列可用对象  </p>
 </blockquote>
-<h4 id="Thread对象"><a href="#Thread对象" class="headerlink" title="Thread对象"></a>Thread对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 建立对象</span></div><div class="line">t = threading.Thread(target = function, args = (arg1,arg2))</div><div class="line"><span class="comment"># 一般来说，Thread对象建立之后，不是马上启动的，是用start方法启动</span></div><div class="line">t.start()</div><div class="line"><span class="comment"># 加入主线程，如果不加入，会在主线程退出后仍然运行</span></div><div class="line">t.join()</div></pre></td></tr></table></figure>
+<h4 id="Thread对象"><a href="#Thread对象" class="headerlink" title="Thread对象"></a>Thread对象</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 建立对象</span></div><div class="line">t = threading.Thread(target = function, args = (arg1,arg2))</div><div class="line"><span class="comment"># 一般来说，Thread线程对象建立之后，不是马上启动的，是用start方法启动</span></div><div class="line">t.start()</div><div class="line"><span class="comment"># 加入主线程，如果不加入，在主线程退出后仍然运行。join()方法只有在你需要等待线程完成的时候才是有用的</span></div><div class="line"><span class="comment"># join如果不被调用 ，将会一直被运行</span></div><div class="line">t.join()</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
