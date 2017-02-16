@@ -89,38 +89,44 @@
 
 
 
-<meta name="description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
+<meta name="description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
 
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下">
+下载另外所需文件
+
+cd gcc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos升级gcc">
 <meta property="og:url" content="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/index.html">
 <meta property="og:site_name" content="leo的博客">
-<meta property="og:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
+<meta property="og:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
 
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下">
+下载另外所需文件
+
+cd gcc">
 <meta property="og:image" content="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png">
-<meta property="og:updated_time" content="2017-02-15T04:29:12.243Z">
+<meta property="og:updated_time" content="2017-02-15T04:55:30.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos升级gcc">
-<meta name="twitter:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。
+<meta name="twitter:description" content="我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。
 
 下载最新版gcc并解压
 
 wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0.tar.bz2
 
 
-下">
+下载另外所需文件
+
+cd gcc">
 <meta name="twitter:image" content="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png">
 
 
@@ -369,7 +375,7 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
       
 
       
-        <p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。</p>
+        <p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。</p>
 <ol>
 <li><p>下载最新版gcc并解压</p>
 <blockquote>
@@ -393,7 +399,7 @@ wget -c http://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2tar jxvf gcc-6.3.0
 </li>
 <li><p>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4</p>
 <blockquote>
-<p>make -j8<br>我的cpu跑到了差不多满100%<br><img src="/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
+<p>make -j8  //我的cpu跑到了差不多满100%<br><img src="/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
 </blockquote>
 </li>
 <li><p>安装</p>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-15T04:29:12.243Z</updated>
+  <updated>2017-02-15T04:55:30.830Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
     <published>2017-02-15T01:43:18.000Z</published>
-    <updated>2017-02-15T04:29:12.243Z</updated>
+    <updated>2017-02-15T04:55:30.830Z</updated>
     
-    <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。</p>
+    <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。</p>
 <ol>
 <li><p>下载最新版gcc并解压</p>
 <blockquote>
@@ -46,7 +46,7 @@
 </li>
 <li><p>编译,j后面是核心数，我因为是小型服务器，一共8核16线程，所以就设置的比较大，一般设置成4</p>
 <blockquote>
-<p>make -j8<br>我的cpu跑到了差不多满100%<br><img src="/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
+<p>make -j8  //我的cpu跑到了差不多满100%<br><img src="/2017/02/15/update-centos-gcc-compile-myself/aa67e42e4668d405cd430d0e656364ac.png" alt=""></p>
 </blockquote>
 </li>
 <li><p>安装</p>
@@ -64,10 +64,11 @@
     
     <summary type="html">
     
-      &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本,为了c++ 11以上的编译器。网上搜索了一番后，编译安装最新版。&lt;/p&gt;
+      &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;下载最新版gcc并解压&lt;/p&gt;
-&lt;blockquote
+&lt;blockquote&gt;
+&lt;p&gt;wget -c &lt;a
     
     </summary>
     
@@ -91,17 +92,26 @@
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
     <published>2017-02-14T07:55:14.000Z</published>
-    <updated>2017-02-14T13:42:56.628Z</updated>
+    <updated>2017-02-16T02:20:26.885Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues"><a href="#Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues" class="headerlink" title="Python线程同步机制: Locks, RLocks, Semaphores, Conditions, Events和Queues"></a>Python线程同步机制: Locks, RLocks, Semaphores, Conditions, Events和Queues</h3><blockquote>
-<p>翻译自Laurent Luce的博客<br>原文名称：Python threads synchronization: Locks, RLocks, Semaphores, Conditions, Events and Queues<br><a href="http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/" target="_blank" rel="external">原文连接</a></p>
-</blockquote>
-<p>本文详细地阐述了python线程同步机制，你将学习到python的下列同步机制：Lock，RLock，Semaphore,Condition，Event和Queue，还有Python内部是怎样实现这些机制的。</p>
-<h4 id="线程-Threading"><a href="#线程-Threading" class="headerlink" title="线程(Threading)"></a>线程(Threading)</h4>]]></content>
+    <content type="html"><![CDATA[<p>Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。<br>对Python虚拟机的访问是由全局解释锁（GIL）控制的。这个锁就是用来保证同时只能有一个线程运行的。在多线程环境中，Python虚拟机将按下面所述的方式执行。</p>
+<ol>
+<li>设置GIL。</li>
+<li>切换进一个线程去运行。</li>
+<li>执行下面操作之一。<ul>
+<li>指定数量的字节码指令</li>
+<li>线程主动让出控制权</li>
+</ul>
+</li>
+<li>把线程设置回睡眠状态</li>
+<li>解锁GIL</li>
+<li>重复上述步骤</li>
+</ol>
+]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queues&quot;&gt;&lt;a href=&quot;#Python线程同步机制-Locks-RLocks-Semaphores-Conditions-Events和Queu
+      &lt;p&gt;Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解
     
     </summary>
     
@@ -119,7 +129,7 @@
     <link href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/</id>
     <published>2017-02-14T06:58:08.494Z</published>
-    <updated>2017-02-15T02:34:38.791Z</updated>
+    <updated>2017-02-15T04:52:00.237Z</updated>
     
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
@@ -205,7 +215,7 @@
     <link href="http://leoatchina.github.io/2017/01/29/hello-world/"/>
     <id>http://leoatchina.github.io/2017/01/29/hello-world/</id>
     <published>2017-01-29T01:58:44.881Z</published>
-    <updated>2017-02-15T04:48:00.488Z</updated>
+    <updated>2017-02-15T10:24:10.356Z</updated>
     
     <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
 <ol>
@@ -224,7 +234,10 @@
 <li>写作时插入图片的方法<ol>
 <li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
 <li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<br><img src="/2017/01/29/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/01/29/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
 </ol>
 </li>
 <li>hexo clean | hexo g | hexo d，完成布置</li>
