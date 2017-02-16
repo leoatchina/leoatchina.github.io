@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-16T05:40:43.555Z</updated>
+  <updated>2017-02-16T05:42:21.107Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Atom快捷键</title>
+    <title>Atom MacOs 快捷键</title>
     <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts/"/>
     <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts/</id>
     <published>2017-02-16T05:39:55.000Z</published>
-    <updated>2017-02-16T05:40:43.555Z</updated>
+    <updated>2017-02-16T05:42:21.107Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件  </p>
 <h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>（等价于上下左右）<br><code>ctrl-p</code> 前一行<br><code>ctrl-n</code> 后一行<br><code>ctrl-f</code> 前一个字符<br><code>ctrl-b</code> 后一个字符  </p>
