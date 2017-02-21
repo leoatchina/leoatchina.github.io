@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-20T09:23:05.768Z</updated>
+  <updated>2017-02-21T02:19:35.173Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -16,11 +16,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在服务器上装r时踩到的坑</title>
+    <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
+    <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
+    <published>2017-02-21T01:53:13.000Z</published>
+    <updated>2017-02-21T02:19:35.173Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
+<h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
+<h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><p>上一步时一直提醒我缺少安装zlib1.2.5以上版本，好下载，也是无root安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget -c  http://www.zlib.net/zlib1211.zip  <span class="comment">#注意我下载 的是1.2.11版本</span></div><div class="line">unzip zlibi1211</div><div class="line"><span class="built_in">cd</span> zlib-1.2.11</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/packages</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>还是同样的问题，提醒没有zlib1.2.5以上版本，好，指定目录confiture</p>
+<blockquote>
+<p>./configure –prefix=$HOME/R/R-3.3.2  –enable-R-shlib LDFLAGS=”-L$HOME/packages/lib” CPPFLAGS=”-I$HOME/packages/include” </p>
+</blockquote>
+<p>始终不行，中途试过root权限，换安装位置，重新下载3.3.1等，设置编译参数，都不行</p>
+<h3 id="检查configure代码"><a href="#检查configure代码" class="headerlink" title="检查configure代码"></a>检查configure代码</h3><blockquote>
+<p>vim configure<br>搜索 1.2.5，发现了检查zlib版本的代码，就是什么 &gt;1.2.5等</p>
+</blockquote>
+<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？</p>
+<h3 id="换R3-2-5"><a href="#换R3-2-5" class="headerlink" title="换R3.2.5"></a>换R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
+<h3 id="第二天检查"><a href="#第二天检查" class="headerlink" title="第二天检查"></a>第二天检查</h3><p>重新非root安装  zlib1.2.8，然后去configure R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip，不理他了，先用着</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;为什么要在服务器上装R&quot;&gt;&lt;a href=&quot;#为什么要在服务器上装R&quot; class=&quot;headerlink&quot; title=&quot;为什么要在服务器上装R&quot;&gt;&lt;/a&gt;为什么要在服务器上装R&lt;/h3&gt;&lt;p&gt;其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
+    
+      <category term="r" scheme="http://leoatchina.github.io/tags/r/"/>
+    
+      <category term="zlib" scheme="http://leoatchina.github.io/tags/zlib/"/>
+    
+      <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
     <title>学习Anaconda过程中的一些笔记，或者说踩过的坑</title>
     <link href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/"/>
     <id>http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/</id>
     <published>2017-02-20T06:12:52.000Z</published>
-    <updated>2017-02-20T09:23:05.768Z</updated>
+    <updated>2017-02-20T09:26:49.541Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
 <ul>
@@ -224,9 +264,9 @@
     
       <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
     
-      <category term="gcc" scheme="http://leoatchina.github.io/tags/gcc/"/>
-    
       <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
+    
+      <category term="gcc" scheme="http://leoatchina.github.io/tags/gcc/"/>
     
       <category term="编译" scheme="http://leoatchina.github.io/tags/%E7%BC%96%E8%AF%91/"/>
     

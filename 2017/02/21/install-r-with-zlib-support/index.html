@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sslocal,gfwlist,proxychains4,aliyun,github," />
+  <meta name="keywords" content="linux,r,zlib,centos," />
 
 
 
@@ -89,37 +89,19 @@
 
 
 
-<meta name="description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
-1. 安装pip
-
-wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
-
-2. 安装 sslocal
-
-pip install shadowso">
+<meta name="description" content="为什么要在服务器上装R其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R
+下载，安装123wget &amp;amp;&amp;amp; tar &amp;amp;&amp;amp; cd # 这个都是常规，不表。出于实验的目的，我试了下无root权限安装# 进行onfigure 这一步就出问题./configure --prefix=$HOME/R/R-3.3.2  --e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sslocal+proxychains4解决阿里云vps访问github过慢问题">
-<meta property="og:url" content="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/index.html">
+<meta property="og:title" content="在服务器上装r时踩到的坑">
+<meta property="og:url" content="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/index.html">
 <meta property="og:site_name" content="leoatchina的博客">
-<meta property="og:description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
-1. 安装pip
-
-wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
-
-2. 安装 sslocal
-
-pip install shadowso">
-<meta property="og:updated_time" content="2017-02-15T04:52:00.237Z">
+<meta property="og:description" content="为什么要在服务器上装R其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R
+下载，安装123wget &amp;amp;&amp;amp; tar &amp;amp;&amp;amp; cd # 这个都是常规，不表。出于实验的目的，我试了下无root权限安装# 进行onfigure 这一步就出问题./configure --prefix=$HOME/R/R-3.3.2  --e">
+<meta property="og:updated_time" content="2017-02-21T02:19:35.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sslocal+proxychains4解决阿里云vps访问github过慢问题">
-<meta name="twitter:description" content="阿里云从github clone一些软件后再编译安装 ，速度都很慢。试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。
-1. 安装pip
-
-wget -c https://bootstrap.pypa.io/get-pip.pypython get-pip.py
-
-2. 安装 sslocal
-
-pip install shadowso">
+<meta name="twitter:title" content="在服务器上装r时踩到的坑">
+<meta name="twitter:description" content="为什么要在服务器上装R其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R
+下载，安装123wget &amp;amp;&amp;amp; tar &amp;amp;&amp;amp; cd # 这个都是常规，不表。出于实验的目的，我试了下无root权限安装# 进行onfigure 这一步就出问题./configure --prefix=$HOME/R/R-3.3.2  --e">
 
 
 
@@ -147,13 +129,13 @@ pip install shadowso">
 
 
 
-  <link rel="canonical" href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/"/>
+  <link rel="canonical" href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
 
 
 
 
 
-  <title> sslocal+proxychains4解决阿里云vps访问github过慢问题 | leoatchina的博客 </title>
+  <title> 在服务器上装r时踩到的坑 | leoatchina的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +252,7 @@ pip install shadowso">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/14/sslocal-proxychains-aliyun-github/">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="leoatchina">
@@ -294,7 +276,7 @@ pip install shadowso">
             
             
               
-                sslocal+proxychains4解决阿里云vps访问github过慢问题
+                在服务器上装r时踩到的坑
               
             
           </h1>
@@ -309,8 +291,8 @@ pip install shadowso">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-14T14:58:08+08:00">
-                2017-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T09:53:13+08:00">
+                2017-02-21
               </time>
             
 
@@ -319,28 +301,6 @@ pip install shadowso">
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/翻墙/" itemprop="url" rel="index">
-                    <span itemprop="name">翻墙</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -367,41 +327,20 @@ pip install shadowso">
       
 
       
-        <p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
-<p><strong>1. 安装pip</strong></p>
+        <h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
+<h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
+<h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><p>上一步时一直提醒我缺少安装zlib1.2.5以上版本，好下载，也是无root安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget -c  http://www.zlib.net/zlib1211.zip  <span class="comment">#注意我下载 的是1.2.11版本</span></div><div class="line">unzip zlibi1211</div><div class="line"><span class="built_in">cd</span> zlib-1.2.11</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/packages</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>还是同样的问题，提醒没有zlib1.2.5以上版本，好，指定目录confiture</p>
 <blockquote>
-<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
+<p>./configure –prefix=$HOME/R/R-3.3.2  –enable-R-shlib LDFLAGS=”-L$HOME/packages/lib” CPPFLAGS=”-I$HOME/packages/include” </p>
 </blockquote>
-<p><strong>2. 安装 sslocal</strong></p>
-<blockquote>
-<p>pip install shadowsocks</p>
+<p>始终不行，中途试过root权限，换安装位置，重新下载3.3.1等，设置编译参数，都不行</p>
+<h3 id="检查configure代码"><a href="#检查configure代码" class="headerlink" title="检查configure代码"></a>检查configure代码</h3><blockquote>
+<p>vim configure<br>搜索 1.2.5，发现了检查zlib版本的代码，就是什么 &gt;1.2.5等</p>
 </blockquote>
-<p><strong>3. 配置sslocal</strong></p>
-<blockquote>
-<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
-<blockquote>
-<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
-</blockquote>
-<p><strong>5. 编译安装最新版 proxychains4</strong></p>
-<blockquote>
-<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
-</blockquote>
-<p><strong>6. 编辑proxychains4配置文件</strong></p>
-<blockquote>
-<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
-</blockquote>
-<p><strong>7. 测试下你的代理</strong></p>
-<blockquote>
-<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
-</blockquote>
-<p>如果配置正确，返回你的ss服务器的ip地址</p>
-<p><strong>8. 用proxychain4+git下载</strong></p>
-<blockquote>
-<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
-</blockquote>
-<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？</p>
+<h3 id="换R3-2-5"><a href="#换R3-2-5" class="headerlink" title="换R3.2.5"></a>换R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
+<h3 id="第二天检查"><a href="#第二天检查" class="headerlink" title="第二天检查"></a>第二天检查</h3><p>重新非root安装  zlib1.2.8，然后去configure R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip，不理他了，先用着</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -425,15 +364,13 @@ pip install shadowso">
       
         <div class="post-tags">
           
-            <a href="/tags/sslocal/" rel="tag"># sslocal</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/gfwlist/" rel="tag"># gfwlist</a>
+            <a href="/tags/r/" rel="tag"># r</a>
           
-            <a href="/tags/proxychains4/" rel="tag"># proxychains4</a>
+            <a href="/tags/zlib/" rel="tag"># zlib</a>
           
-            <a href="/tags/aliyun/" rel="tag"># aliyun</a>
-          
-            <a href="/tags/github/" rel="tag"># github</a>
+            <a href="/tags/centos/" rel="tag"># centos</a>
           
         </div>
       
@@ -446,8 +383,8 @@ pip install shadowso">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/14/install_samtools_etc/" rel="next" title="安装新版htslib、bcftools、samtools">
-                <i class="fa fa-chevron-left"></i> 安装新版htslib、bcftools、samtools
+              <a href="/2017/02/20/anaconda-starter-turtorials/" rel="next" title="学习Anaconda过程中的一些笔记，或者说踩过的坑">
+                <i class="fa fa-chevron-left"></i> 学习Anaconda过程中的一些笔记，或者说踩过的坑
               </a>
             
           </div>
@@ -455,10 +392,6 @@ pip install shadowso">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/14/python-thread-sync/" rel="prev" title="python_thread_sync">
-                python_thread_sync <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,8 +438,17 @@ pip install shadowso">
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://jimmywash.com/leoatchina.jpg"
@@ -607,6 +549,22 @@ pip install shadowso">
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要在服务器上装R"><span class="nav-number">1.</span> <span class="nav-text">为什么要在服务器上装R</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载，安装"><span class="nav-number">2.</span> <span class="nav-text">下载，安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装zlib"><span class="nav-number">3.</span> <span class="nav-text">安装zlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查configure代码"><span class="nav-number">5.</span> <span class="nav-text">检查configure代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顿悟"><span class="nav-number">6.</span> <span class="nav-text">顿悟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换R3-2-5"><span class="nav-number">7.</span> <span class="nav-text">换R3.2.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二天检查"><span class="nav-number">8.</span> <span class="nav-text">第二天检查</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
