@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-21T02:19:35.173Z</updated>
+  <updated>2017-02-21T06:52:30.821Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
     <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
     <published>2017-02-21T01:53:13.000Z</published>
-    <updated>2017-02-21T02:19:35.173Z</updated>
+    <updated>2017-02-21T06:52:30.821Z</updated>
     
     <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
 <h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
@@ -31,11 +31,18 @@
 </blockquote>
 <p>始终不行，中途试过root权限，换安装位置，重新下载3.3.1等，设置编译参数，都不行</p>
 <h3 id="检查configure代码"><a href="#检查configure代码" class="headerlink" title="检查configure代码"></a>检查configure代码</h3><blockquote>
-<p>vim configure<br>搜索 1.2.5，发现了检查zlib版本的代码，就是什么 &gt;1.2.5等</p>
+<p>vim configure<br>发现了检查zlib版本的代码，有一个  <code>&gt;1.2.5</code></p>
 </blockquote>
-<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？</p>
-<h3 id="换R3-2-5"><a href="#换R3-2-5" class="headerlink" title="换R3.2.5"></a>换R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
-<h3 id="第二天检查"><a href="#第二天检查" class="headerlink" title="第二天检查"></a>第二天检查</h3><p>重新非root安装  zlib1.2.8，然后去configure R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip，不理他了，先用着</span></div></pre></td></tr></table></figure></p>
+<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>在网上搜索时，发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？<br>我用的是 <code>1.2.11</code>的包，这是一个<code>字符</code>，不是一个数字<br>是不是作为<code>字符来说</code>，是<code>1.2.11</code> &lt; <code>1.2.5</code> ?</p>
+<h3 id="换装R3-2-5"><a href="#换装R3-2-5" class="headerlink" title="换装R3.2.5"></a>换装R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！看来这个问题可能在3.3.X的版本上</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
+<h3 id="第二天检查-R-3-3-2的安装"><a href="#第二天检查-R-3-3-2的安装" class="headerlink" title="第二天检查 R-3.3.2的安装"></a>第二天检查 R-3.3.2的安装</h3><p>重新非root安装zlib1.2.8到<code>$HOME/packages</code>，然后去<code>configure</code>R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip</span></div><div class="line"><span class="comment"># 不理他了，先用着已经装上的R-3.2.5版本吧！！！</span></div></pre></td></tr></table></figure></p>
+<p>###　给anconda2安装R扩展<br>首先，要把R加入当前的$PATH，在你的’~/.zshrc’或者’~/.bashrc’里加入</p>
+<blockquote>
+<p>export PATH=”$HOME/anaconda2/bin:$HOME/R/R-3.2.5/bin:$PATH”<br>source ~/.zshrc </p>
+</blockquote>
+<h4 id="安装R的包"><a href="#安装R的包" class="headerlink" title="安装R的包"></a>安装R的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">R  <span class="comment"># 第一样自然是启动R  </span></div><div class="line">install.packages(c(<span class="string">'repr'</span>, <span class="string">'IRdisplay'</span>, <span class="string">'evaluate'</span>, <span class="string">'crayon'</span>, <span class="string">'pbdoZMQ'</span>, <span class="string">'devtools'</span>, <span class="string">'uuid'</span>, <span class="string">'digest'</span>))</div><div class="line">devtools::install_github(<span class="string">'IRkernel/IRkernel'</span>)</div><div class="line">IRkernel::installspec()</div></pre></td></tr></table></figure>
+<p>会有这样一句话 <code>[InstallKernelSpec] Installed kernelspec ir in /home/xx/.local/share/jupyter/kernels/ir</code>,同时你看到你可以生成R的文本了<br><img src="/2017/02/21/install-r-with-zlib-support/3dbfd2c7ddf1db7cf2235f26a560786c.png" alt=""></p>
+<h4 id="在安装R包时可能碰的问题"><a href="#在安装R包时可能碰的问题" class="headerlink" title="在安装R包时可能碰的问题"></a>在安装R包时可能碰的问题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 首先，是不能下载包</span></div><div class="line">options(download.file.method = <span class="string">"wget"</span>)  </div><div class="line"><span class="comment"># 编译时碰到的  libssl  libcrypto 文件找不到的问题</span></div><div class="line"><span class="built_in">cd</span> /usr/lib64</div><div class="line">sudo ln <span class="_">-s</span> libcrypto.so.1.0.1e libcrypto.so.1.0.0</div><div class="line">sudo ln <span class="_">-s</span> libssl.so.1.0.1e libssl.so.1.0.0</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
