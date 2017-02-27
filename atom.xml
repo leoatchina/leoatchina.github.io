@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-02-21T09:17:58.000Z</updated>
+  <updated>2017-02-15T04:52:00.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -16,248 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>在服务器上装r时踩到的坑</title>
-    <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
-    <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
-    <published>2017-02-21T01:53:13.000Z</published>
-    <updated>2017-02-21T09:17:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
-<h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
-<h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><p>上一步时一直提醒我缺少安装zlib1.2.5以上版本，将就下载，也是无root安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget -c  http://www.zlib.net/zlib1211.zip  <span class="comment">#注意我下载 的是1.2.11版本</span></div><div class="line">unzip zlibi1211</div><div class="line"><span class="built_in">cd</span> zlib-1.2.11</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/packages</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>还是同样的问题，提醒没有zlib1.2.5以上版本，好，指定目录confiture</p>
-<blockquote>
-<p>./configure –prefix=$HOME/R/R-3.3.2  –enable-R-shlib LDFLAGS=”-L$HOME/packages/lib” CPPFLAGS=”-I$HOME/packages/include” </p>
-</blockquote>
-<p>始终不行，中途试过root权限，换安装位置，重新下载3.3.1等，设置编译参数，都不行</p>
-<h3 id="检查configure代码"><a href="#检查configure代码" class="headerlink" title="检查configure代码"></a>检查configure代码</h3><blockquote>
-<p>vim configure<br>发现了检查zlib版本的代码，有一个  <code>&gt;1.2.5</code></p>
-</blockquote>
-<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>在网上搜索时，发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？<br>我用的是 <code>1.2.11</code>的包，这是一个<code>字符</code>，不是一个数字<br>是不是作为<code>字符来说</code>，是<code>1.2.11</code> &lt; <code>1.2.5</code> ?</p>
-<h3 id="换装R3-2-5"><a href="#换装R3-2-5" class="headerlink" title="换装R3.2.5"></a>换装R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！看来这个问题可能在3.3.X的版本上</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
-<h3 id="第二天检查-R-3-3-2的安装"><a href="#第二天检查-R-3-3-2的安装" class="headerlink" title="第二天检查 R-3.3.2的安装"></a>第二天检查 R-3.3.2的安装</h3><p>重新非root安装zlib1.2.8到<code>$HOME/packages</code>，然后去<code>configure</code>R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip</span></div><div class="line"><span class="comment"># 不理他了，先用着已经装上的R-3.2.5版本吧！！！</span></div></pre></td></tr></table></figure></p>
-<p>###　给anconda2安装R扩展<br>首先，要把R加入当前的$PATH，在你的’~/.zshrc’或者’~/.bashrc’里加入</p>
-<blockquote>
-<p>export PATH=”$HOME/anaconda2/bin:$HOME/R/R-3.2.5/bin:$PATH”<br>source ~/.zshrc </p>
-</blockquote>
-<h4 id="安装R的包"><a href="#安装R的包" class="headerlink" title="安装R的包"></a>安装R的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">R  <span class="comment"># 第一样自然是启动R  </span></div><div class="line">install.packages(c(<span class="string">'repr'</span>, <span class="string">'IRdisplay'</span>, <span class="string">'evaluate'</span>, <span class="string">'crayon'</span>, <span class="string">'pbdoZMQ'</span>, <span class="string">'devtools'</span>, <span class="string">'uuid'</span>, <span class="string">'digest'</span>))</div><div class="line">devtools::install_github(<span class="string">'IRkernel/IRkernel'</span>)</div><div class="line">IRkernel::installspec()</div></pre></td></tr></table></figure>
-<p>会有这样一句话 <code>[InstallKernelSpec] Installed kernelspec ir in /home/xx/.local/share/jupyter/kernels/ir</code>,同时你看到你可以生成R的文本了<br><img src="/2017/02/21/install-r-with-zlib-support/3dbfd2c7ddf1db7cf2235f26a560786c.png" alt=""></p>
-<h4 id="在安装R包时可能碰到的问题"><a href="#在安装R包时可能碰到的问题" class="headerlink" title="在安装R包时可能碰到的问题"></a>在安装R包时可能碰到的问题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 首先，是不能下载包</span></div><div class="line">options(download.file.method = <span class="string">"wget"</span>)  </div><div class="line"><span class="comment"># 编译时碰到的  libssl  libcrypto 文件找不到的问题</span></div><div class="line"><span class="built_in">cd</span> /usr/lib64</div><div class="line">sudo ln <span class="_">-s</span> libcrypto.so.1.0.1e libcrypto.so.1.0.0</div><div class="line">sudo ln <span class="_">-s</span> libssl.so.1.0.1e libssl.so.1.0.0</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;为什么要在服务器上装R&quot;&gt;&lt;a href=&quot;#为什么要在服务器上装R&quot; class=&quot;headerlink&quot; title=&quot;为什么要在服务器上装R&quot;&gt;&lt;/a&gt;为什么要在服务器上装R&lt;/h3&gt;&lt;p&gt;其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
-    
-      <category term="r" scheme="http://leoatchina.github.io/tags/r/"/>
-    
-      <category term="zlib" scheme="http://leoatchina.github.io/tags/zlib/"/>
-    
-      <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习Anaconda过程中的一些笔记，或者说踩过的坑</title>
-    <link href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/"/>
-    <id>http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/</id>
-    <published>2017-02-20T06:12:52.000Z</published>
-    <updated>2017-02-20T09:26:49.541Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
-<ul>
-<li>包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
-<li>Anaconda则是一个打包的集合，里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版</li>
-<li>conda将几乎所有的工具、第三方包都当做package对待，甚至包括python和conda自身。所以，conda打破了包管理和环境管理约束，能非常方便地安装各种python</li>
-<li>conda和virtualenv: 在我看来，<code>conda</code>是用于科学计算环境布置，<code>virtualenv</code>主要是用于web服务。</li>
-</ul>
-<h3 id="Anaconda安装"><a href="#Anaconda安装" class="headerlink" title="Anaconda安装"></a>Anaconda安装</h3><blockquote>
-<p>去 <a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a> 下载最新版的 Anaconda<br>要说明的是, Anaconda有for python2和python3的版本，不过除了这个不同，其他基本没什么区别，我的生信服务器默认是python2，安装了Anaconda2<br>可以直接用wget下载 ，<code>wget -c https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh</code><br>不用root安装 ，直接安装到<strong>当前用户</strong>，<code>bash Anaconda2-4.3.0-Linux-x86_64.sh</code>，会安装在<code>~/anaconda2</code><br><strong>注意运行路径</strong>，在安装anaconda时，会提醒你在<code>~/.bashrc</code>里加一句<code>export PATH=&quot;~/anaconda2/bin:$PATH&quot;</code>,但如果你是和我一样，是用<code>zsh</code>为shell，请注意在<code>~/.zshrc</code>里加上这一句<br>用户安装的不同的python环境都会被放在<code>~/anaconda/envs</code>下，可以在命令中运行<code>conda info -e</code> 查看已经安装的环境，当前已被激活的环境会显示有一个星号或者括号</p>
-</blockquote>
-<h3 id="换成更快的服务器"><a href="#换成更快的服务器" class="headerlink" title="换成更快的服务器"></a>换成更快的服务器</h3><blockquote>
-<p><code>conda</code>的服务器在国外，如果直接去升级安装会很慢，<strong>要换成清华的镜像</strong><br><strong>如果不做这一步，非常容易出现不能升级安装conda包的情况</strong></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加Anaconda的TUNA镜像</span></div><div class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</div><div class="line"><span class="comment"># 设置搜索时显示通道地址</span></div><div class="line">conda config --set show_channel_urls yes</div></pre></td></tr></table></figure>
-<h3 id="conda的环境管理"><a href="#conda的环境管理" class="headerlink" title="conda的环境管理"></a>conda的环境管理</h3><p>Conda的环境管理功能允许我们同时安装若干不同版本的Python，并能自由切换。对于上述安装过程，假设我们采用的是Python 2.7对应的安装包，那么Python 2.7就是默认的环境（默认名字是root，注意这个root不是超级管理员的意思。<br>比如我的python的是2.7.13，运行<code>python -V</code>，会显示<code>Python 2.7.13 :: Anaconda 4.3.0 (64-bit)</code><br>如果我要使用 python3.5，那就安装一个起名为python35的环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">conda create --name python35 python3.5</div><div class="line"><span class="comment"># 安装好后，使用activate激活某个环境</span></div><div class="line">activate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> activate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"><span class="comment"># 激活后，会发现terminal输入的地方多了python35的字样，实际上，此时系统/做的事情就是把默认2.7环境从PATH中去除，再把3.5对应的命令加入PATH</span></div><div class="line"><span class="comment"># 你可以用 `which python`或者 `python -V`查看</span></div><div class="line"></div><div class="line"><span class="comment"># 如果想返回默认的python 2.7环境，运行</span></div><div class="line">deactivate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> deactivate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"></div><div class="line"><span class="comment"># 删除一个已有的环境</span></div><div class="line">conda remove --name python35 --all</div></pre></td></tr></table></figure></p>
-<h3 id="conda的包管理，和pip类似，比如你想安装scipy"><a href="#conda的包管理，和pip类似，比如你想安装scipy" class="headerlink" title="conda的包管理，和pip类似，比如你想安装scipy"></a>conda的包管理，和pip类似，比如你想安装scipy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装scipy</span></div><div class="line">conda install scipy</div><div class="line"><span class="comment"># conda会从从远程搜索scipy的相关信息和依赖项目，对于python 3.4，conda会同时安装numpy和mkl（运算加速的库）</span></div></pre></td></tr></table></figure>
-<p>conda的一些常用操作如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看当前环境下已安装的包</span></div><div class="line">conda list</div><div class="line"></div><div class="line"><span class="comment"># 查看某个指定环境的已安装包</span></div><div class="line">conda list -n python35</div><div class="line"></div><div class="line"><span class="comment"># 查找package信息</span></div><div class="line">conda search numpy</div><div class="line"></div><div class="line"><span class="comment"># 安装package</span></div><div class="line">conda install -n python35 numpy</div><div class="line"><span class="comment"># 如果不用-n指定环境名称，则被安装在当前活跃环境</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 更新package</span></div><div class="line">conda update -n python35 numpy</div><div class="line"></div><div class="line"><span class="comment"># 删除package</span></div><div class="line">conda remove -n python35 numpy</div></pre></td></tr></table></figure></p>
-<p>conda将conda、python等都视为package，因此，完全可以使用conda来管理conda和python的版本，例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 更新conda，保持conda最新</span></div><div class="line">conda update conda</div><div class="line"></div><div class="line"><span class="comment"># 更新anaconda</span></div><div class="line">conda update anaconda</div><div class="line"></div><div class="line"><span class="comment"># 更新python</span></div><div class="line">conda update python</div><div class="line"></div><div class="line"><span class="comment"># 安装python3.5的anaconda</span></div><div class="line">conda install -n python35 anacodnda</div><div class="line"><span class="comment"># 然后你会看到要安装这么多包!!!!!!</span></div></pre></td></tr></table></figure></p>
-<p><img src="/2017/02/20/anaconda-starter-turtorials/342a8f848a70403e779c33891f407671.png" alt="你会看到这么多包！"></p>
-<h3 id="布置jupyter-nookbook"><a href="#布置jupyter-nookbook" class="headerlink" title="布置jupyter nookbook"></a>布置jupyter nookbook</h3><p>首先安装下<code>ipython</code></p>
-<blockquote>
-<p>sudo yum install ipython</p>
-</blockquote>
-<p>生成配置文件</p>
-<blockquote>
-<p>jupyter notebook –generate-config<br>生成的文件为<code>~/.jupyter/jupyter_notebook_config.py</code></p>
-</blockquote>
-<p>生成密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">In [1]: from IPython.lib import passwd</div><div class="line">In [2]: passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line">Out[2]: &apos;sha1:7467b7351f12:79fc65998**************3003b87f3&apos;</div></pre></td></tr></table></figure></p>
-<p>记录下这个 <code>sha1</code>值，以后要用到</p>
-<p>生成jupyter配置文件<br><code>jupyter notebook --generate-config</code><br>以上将会在 ~/.jupyter/ 下创建默认config 文件: jupyter_notebook_config.py</p>
-<p>修改jupyter配置文件 ，<code>vim ~/.jupyter/jupyter_notebook_config.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">c.NotebookApp.ip = <span class="string">'*'</span> <span class="comment">#任何ip都可以</span></div><div class="line">c.NotebookApp.open_browser = <span class="keyword">False</span></div><div class="line">c.NotebookApp.password = <span class="string">u'sha1:209f151dcd7f:a730a81fd00********3ec0a6aa31'</span><span class="comment">#设置密码的时候生成的sha1</span></div><div class="line">c.NotebookApp.port = <span class="number">8888</span><span class="comment"># 设置未被使用的端口</span></div><div class="line">c.NotebookApp.notebook_dir = <span class="string">u'/mnt/projects'</span> <span class="comment"># Notebook启动目录</span></div></pre></td></tr></table></figure></p>
-<h3 id="启动jupyter"><a href="#启动jupyter" class="headerlink" title="启动jupyter"></a>启动jupyter</h3><p><code>jupyter notebook</code><br>然后你通过 <code>http://ip:8888就可以访问你的工作目录了</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.jianshu.com/p/2f3be7781451" target="_blank" rel="external">Anaconda使用总结 ypyb PeterYuan</a><br><a href="http://www.voidcn.com/blog/SA14023053/article/p-6066215.html" target="_blank" rel="external">Jupyter notebook 服务器端部署</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Anaconda概述&quot;&gt;&lt;a href=&quot;#Anaconda概述&quot; class=&quot;headerlink&quot; title=&quot;Anaconda概述&quot;&gt;&lt;/a&gt;Anaconda概述&lt;/h3&gt;&lt;p&gt;Anaconda是一个用于科学计算的Python发行版，支持 Linux, 
-    
-    </summary>
-    
-    
-      <category term="anacond" scheme="http://leoatchina.github.io/tags/anacond/"/>
-    
-      <category term="python" scheme="http://leoatchina.github.io/tags/python/"/>
-    
-      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>atom-shortcuts-windows</title>
-    <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/"/>
-    <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/</id>
-    <published>2017-02-16T06:00:08.000Z</published>
-    <updated>2017-02-16T06:02:10.857Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>‘ctrl-shift-s’ 保存所有打开的文件<br>‘ctrl-shift-o’ 打开目录<br>‘ctrl-p’ 从添加的项目中查找文件<br>‘ctrl-f’ 向下翻页<br>‘ctrl-b’ 向上翻页<br>alt-b 或 ctrl-left 移动到单词开始<br>alt-f 或 ctrl-right 移动到单词末尾<br>ctrl-g 移动到指定行<br>ctrl-j 将下一行与当前行合并<br>ctrl-up, ctrl-down 使当前行向上或者向下移动<br>ctrl-enter,ctrl-shift-enter在当前行的下一行或上一行插入新的一行<br>ctrl-k ctrl-l使当前字符小写<br>ctrl-k ctrl-u使当前字符大写<br>ctrl-shift-D 复制当前行到下一行<br>ctrl-shift-K 删除当前行<br>ctrl-u删除到当前行开始<br>alt-backspace或ctrl-alt-h删除到当前子单词开始<br>alt-delete或ctrl-alt-d删除到当前子单词结束<br>ctrl-backspace或ctrl-w或alt-h删除到当前单词开始<br>alt-d或ctrl-delete删除到当前子单词开始<br>alt-left: ‘editor:move-to-previous-subword-boundary’<br>alt-right: ‘editor:move-to-next-subword-boundary’<br>alt-shift-left: ‘editor:select-to-previous-subword-boundary’<br>alt-shift-right: ‘editor:select-to-next-subword-boundary’</p>
-<p>选取<br>alt-shift-B或 ctrl-shift-left 选取至字符开始<br>alt-shift-F或ctrl-shift-right 选取至字符结束<br>ctrl-a 全选<br>alt-f3选取文档中和当前单词相同的所有单词<br>shift-end 选取至本行结束<br>ctrl-l 选取一行，继续按回选取下一行<br>ctrl-d 选取文档中和当前单词相同的下一处</p>
-<p>目录树操作<br>ctrl-\ 或 ctrl-k ctrl-b 显示或隐藏目录树<br>a 在目录树下添加文件<br>d 将当前文件另存为<br>alt-right 和 alt-left 展开(隐藏)所有目录<br>ctrl-k left 在左半视图中打开文件<br>ctrl-k down在下半视图中打开文件<br>ctrl-k up 在上半视图中打开文件<br>ctrl-k right 在右半视图中打开文件<br>ctrl-shift-C 复制当前文件绝对路径</p>
-<p>其它<br>ctrl-m 相应括号之间，html tag之间等跳转<br>ctrl-alt-up, ctrl-alt-down 增加上（下）一行光标<br>ctrl-shift-u 调出切换编码选项<br>ctrl-f 在buffer中查找<br>ctrl-shift-f 在整个工程中查找<br>alt-ctrl-[ 折叠<br>alt-ctrl-] 展开<br>ctrl-alt-i调用控制台<br>ctrl-/注释<br>ctrl-alt-c打开color-picker</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;文件操作&quot;&gt;&lt;a href=&quot;#文件操作&quot; class=&quot;headerlink&quot; title=&quot;文件操作&quot;&gt;&lt;/a&gt;文件操作&lt;/h2&gt;&lt;p&gt;‘ctrl-shift-s’ 保存所有打开的文件&lt;br&gt;‘ctrl-shift-o’ 打开目录&lt;br&gt;‘ctrl-p’ 从添
-    
-    </summary>
-    
-    
-      <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
-    
-      <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Atom MacOs 快捷键</title>
-    <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/"/>
-    <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/</id>
-    <published>2017-02-16T05:39:55.000Z</published>
-    <updated>2017-02-16T05:42:21.107Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件  </p>
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>（等价于上下左右）<br><code>ctrl-p</code> 前一行<br><code>ctrl-n</code> 后一行<br><code>ctrl-f</code> 前一个字符<br><code>ctrl-b</code> 后一个字符  </p>
-<p><code>alt-B</code>, <code>alt-left</code> 移动到单词开始<br><code>alt-F</code>, <code>alt-right</code> 移动到单词末尾  </p>
-<p><code>cmd-right</code>, <code>ctrl-E</code> 移动到一行结束<br><code>cmd-left</code>, <code>ctrl-A</code>  移动到一行开始  </p>
-<p><code>cmd-up</code> 移动到文件开始<br><code>cmd-down</code> 移动到文件结束  </p>
-<p><code>ctrl-g</code> 移动到指定行 row:column 处</p>
-<p><code>cmd-r</code> 在方法之间跳转</p>
-<h2 id="目录树操作"><a href="#目录树操作" class="headerlink" title="目录树操作"></a>目录树操作</h2><p><code>cmd-\</code> 或者 <code>cmd-k cmd-b</code> 显示(隐藏)目录树<br><code>ctrl-0</code> 焦点切换到目录树(再按一次或者<code>Esc</code>退出目录树)<br><code>a</code> 添加文件<br><code>d</code> 将当前文件另存为(duplicate)<br><code>i</code> 显示(隐藏)版本控制忽略的文件<br><code>alt-right</code> 和 <code>alt-left</code> 展开(隐藏)所有目录<br><code>ctrl-al-]</code> 和 <code>ctrl-al-[</code> 同上<br><code>ctrl-[</code> 和 <code>ctrl-]</code> 展开(隐藏)当前目录<br><code>ctrl-f</code> 和 <code>ctrl-b</code> 同上<br><code>cmd-k h</code> 或者 <code>cmd-k left</code> 在左半视图中打开文件<br><code>cmd-k j</code> 或者 <code>cmd-k down</code> 在下半视图中打开文件<br><code>cmd-k k</code> 或者 <code>cmd-k up</code> 在上半视图中打开文件<br><code>cmd-k l</code> 或者 <code>cmd-k right</code> 在右半视图中打开文件<br><code>ctrl-shift-C</code> 复制当前文件绝对路径</p>
-<h2 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h2><p><code>cmd-F2</code> 在本行增加书签<br><code>F2</code> 跳到当前文件的下一条书签<br><code>shift-F2</code> 跳到当前文件的上一条书签<br><code>ctrl-F2</code> 列出当前工程所有书签  </p>
-<h2 id="选取"><a href="#选取" class="headerlink" title="选取"></a>选取</h2><blockquote>
-<p>大部分和导航一致，只不过加上shift  </p>
-</blockquote>
-<p><code>ctrl-shift-P</code>  选取至上一行<br><code>ctrl-shift-N</code>  选取至下一样<br><code>ctrl-shift-B</code>  选取至前一个字符<br><code>ctrl-shift-F</code>  选取至后一个字符<br><code>alt-shift-B</code>, <code>alt-shift-left</code>  选取至字符开始<br><code>alt-shift-F</code>, <code>alt-shift-right</code>  选取至字符结束<br><code>ctrl-shift-E</code>, <code>cmd-shift-right</code>  选取至本行结束<br><code>ctrl-shift-A</code>, <code>cmd-shift-left</code>  选取至本行开始<br><code>cmd-shift-up</code>  选取至文件开始<br><code>cmd-shift-down</code>  选取至文件结尾<br><code>cmd-A</code>  全选<br><code>cmd-L</code>  选取一行，继续按回选取下一行<br><code>ctrl-shift-W</code>  选取当前单词  </p>
-<h2 id="编辑和删除文本"><a href="#编辑和删除文本" class="headerlink" title="编辑和删除文本"></a>编辑和删除文本</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><code>ctrl-T</code> 使光标前后字符交换<br><code>cmd-J</code> 将下一行与当前行合并<br><code>ctrl-cmd-up</code>, <code>ctrl-cmd-down</code> 使当前行向上或者向下移动<br><code>cmd-shift-D</code> 复制当前行到下一行<br><code>cmd-K</code>, <code>cmd-U</code> 使当前字符大写<br><code>cmd-K</code>, <code>cmd-L</code> 使当前字符小写<br><code>cmd-shift-P</code> 搜索命令  </p>
-<h3 id="删除和剪切"><a href="#删除和剪切" class="headerlink" title="删除和剪切"></a>删除和剪切</h3><p><code>ctrl-shift-K</code> 删除当前行<br><code>cmd-backspace</code> 删除到当前行开始<br><code>cmd-fn-backspace</code> 删除到当前行结束<br><code>ctrl-K</code> 剪切到当前行结束<br><code>alt-backspace</code> 或 <code>alt-H</code> 删除到当前单词开始<br><code>alt-delete</code> 或 <code>alt-D</code> 删除到当前单词结束  </p>
-<h3 id="多光标和多处选取"><a href="#多光标和多处选取" class="headerlink" title="多光标和多处选取"></a>多光标和多处选取</h3><p><code>cmd-click</code> 增加新光标<br><code>cmd-shift-L</code> 将多行选取改为多行光标<br><code>ctrl-shift-up</code>, <code>ctrl-shift-down</code> 增加上（下）一行光标<br><code>cmd-D</code> 选取文档中和当前单词相同的下一处<br><code>ctrl-cmd-G</code> 选取文档中所有和当前光标单词相同的位置  </p>
-<h3 id="括号跳转"><a href="#括号跳转" class="headerlink" title="括号跳转"></a>括号跳转</h3><p><code>ctrl-m</code> 相应括号之间，html tag之间等跳转<br><code>ctrl-cmd-m</code> 括号(tag)之间文本选取<br><code>alt-cmd-.</code> 关闭当前XML/HTML tag  </p>
-<h3 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h3><p><code>ctrl-shift-U</code> 调出切换编码选项  </p>
-<h2 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h2><p><code>cmd-F</code> 在buffer中查找<br><code>cmd-shift-f</code> 在整个工程中查找  </p>
-<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p><code>alt-shift-S</code> 查看当前可用代码片段  </p>
-<blockquote>
-<p>在<code>~/.atom</code>目录下<code>snippets.cson</code>文件中存放了你定制的snippets  </p>
-</blockquote>
-<p><a href="https://atom.io/docs/v1.0.0/using-atom-snippets" target="_blank" rel="external">定制说明</a>  </p>
-<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p><code>ctrl-space</code> 提示补全信息  </p>
-<h2 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h2><p><code>alt-cmd-[</code> 折叠<br><code>alt-cmd-]</code> 展开<br><code>alt-cmd-shift-{</code> 折叠全部<br><code>alt-cmd-shift-}</code> 展开全部<br><code>cmd-k cmd-N</code> 指定折叠层级 N为层级数  </p>
-<h2 id="文件语法高亮"><a href="#文件语法高亮" class="headerlink" title="文件语法高亮"></a>文件语法高亮</h2><p><code>ctrl-shift-L</code> 选择文本类型  </p>
-<h2 id="使用Atom进行写作"><a href="#使用Atom进行写作" class="headerlink" title="使用Atom进行写作"></a>使用Atom进行写作</h2><p><code>ctrl-shift-M</code> Markdown预览<br>可用代码片段</p>
-<blockquote>
-<p>b, legal, img, l, i, code, t, table</p>
-</blockquote>
-<h2 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h2><p><code>cmd-alt-Z</code> checkout HEAD 版本<br><code>cmd-shift-B</code> 弹出untracked 和 modified文件列表<br><code>alt-g down</code> <code>alt-g up</code> 在修改处跳转<br><code>alt-G D</code> 弹出diff列表<br><code>alt-G O</code> 在github上打开文件<br><code>alt-G G</code> 在github上打开项目地址<br><code>alt-G B</code> 在github上打开文件blame<br><code>alt-G H</code> 在github上打开文件history<br><code>alt-G I</code> 在github上打开issues<br><code>alt-G R</code> 在github打开分支比较<br><code>alt-G C</code> 拷贝当前文件在gihub上的网址  </p>
-<h2 id="推荐一些好用的插件"><a href="#推荐一些好用的插件" class="headerlink" title="推荐一些好用的插件"></a>推荐一些好用的插件</h2><ul>
-<li>主题<br><a href="https://atom.io/themes/atom-material-ui" target="_blank" rel="external">atom-material-ui</a> 好看到爆<br><a href="https://atom.io/themes/atom-material-syntax" target="_blank" rel="external">atom-material-syntax</a></li>
-<li>美化<br><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="external">atom-beautify</a> 一键代码美化<br><a href="https://atom.io/packages/file-icons" target="_blank" rel="external">file-icons</a> 给文件加上好看的图标<br><a href="https://atom.io/users/atom-minimap" target="_blank" rel="external">atom-minimap</a> 方便美观的缩略滚动图<br><a href="https://atom.io/packages/pretty-json" target="_blank" rel="external">pretty-json</a> json格式化工具<br><a href="https://atom.io/packages/activate-power-mode" target="_blank" rel="external">activate-power-mode</a> 炫酷的打字特效</li>
-<li>git<br><a href="https://atom.io/packages/atomatigit" target="_blank" rel="external">atomatigit</a> 可视化git操作<br><a href="https://atom.io/packages/git-time-machine" target="_blank" rel="external">git-time-machine</a> git版本对比工具，可视化选择每一个commit<br><a href="https://atom.io/packages/merge-conflicts" target="_blank" rel="external">merge-conflicts</a> 合并冲突可视化工具</li>
-<li>代码提示<br><a href="https://atom.io/packages/emmet" target="_blank" rel="external">emmet</a> 这个不用介绍了吧<br><a href="https://atom.io/packages/atom-ternjs" target="_blank" rel="external">atom-ternjs</a> js代码提示很强大，高度定制化<br><a href="https://atom.io/packages/docblockr" target="_blank" rel="external">docblockr</a> jsdoc 给js添加注释<br><a href="https://atom.io/packages/autoclose-html" target="_blank" rel="external">autoclose-html</a> 闭合html标签<br><a href="https://atom.io/packages/color-picker" target="_blank" rel="external">color-picker</a> 取色器 必备插件<br><a href="https://atom.io/packages/pigments" target="_blank" rel="external">pigments</a> 颜色显示插件 必装<br><a href="https://atom.io/packages/terminal-panel" target="_blank" rel="external">terminal-panel</a> 直接在atom里面写命令了<br><a href="https://atom.io/packages/svg-preview" target="_blank" rel="external">svg-preview</a> svg预览</li>
-<li>便捷操作<br><a href="https://atom.io/packages/advanced-open-file" target="_blank" rel="external">advanced-open-file</a> 快速打开、切换文件<br><a href="https://atom.io/packages/project-folder" target="_blank" rel="external">project-folder</a> 快速打开、切换项目<br><a href="https://atom.io/packages/script" target="_blank" rel="external">script</a> 立即执行当前js文件</li>
-<li>高亮<br><a href="https://atom.io/packages/language-vue" target="_blank" rel="external">language-vue</a> vue框架代码高亮</li>
-<li>终端<br><a href="https://atom.io/packages/platformio-ide-terminal" target="_blank" rel="external">platformio-atom-ide-terminal</a> 终端插件，支持显示、隐藏及多窗口</li>
-</ul>
-<p>就这些了，欢迎pull更多好用的插件！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;文件切换&quot;&gt;&lt;a href=&quot;#文件切换&quot; class=&quot;headerlink&quot; title=&quot;文件切换&quot;&gt;&lt;/a&gt;文件切换&lt;/h2&gt;&lt;p&gt;&lt;code&gt;ctrl-shift-s&lt;/code&gt;  保存所有打开的文件&lt;br&gt;&lt;code&gt;cmd-shift-o&lt;/cod
-    
-    </summary>
-    
-    
-      <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
-    
-      <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leoatchina的第一篇hexo博客</title>
-    <link href="http://leoatchina.github.io/2017/02/15/hello-world/"/>
-    <id>http://leoatchina.github.io/2017/02/15/hello-world/</id>
-    <published>2017-02-15T10:24:10.356Z</published>
-    <updated>2017-02-15T10:24:10.356Z</updated>
-    
-    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
-<ol>
-<li>免费</li>
-<li>配置可以用github进行同步</li>
-<li>插件丰富,我主要用到的有<ul>
-<li>markdown-preview-plus</li>
-<li>markdown-writer </li>
-<li>markdown-previwe-opener //自动打开markdown preview</li>
-<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
-<li>atom-hexo //hexo命令</li>
-<li>vim-mode // 习惯vim的操作模式了</li>
-<li><strong>markclip</strong>，//这个是利器 见下面</li>
-</ul>
-</li>
-<li>写作时插入图片的方法<ol>
-<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
-<li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
-<p><img src="/2017/02/15/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li>hexo clean | hexo g | hexo d，完成布置</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
-    <link href="http://leoatchina.github.io/2017/02/15/sslocal-proxychains-aliyun-github/"/>
-    <id>http://leoatchina.github.io/2017/02/15/sslocal-proxychains-aliyun-github/</id>
-    <published>2017-02-15T04:52:00.237Z</published>
-    <updated>2017-02-15T04:52:00.237Z</updated>
+    <link href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/"/>
+    <id>http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-15T04:52:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
@@ -321,10 +84,10 @@
   
   <entry>
     <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/15/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/15/install_samtools_etc/</id>
-    <published>2017-02-15T02:12:27.354Z</published>
-    <updated>2017-02-14T07:07:27.959Z</updated>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
     
     <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
 ]]></content>
@@ -339,11 +102,248 @@
   </entry>
   
   <entry>
+    <title>leoatchina的第一篇hexo博客</title>
+    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
+    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-15T10:24:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在服务器上装r时踩到的坑</title>
+    <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
+    <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
+    <published>2017-02-21T01:53:13.000Z</published>
+    <updated>2017-02-21T09:17:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
+<h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
+<h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><p>上一步时一直提醒我缺少安装zlib1.2.5以上版本，将就下载，也是无root安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget -c  http://www.zlib.net/zlib1211.zip  <span class="comment">#注意我下载 的是1.2.11版本</span></div><div class="line">unzip zlibi1211</div><div class="line"><span class="built_in">cd</span> zlib-1.2.11</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/packages</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>还是同样的问题，提醒没有zlib1.2.5以上版本，好，指定目录confiture</p>
+<blockquote>
+<p>./configure –prefix=$HOME/R/R-3.3.2  –enable-R-shlib LDFLAGS=”-L$HOME/packages/lib” CPPFLAGS=”-I$HOME/packages/include” </p>
+</blockquote>
+<p>始终不行，中途试过root权限，换安装位置，重新下载3.3.1等，设置编译参数，都不行</p>
+<h3 id="检查configure代码"><a href="#检查configure代码" class="headerlink" title="检查configure代码"></a>检查configure代码</h3><blockquote>
+<p>vim configure<br>发现了检查zlib版本的代码，有一个  <code>&gt;1.2.5</code></p>
+</blockquote>
+<h3 id="顿悟"><a href="#顿悟" class="headerlink" title="顿悟"></a>顿悟</h3><p>在网上搜索时，发现很多人也有这个问题，突然想到，是不是这个检查<code>zlib</code>版本的代码不对，导致这一步检测不过？<br>我用的是 <code>1.2.11</code>的包，这是一个<code>字符</code>，不是一个数字<br>是不是作为<code>字符来说</code>，是<code>1.2.11</code> &lt; <code>1.2.5</code> ?</p>
+<h3 id="换装R3-2-5"><a href="#换装R3-2-5" class="headerlink" title="换装R3.2.5"></a>换装R3.2.5</h3><p>由于此时已经下载了3.2.5的R包，所以试试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.2.5  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 检查通过 ！！！看来这个问题可能在3.3.X的版本上</span></div><div class="line">make</div><div class="line">make install  <span class="comment"># 顺利装上</span></div></pre></td></tr></table></figure></p>
+<h3 id="第二天检查-R-3-3-2的安装"><a href="#第二天检查-R-3-3-2的安装" class="headerlink" title="第二天检查 R-3.3.2的安装"></a>第二天检查 R-3.3.2的安装</h3><p>重新非root安装zlib1.2.8到<code>$HOME/packages</code>，然后去<code>configure</code>R-3.3.2<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib LDFLAGS=<span class="string">"-L<span class="variable">$HOME</span>/packages/lib"</span> CPPFLAGS=<span class="string">"-I<span class="variable">$HOME</span>/packages/include"</span>   <span class="comment"># 编译通过zlib，但是没通过bzip</span></div><div class="line"><span class="comment"># 不理他了，先用着已经装上的R-3.2.5版本吧！！！</span></div></pre></td></tr></table></figure></p>
+<p>###　给anconda2安装R扩展<br>首先，要把R加入当前的$PATH，在你的’~/.zshrc’或者’~/.bashrc’里加入</p>
+<blockquote>
+<p>export PATH=”$HOME/anaconda2/bin:$HOME/R/R-3.2.5/bin:$PATH”<br>source ~/.zshrc </p>
+</blockquote>
+<h4 id="安装R的包"><a href="#安装R的包" class="headerlink" title="安装R的包"></a>安装R的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">R  <span class="comment"># 第一样自然是启动R  </span></div><div class="line">install.packages(c(<span class="string">'repr'</span>, <span class="string">'IRdisplay'</span>, <span class="string">'evaluate'</span>, <span class="string">'crayon'</span>, <span class="string">'pbdoZMQ'</span>, <span class="string">'devtools'</span>, <span class="string">'uuid'</span>, <span class="string">'digest'</span>))</div><div class="line">devtools::install_github(<span class="string">'IRkernel/IRkernel'</span>)</div><div class="line">IRkernel::installspec()</div></pre></td></tr></table></figure>
+<p>会有这样一句话 <code>[InstallKernelSpec] Installed kernelspec ir in /home/xx/.local/share/jupyter/kernels/ir</code>,同时你看到你可以生成R的文本了<br><img src="/2017/02/21/install-r-with-zlib-support/3dbfd2c7ddf1db7cf2235f26a560786c.png" alt=""></p>
+<h4 id="在安装R包时可能碰到的问题"><a href="#在安装R包时可能碰到的问题" class="headerlink" title="在安装R包时可能碰到的问题"></a>在安装R包时可能碰到的问题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 首先，是不能下载包</span></div><div class="line">options(download.file.method = <span class="string">"wget"</span>)  </div><div class="line"><span class="comment"># 编译时碰到的  libssl  libcrypto 文件找不到的问题</span></div><div class="line"><span class="built_in">cd</span> /usr/lib64</div><div class="line">sudo ln <span class="_">-s</span> libcrypto.so.1.0.1e libcrypto.so.1.0.0</div><div class="line">sudo ln <span class="_">-s</span> libssl.so.1.0.1e libssl.so.1.0.0</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;为什么要在服务器上装R&quot;&gt;&lt;a href=&quot;#为什么要在服务器上装R&quot; class=&quot;headerlink&quot; title=&quot;为什么要在服务器上装R&quot;&gt;&lt;/a&gt;为什么要在服务器上装R&lt;/h3&gt;&lt;p&gt;其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
+    
+      <category term="r" scheme="http://leoatchina.github.io/tags/r/"/>
+    
+      <category term="zlib" scheme="http://leoatchina.github.io/tags/zlib/"/>
+    
+      <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习Anaconda过程中的一些笔记，或者说踩过的坑</title>
+    <link href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/"/>
+    <id>http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/</id>
+    <published>2017-02-20T06:12:52.000Z</published>
+    <updated>2017-02-20T09:26:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
+<ul>
+<li>包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
+<li>Anaconda则是一个打包的集合，里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版</li>
+<li>conda将几乎所有的工具、第三方包都当做package对待，甚至包括python和conda自身。所以，conda打破了包管理和环境管理约束，能非常方便地安装各种python</li>
+<li>conda和virtualenv: 在我看来，<code>conda</code>是用于科学计算环境布置，<code>virtualenv</code>主要是用于web服务。</li>
+</ul>
+<h3 id="Anaconda安装"><a href="#Anaconda安装" class="headerlink" title="Anaconda安装"></a>Anaconda安装</h3><blockquote>
+<p>去 <a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a> 下载最新版的 Anaconda<br>要说明的是, Anaconda有for python2和python3的版本，不过除了这个不同，其他基本没什么区别，我的生信服务器默认是python2，安装了Anaconda2<br>可以直接用wget下载 ，<code>wget -c https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh</code><br>不用root安装 ，直接安装到<strong>当前用户</strong>，<code>bash Anaconda2-4.3.0-Linux-x86_64.sh</code>，会安装在<code>~/anaconda2</code><br><strong>注意运行路径</strong>，在安装anaconda时，会提醒你在<code>~/.bashrc</code>里加一句<code>export PATH=&quot;~/anaconda2/bin:$PATH&quot;</code>,但如果你是和我一样，是用<code>zsh</code>为shell，请注意在<code>~/.zshrc</code>里加上这一句<br>用户安装的不同的python环境都会被放在<code>~/anaconda/envs</code>下，可以在命令中运行<code>conda info -e</code> 查看已经安装的环境，当前已被激活的环境会显示有一个星号或者括号</p>
+</blockquote>
+<h3 id="换成更快的服务器"><a href="#换成更快的服务器" class="headerlink" title="换成更快的服务器"></a>换成更快的服务器</h3><blockquote>
+<p><code>conda</code>的服务器在国外，如果直接去升级安装会很慢，<strong>要换成清华的镜像</strong><br><strong>如果不做这一步，非常容易出现不能升级安装conda包的情况</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加Anaconda的TUNA镜像</span></div><div class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</div><div class="line"><span class="comment"># 设置搜索时显示通道地址</span></div><div class="line">conda config --set show_channel_urls yes</div></pre></td></tr></table></figure>
+<h3 id="conda的环境管理"><a href="#conda的环境管理" class="headerlink" title="conda的环境管理"></a>conda的环境管理</h3><p>Conda的环境管理功能允许我们同时安装若干不同版本的Python，并能自由切换。对于上述安装过程，假设我们采用的是Python 2.7对应的安装包，那么Python 2.7就是默认的环境（默认名字是root，注意这个root不是超级管理员的意思。<br>比如我的python的是2.7.13，运行<code>python -V</code>，会显示<code>Python 2.7.13 :: Anaconda 4.3.0 (64-bit)</code><br>如果我要使用 python3.5，那就安装一个起名为python35的环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">conda create --name python35 python3.5</div><div class="line"><span class="comment"># 安装好后，使用activate激活某个环境</span></div><div class="line">activate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> activate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"><span class="comment"># 激活后，会发现terminal输入的地方多了python35的字样，实际上，此时系统/做的事情就是把默认2.7环境从PATH中去除，再把3.5对应的命令加入PATH</span></div><div class="line"><span class="comment"># 你可以用 `which python`或者 `python -V`查看</span></div><div class="line"></div><div class="line"><span class="comment"># 如果想返回默认的python 2.7环境，运行</span></div><div class="line">deactivate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> deactivate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"></div><div class="line"><span class="comment"># 删除一个已有的环境</span></div><div class="line">conda remove --name python35 --all</div></pre></td></tr></table></figure></p>
+<h3 id="conda的包管理，和pip类似，比如你想安装scipy"><a href="#conda的包管理，和pip类似，比如你想安装scipy" class="headerlink" title="conda的包管理，和pip类似，比如你想安装scipy"></a>conda的包管理，和pip类似，比如你想安装scipy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装scipy</span></div><div class="line">conda install scipy</div><div class="line"><span class="comment"># conda会从从远程搜索scipy的相关信息和依赖项目，对于python 3.4，conda会同时安装numpy和mkl（运算加速的库）</span></div></pre></td></tr></table></figure>
+<p>conda的一些常用操作如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看当前环境下已安装的包</span></div><div class="line">conda list</div><div class="line"></div><div class="line"><span class="comment"># 查看某个指定环境的已安装包</span></div><div class="line">conda list -n python35</div><div class="line"></div><div class="line"><span class="comment"># 查找package信息</span></div><div class="line">conda search numpy</div><div class="line"></div><div class="line"><span class="comment"># 安装package</span></div><div class="line">conda install -n python35 numpy</div><div class="line"><span class="comment"># 如果不用-n指定环境名称，则被安装在当前活跃环境</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 更新package</span></div><div class="line">conda update -n python35 numpy</div><div class="line"></div><div class="line"><span class="comment"># 删除package</span></div><div class="line">conda remove -n python35 numpy</div></pre></td></tr></table></figure></p>
+<p>conda将conda、python等都视为package，因此，完全可以使用conda来管理conda和python的版本，例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 更新conda，保持conda最新</span></div><div class="line">conda update conda</div><div class="line"></div><div class="line"><span class="comment"># 更新anaconda</span></div><div class="line">conda update anaconda</div><div class="line"></div><div class="line"><span class="comment"># 更新python</span></div><div class="line">conda update python</div><div class="line"></div><div class="line"><span class="comment"># 安装python3.5的anaconda</span></div><div class="line">conda install -n python35 anacodnda</div><div class="line"><span class="comment"># 然后你会看到要安装这么多包!!!!!!</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2017/02/20/anaconda-starter-turtorials/342a8f848a70403e779c33891f407671.png" alt="你会看到这么多包！"></p>
+<h3 id="布置jupyter-nookbook"><a href="#布置jupyter-nookbook" class="headerlink" title="布置jupyter nookbook"></a>布置jupyter nookbook</h3><p>首先安装下<code>ipython</code></p>
+<blockquote>
+<p>sudo yum install ipython</p>
+</blockquote>
+<p>生成配置文件</p>
+<blockquote>
+<p>jupyter notebook –generate-config<br>生成的文件为<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+</blockquote>
+<p>生成密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">In [1]: from IPython.lib import passwd</div><div class="line">In [2]: passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line">Out[2]: &apos;sha1:7467b7351f12:79fc65998**************3003b87f3&apos;</div></pre></td></tr></table></figure></p>
+<p>记录下这个 <code>sha1</code>值，以后要用到</p>
+<p>生成jupyter配置文件<br><code>jupyter notebook --generate-config</code><br>以上将会在 ~/.jupyter/ 下创建默认config 文件: jupyter_notebook_config.py</p>
+<p>修改jupyter配置文件 ，<code>vim ~/.jupyter/jupyter_notebook_config.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">c.NotebookApp.ip = <span class="string">'*'</span> <span class="comment">#任何ip都可以</span></div><div class="line">c.NotebookApp.open_browser = <span class="keyword">False</span></div><div class="line">c.NotebookApp.password = <span class="string">u'sha1:209f151dcd7f:a730a81fd00********3ec0a6aa31'</span><span class="comment">#设置密码的时候生成的sha1</span></div><div class="line">c.NotebookApp.port = <span class="number">8888</span><span class="comment"># 设置未被使用的端口</span></div><div class="line">c.NotebookApp.notebook_dir = <span class="string">u'/mnt/projects'</span> <span class="comment"># Notebook启动目录</span></div></pre></td></tr></table></figure></p>
+<h3 id="启动jupyter"><a href="#启动jupyter" class="headerlink" title="启动jupyter"></a>启动jupyter</h3><p><code>jupyter notebook</code><br>然后你通过 <code>http://ip:8888就可以访问你的工作目录了</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.jianshu.com/p/2f3be7781451" target="_blank" rel="external">Anaconda使用总结 ypyb PeterYuan</a><br><a href="http://www.voidcn.com/blog/SA14023053/article/p-6066215.html" target="_blank" rel="external">Jupyter notebook 服务器端部署</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Anaconda概述&quot;&gt;&lt;a href=&quot;#Anaconda概述&quot; class=&quot;headerlink&quot; title=&quot;Anaconda概述&quot;&gt;&lt;/a&gt;Anaconda概述&lt;/h3&gt;&lt;p&gt;Anaconda是一个用于科学计算的Python发行版，支持 Linux, 
+    
+    </summary>
+    
+    
+      <category term="anacond" scheme="http://leoatchina.github.io/tags/anacond/"/>
+    
+      <category term="python" scheme="http://leoatchina.github.io/tags/python/"/>
+    
+      <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>atom-shortcuts-windows</title>
+    <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/"/>
+    <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/</id>
+    <published>2017-02-16T06:00:08.000Z</published>
+    <updated>2017-02-16T06:02:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>‘ctrl-shift-s’ 保存所有打开的文件<br>‘ctrl-shift-o’ 打开目录<br>‘ctrl-p’ 从添加的项目中查找文件<br>‘ctrl-f’ 向下翻页<br>‘ctrl-b’ 向上翻页<br>alt-b 或 ctrl-left 移动到单词开始<br>alt-f 或 ctrl-right 移动到单词末尾<br>ctrl-g 移动到指定行<br>ctrl-j 将下一行与当前行合并<br>ctrl-up, ctrl-down 使当前行向上或者向下移动<br>ctrl-enter,ctrl-shift-enter在当前行的下一行或上一行插入新的一行<br>ctrl-k ctrl-l使当前字符小写<br>ctrl-k ctrl-u使当前字符大写<br>ctrl-shift-D 复制当前行到下一行<br>ctrl-shift-K 删除当前行<br>ctrl-u删除到当前行开始<br>alt-backspace或ctrl-alt-h删除到当前子单词开始<br>alt-delete或ctrl-alt-d删除到当前子单词结束<br>ctrl-backspace或ctrl-w或alt-h删除到当前单词开始<br>alt-d或ctrl-delete删除到当前子单词开始<br>alt-left: ‘editor:move-to-previous-subword-boundary’<br>alt-right: ‘editor:move-to-next-subword-boundary’<br>alt-shift-left: ‘editor:select-to-previous-subword-boundary’<br>alt-shift-right: ‘editor:select-to-next-subword-boundary’</p>
+<p>选取<br>alt-shift-B或 ctrl-shift-left 选取至字符开始<br>alt-shift-F或ctrl-shift-right 选取至字符结束<br>ctrl-a 全选<br>alt-f3选取文档中和当前单词相同的所有单词<br>shift-end 选取至本行结束<br>ctrl-l 选取一行，继续按回选取下一行<br>ctrl-d 选取文档中和当前单词相同的下一处</p>
+<p>目录树操作<br>ctrl-\ 或 ctrl-k ctrl-b 显示或隐藏目录树<br>a 在目录树下添加文件<br>d 将当前文件另存为<br>alt-right 和 alt-left 展开(隐藏)所有目录<br>ctrl-k left 在左半视图中打开文件<br>ctrl-k down在下半视图中打开文件<br>ctrl-k up 在上半视图中打开文件<br>ctrl-k right 在右半视图中打开文件<br>ctrl-shift-C 复制当前文件绝对路径</p>
+<p>其它<br>ctrl-m 相应括号之间，html tag之间等跳转<br>ctrl-alt-up, ctrl-alt-down 增加上（下）一行光标<br>ctrl-shift-u 调出切换编码选项<br>ctrl-f 在buffer中查找<br>ctrl-shift-f 在整个工程中查找<br>alt-ctrl-[ 折叠<br>alt-ctrl-] 展开<br>ctrl-alt-i调用控制台<br>ctrl-/注释<br>ctrl-alt-c打开color-picker</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件操作&quot;&gt;&lt;a href=&quot;#文件操作&quot; class=&quot;headerlink&quot; title=&quot;文件操作&quot;&gt;&lt;/a&gt;文件操作&lt;/h2&gt;&lt;p&gt;‘ctrl-shift-s’ 保存所有打开的文件&lt;br&gt;‘ctrl-shift-o’ 打开目录&lt;br&gt;‘ctrl-p’ 从添
+    
+    </summary>
+    
+    
+      <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
+    
+      <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Atom MacOs 快捷键</title>
+    <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/"/>
+    <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/</id>
+    <published>2017-02-16T05:39:55.000Z</published>
+    <updated>2017-02-16T05:42:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件  </p>
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>（等价于上下左右）<br><code>ctrl-p</code> 前一行<br><code>ctrl-n</code> 后一行<br><code>ctrl-f</code> 前一个字符<br><code>ctrl-b</code> 后一个字符  </p>
+<p><code>alt-B</code>, <code>alt-left</code> 移动到单词开始<br><code>alt-F</code>, <code>alt-right</code> 移动到单词末尾  </p>
+<p><code>cmd-right</code>, <code>ctrl-E</code> 移动到一行结束<br><code>cmd-left</code>, <code>ctrl-A</code>  移动到一行开始  </p>
+<p><code>cmd-up</code> 移动到文件开始<br><code>cmd-down</code> 移动到文件结束  </p>
+<p><code>ctrl-g</code> 移动到指定行 row:column 处</p>
+<p><code>cmd-r</code> 在方法之间跳转</p>
+<h2 id="目录树操作"><a href="#目录树操作" class="headerlink" title="目录树操作"></a>目录树操作</h2><p><code>cmd-\</code> 或者 <code>cmd-k cmd-b</code> 显示(隐藏)目录树<br><code>ctrl-0</code> 焦点切换到目录树(再按一次或者<code>Esc</code>退出目录树)<br><code>a</code> 添加文件<br><code>d</code> 将当前文件另存为(duplicate)<br><code>i</code> 显示(隐藏)版本控制忽略的文件<br><code>alt-right</code> 和 <code>alt-left</code> 展开(隐藏)所有目录<br><code>ctrl-al-]</code> 和 <code>ctrl-al-[</code> 同上<br><code>ctrl-[</code> 和 <code>ctrl-]</code> 展开(隐藏)当前目录<br><code>ctrl-f</code> 和 <code>ctrl-b</code> 同上<br><code>cmd-k h</code> 或者 <code>cmd-k left</code> 在左半视图中打开文件<br><code>cmd-k j</code> 或者 <code>cmd-k down</code> 在下半视图中打开文件<br><code>cmd-k k</code> 或者 <code>cmd-k up</code> 在上半视图中打开文件<br><code>cmd-k l</code> 或者 <code>cmd-k right</code> 在右半视图中打开文件<br><code>ctrl-shift-C</code> 复制当前文件绝对路径</p>
+<h2 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h2><p><code>cmd-F2</code> 在本行增加书签<br><code>F2</code> 跳到当前文件的下一条书签<br><code>shift-F2</code> 跳到当前文件的上一条书签<br><code>ctrl-F2</code> 列出当前工程所有书签  </p>
+<h2 id="选取"><a href="#选取" class="headerlink" title="选取"></a>选取</h2><blockquote>
+<p>大部分和导航一致，只不过加上shift  </p>
+</blockquote>
+<p><code>ctrl-shift-P</code>  选取至上一行<br><code>ctrl-shift-N</code>  选取至下一样<br><code>ctrl-shift-B</code>  选取至前一个字符<br><code>ctrl-shift-F</code>  选取至后一个字符<br><code>alt-shift-B</code>, <code>alt-shift-left</code>  选取至字符开始<br><code>alt-shift-F</code>, <code>alt-shift-right</code>  选取至字符结束<br><code>ctrl-shift-E</code>, <code>cmd-shift-right</code>  选取至本行结束<br><code>ctrl-shift-A</code>, <code>cmd-shift-left</code>  选取至本行开始<br><code>cmd-shift-up</code>  选取至文件开始<br><code>cmd-shift-down</code>  选取至文件结尾<br><code>cmd-A</code>  全选<br><code>cmd-L</code>  选取一行，继续按回选取下一行<br><code>ctrl-shift-W</code>  选取当前单词  </p>
+<h2 id="编辑和删除文本"><a href="#编辑和删除文本" class="headerlink" title="编辑和删除文本"></a>编辑和删除文本</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><code>ctrl-T</code> 使光标前后字符交换<br><code>cmd-J</code> 将下一行与当前行合并<br><code>ctrl-cmd-up</code>, <code>ctrl-cmd-down</code> 使当前行向上或者向下移动<br><code>cmd-shift-D</code> 复制当前行到下一行<br><code>cmd-K</code>, <code>cmd-U</code> 使当前字符大写<br><code>cmd-K</code>, <code>cmd-L</code> 使当前字符小写<br><code>cmd-shift-P</code> 搜索命令  </p>
+<h3 id="删除和剪切"><a href="#删除和剪切" class="headerlink" title="删除和剪切"></a>删除和剪切</h3><p><code>ctrl-shift-K</code> 删除当前行<br><code>cmd-backspace</code> 删除到当前行开始<br><code>cmd-fn-backspace</code> 删除到当前行结束<br><code>ctrl-K</code> 剪切到当前行结束<br><code>alt-backspace</code> 或 <code>alt-H</code> 删除到当前单词开始<br><code>alt-delete</code> 或 <code>alt-D</code> 删除到当前单词结束  </p>
+<h3 id="多光标和多处选取"><a href="#多光标和多处选取" class="headerlink" title="多光标和多处选取"></a>多光标和多处选取</h3><p><code>cmd-click</code> 增加新光标<br><code>cmd-shift-L</code> 将多行选取改为多行光标<br><code>ctrl-shift-up</code>, <code>ctrl-shift-down</code> 增加上（下）一行光标<br><code>cmd-D</code> 选取文档中和当前单词相同的下一处<br><code>ctrl-cmd-G</code> 选取文档中所有和当前光标单词相同的位置  </p>
+<h3 id="括号跳转"><a href="#括号跳转" class="headerlink" title="括号跳转"></a>括号跳转</h3><p><code>ctrl-m</code> 相应括号之间，html tag之间等跳转<br><code>ctrl-cmd-m</code> 括号(tag)之间文本选取<br><code>alt-cmd-.</code> 关闭当前XML/HTML tag  </p>
+<h3 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h3><p><code>ctrl-shift-U</code> 调出切换编码选项  </p>
+<h2 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h2><p><code>cmd-F</code> 在buffer中查找<br><code>cmd-shift-f</code> 在整个工程中查找  </p>
+<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p><code>alt-shift-S</code> 查看当前可用代码片段  </p>
+<blockquote>
+<p>在<code>~/.atom</code>目录下<code>snippets.cson</code>文件中存放了你定制的snippets  </p>
+</blockquote>
+<p><a href="https://atom.io/docs/v1.0.0/using-atom-snippets" target="_blank" rel="external">定制说明</a>  </p>
+<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p><code>ctrl-space</code> 提示补全信息  </p>
+<h2 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h2><p><code>alt-cmd-[</code> 折叠<br><code>alt-cmd-]</code> 展开<br><code>alt-cmd-shift-{</code> 折叠全部<br><code>alt-cmd-shift-}</code> 展开全部<br><code>cmd-k cmd-N</code> 指定折叠层级 N为层级数  </p>
+<h2 id="文件语法高亮"><a href="#文件语法高亮" class="headerlink" title="文件语法高亮"></a>文件语法高亮</h2><p><code>ctrl-shift-L</code> 选择文本类型  </p>
+<h2 id="使用Atom进行写作"><a href="#使用Atom进行写作" class="headerlink" title="使用Atom进行写作"></a>使用Atom进行写作</h2><p><code>ctrl-shift-M</code> Markdown预览<br>可用代码片段</p>
+<blockquote>
+<p>b, legal, img, l, i, code, t, table</p>
+</blockquote>
+<h2 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h2><p><code>cmd-alt-Z</code> checkout HEAD 版本<br><code>cmd-shift-B</code> 弹出untracked 和 modified文件列表<br><code>alt-g down</code> <code>alt-g up</code> 在修改处跳转<br><code>alt-G D</code> 弹出diff列表<br><code>alt-G O</code> 在github上打开文件<br><code>alt-G G</code> 在github上打开项目地址<br><code>alt-G B</code> 在github上打开文件blame<br><code>alt-G H</code> 在github上打开文件history<br><code>alt-G I</code> 在github上打开issues<br><code>alt-G R</code> 在github打开分支比较<br><code>alt-G C</code> 拷贝当前文件在gihub上的网址  </p>
+<h2 id="推荐一些好用的插件"><a href="#推荐一些好用的插件" class="headerlink" title="推荐一些好用的插件"></a>推荐一些好用的插件</h2><ul>
+<li>主题<br><a href="https://atom.io/themes/atom-material-ui" target="_blank" rel="external">atom-material-ui</a> 好看到爆<br><a href="https://atom.io/themes/atom-material-syntax" target="_blank" rel="external">atom-material-syntax</a></li>
+<li>美化<br><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="external">atom-beautify</a> 一键代码美化<br><a href="https://atom.io/packages/file-icons" target="_blank" rel="external">file-icons</a> 给文件加上好看的图标<br><a href="https://atom.io/users/atom-minimap" target="_blank" rel="external">atom-minimap</a> 方便美观的缩略滚动图<br><a href="https://atom.io/packages/pretty-json" target="_blank" rel="external">pretty-json</a> json格式化工具<br><a href="https://atom.io/packages/activate-power-mode" target="_blank" rel="external">activate-power-mode</a> 炫酷的打字特效</li>
+<li>git<br><a href="https://atom.io/packages/atomatigit" target="_blank" rel="external">atomatigit</a> 可视化git操作<br><a href="https://atom.io/packages/git-time-machine" target="_blank" rel="external">git-time-machine</a> git版本对比工具，可视化选择每一个commit<br><a href="https://atom.io/packages/merge-conflicts" target="_blank" rel="external">merge-conflicts</a> 合并冲突可视化工具</li>
+<li>代码提示<br><a href="https://atom.io/packages/emmet" target="_blank" rel="external">emmet</a> 这个不用介绍了吧<br><a href="https://atom.io/packages/atom-ternjs" target="_blank" rel="external">atom-ternjs</a> js代码提示很强大，高度定制化<br><a href="https://atom.io/packages/docblockr" target="_blank" rel="external">docblockr</a> jsdoc 给js添加注释<br><a href="https://atom.io/packages/autoclose-html" target="_blank" rel="external">autoclose-html</a> 闭合html标签<br><a href="https://atom.io/packages/color-picker" target="_blank" rel="external">color-picker</a> 取色器 必备插件<br><a href="https://atom.io/packages/pigments" target="_blank" rel="external">pigments</a> 颜色显示插件 必装<br><a href="https://atom.io/packages/terminal-panel" target="_blank" rel="external">terminal-panel</a> 直接在atom里面写命令了<br><a href="https://atom.io/packages/svg-preview" target="_blank" rel="external">svg-preview</a> svg预览</li>
+<li>便捷操作<br><a href="https://atom.io/packages/advanced-open-file" target="_blank" rel="external">advanced-open-file</a> 快速打开、切换文件<br><a href="https://atom.io/packages/project-folder" target="_blank" rel="external">project-folder</a> 快速打开、切换项目<br><a href="https://atom.io/packages/script" target="_blank" rel="external">script</a> 立即执行当前js文件</li>
+<li>高亮<br><a href="https://atom.io/packages/language-vue" target="_blank" rel="external">language-vue</a> vue框架代码高亮</li>
+<li>终端<br><a href="https://atom.io/packages/platformio-ide-terminal" target="_blank" rel="external">platformio-atom-ide-terminal</a> 终端插件，支持显示、隐藏及多窗口</li>
+</ul>
+<p>就这些了，欢迎pull更多好用的插件！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文件切换&quot;&gt;&lt;a href=&quot;#文件切换&quot; class=&quot;headerlink&quot; title=&quot;文件切换&quot;&gt;&lt;/a&gt;文件切换&lt;/h2&gt;&lt;p&gt;&lt;code&gt;ctrl-shift-s&lt;/code&gt;  保存所有打开的文件&lt;br&gt;&lt;code&gt;cmd-shift-o&lt;/cod
+    
+    </summary>
+    
+    
+      <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
+    
+      <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos升级gcc</title>
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
     <published>2017-02-15T01:43:18.000Z</published>
-    <updated>2017-02-15T04:55:30.830Z</updated>
+    <updated>2017-02-15T04:55:30.000Z</updated>
     
     <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。</p>
 <ol>
@@ -415,7 +415,7 @@
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
     <published>2017-02-14T07:55:14.000Z</published>
-    <updated>2017-02-17T07:30:11.709Z</updated>
+    <updated>2017-02-17T07:30:11.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。<br>对Python虚拟机的访问是由全局解释锁（GIL）控制的。这个锁就是用来保证同时只能有一个线程运行的。在多线程环境中，Python虚拟机将按下面所述的方式执行。</p>
 <ol>
