@@ -184,6 +184,74 @@
   </entry>
   
   <entry>
+    <title>linux下 各种解压文件使用方法</title>
+    <link href="http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/"/>
+    <id>http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/</id>
+    <published>2017-03-02T02:04:49.000Z</published>
+    <updated>2017-03-02T02:17:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>.xz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解包：tar xvf FileName.tar.xz</div><div class="line">打包：tar cvf FileName.tar DirName</div></pre></td></tr></table></figure></p>
+<p>.tar<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 解包：tar xvf FileName.tar</div><div class="line"> 打包：tar cvf FileName.tar DirName</div><div class="line">（注：tar是打包，不是压缩！）</div></pre></td></tr></table></figure></p>
+<p> .gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：gunzip FileName.gz</div><div class="line">　　解压2：gzip -d FileName.gz</div><div class="line">　　压缩：gzip FileName</div></pre></td></tr></table></figure></p>
+<p> .tar.gz 和 .tgz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar zxvf FileName.tar.gz</div><div class="line">　　压缩：tar zcvf FileName.tar.gz DirName</div></pre></td></tr></table></figure></p>
+<p>.bz2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：bzip2 -d FileName.bz2</div><div class="line">　　解压2：bunzip2 FileName.bz2</div><div class="line">　　压缩： bzip2 -z FileName</div></pre></td></tr></table></figure></p>
+<p>.tar.bz2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar jxvf FileName.tar.bz2        或tar --bzip xvf FileName.tar.bz2</div><div class="line">　　压缩：tar jcvf FileName.tar.bz2 DirName</div></pre></td></tr></table></figure></p>
+<p>.bz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：bzip2 -d FileName.bz</div><div class="line">　　解压2：bunzip2 FileName.bz</div><div class="line">　　压缩：未知</div></pre></td></tr></table></figure></p>
+<p>.tar.bz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解压：tar jxvf FileName.tar.bz</div><div class="line">压缩：未知</div></pre></td></tr></table></figure></p>
+<p>.Z<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　解压：uncompress FileName.Z</div><div class="line">　压缩：compress FileName</div></pre></td></tr></table></figure></p>
+<p>.tar.Z<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar Zxvf FileName.tar.Z</div><div class="line">　　压缩：tar Zcvf FileName.tar.Z DirName</div></pre></td></tr></table></figure></p>
+<p>.zip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压：unzip FileName.zip</div><div class="line">　　压缩：zip FileName.zip DirName</div><div class="line">　　压缩一个目录使用 -r 参数，-r 递归。例： $ zip -r FileName.zip DirName</div></pre></td></tr></table></figure></p>
+<p>.rar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　解压：rar x FileName.rar</div><div class="line">　　压缩：rar a FileName.rar DirName</div><div class="line">　　</div><div class="line">　　rar请到：http://www.rarsoft.com/download.htm 下载！</div><div class="line">　　解压后请将rar_static拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp rar_static /usr/bin/rar</div></pre></td></tr></table></figure></p>
+<p>.lha<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　解压：lha -e FileName.lha</div><div class="line">　　压缩：lha -a FileName.lha FileName</div><div class="line">　　</div><div class="line">　　lha请到：http://www.infor.kanazawa-it.ac.jp/~ishii/lhaunix/下载！</div><div class="line">　　&gt;解压后请将lha拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp lha /usr/bin/</div></pre></td></tr></table></figure></p>
+<p>　　.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　解包：rpm2cpio FileName.rpm | cpio -div</div></pre></td></tr></table></figure></p>
+<p>　　.deb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　解包：ar p FileName.deb data.tar.gz | tar zxf -</div></pre></td></tr></table></figure></p>
+<p>　　.tar .tgz .tar.gz .tar.Z .tar.bz .tar.bz2 .zip .cpio .rpm .deb .slp .arj .rar .ace .lha .lzh .lzx .lzs .arc .sda .sfx .lnx .zoo .cab .kar .cpt .pit .sit .sea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　　解压：sEx x FileName.*</div><div class="line">　　压缩：sEx a FileName.* FileName</div><div class="line">　　</div><div class="line">　　sEx只是调用相关程序，本身并无压缩、解压功能，请注意！</div><div class="line">　　sEx请到： http://sourceforge.net/projects/sex下载！</div><div class="line">　　解压后请将sEx拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp sEx /usr/bin/</div></pre></td></tr></table></figure></p>
+<p>Linux下常见文件解压方法及命令</p>
+<blockquote>
+<ol>
+<li>以.a为扩展名的文件:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar xv file.a</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li><p>以.z为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uncompress file.Z</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.gz为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gunzip file.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.bz2为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bunzip2 file.bz2</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.Z为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvZf file.tar.Z</div><div class="line">或 compress -dc file.tar.Z | tar xvf</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.gz/.tgz为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvzf file.tar.gz</div><div class="line">或 gzip -dc file.tar.gz | tar xvf -</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.bz2为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvIf file.tar.bz2</div><div class="line">或 bzip2 -dc file.tar.bz2 | xvf -</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>8.以.cpio.gz/.cgz为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gzip -dc file.cgz | cpio -div</div></pre></td></tr></table></figure></p>
+<p>9.以.cpio/cpio为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cpio -div file.cpio</div><div class="line">或cpio -divc file.cpio</div></pre></td></tr></table></figure></p>
+<p>10.以.rpm为扩展名的文件安装:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i file.rpm</div></pre></td></tr></table></figure></p>
+<p>11.以.rpm为扩展名的文件解压缩：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm2cpio file.rpm | cpio -div</div></pre></td></tr></table></figure></p>
+<p>12.以.deb为扩展名的文件安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg -i file.deb</div></pre></td></tr></table></figure></p>
+<p>13.以.deb为扩展名的文件解压缩:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dpkg-deb -fsys-tarfile file.deb | tar xvf - ar p</div><div class="line">file.deb data.tar.gz | tar xvzf -</div></pre></td></tr></table></figure></p>
+<p>14.以.zip为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip file.zip</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;.xz&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;t
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>没有X的vps上怎么配置才能复制vim界面里的文字</title>
     <link href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/"/>
     <id>http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/</id>
@@ -342,49 +410,6 @@
   </entry>
   
   <entry>
-    <title>leoatchina的第一篇hexo博客</title>
-    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
-    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-15T10:24:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
-<ol>
-<li>免费</li>
-<li>配置可以用github进行同步</li>
-<li>插件丰富,我主要用到的有<ul>
-<li>markdown-preview-plus</li>
-<li>markdown-writer </li>
-<li>markdown-previwe-opener //自动打开markdown preview</li>
-<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
-<li>atom-hexo //hexo命令</li>
-<li>vim-mode // 习惯vim的操作模式了</li>
-<li><strong>markclip</strong>，//这个是利器 见下面</li>
-</ul>
-</li>
-<li>写作时插入图片的方法<ol>
-<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
-<li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
-<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li>hexo clean | hexo g | hexo d，完成布置</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/</id>
@@ -448,6 +473,49 @@
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
     
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leoatchina的第一篇hexo博客</title>
+    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
+    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-15T10:24:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
+    
+    </summary>
+    
     
   </entry>
   

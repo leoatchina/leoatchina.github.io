@@ -505,6 +505,176 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="leoatchina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="leoatchina的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/02/unpress-method-in-linux-with-cmd/" itemprop="url">
+                  linux下 各种解压文件使用方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T10:04:49+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>.xz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解包：tar xvf FileName.tar.xz</div><div class="line">打包：tar cvf FileName.tar DirName</div></pre></td></tr></table></figure></p>
+<p>.tar<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 解包：tar xvf FileName.tar</div><div class="line"> 打包：tar cvf FileName.tar DirName</div><div class="line">（注：tar是打包，不是压缩！）</div></pre></td></tr></table></figure></p>
+<p> .gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：gunzip FileName.gz</div><div class="line">　　解压2：gzip -d FileName.gz</div><div class="line">　　压缩：gzip FileName</div></pre></td></tr></table></figure></p>
+<p> .tar.gz 和 .tgz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar zxvf FileName.tar.gz</div><div class="line">　　压缩：tar zcvf FileName.tar.gz DirName</div></pre></td></tr></table></figure></p>
+<p>.bz2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：bzip2 -d FileName.bz2</div><div class="line">　　解压2：bunzip2 FileName.bz2</div><div class="line">　　压缩： bzip2 -z FileName</div></pre></td></tr></table></figure></p>
+<p>.tar.bz2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar jxvf FileName.tar.bz2        或tar --bzip xvf FileName.tar.bz2</div><div class="line">　　压缩：tar jcvf FileName.tar.bz2 DirName</div></pre></td></tr></table></figure></p>
+<p>.bz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：bzip2 -d FileName.bz</div><div class="line">　　解压2：bunzip2 FileName.bz</div><div class="line">　　压缩：未知</div></pre></td></tr></table></figure></p>
+<p>.tar.bz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解压：tar jxvf FileName.tar.bz</div><div class="line">压缩：未知</div></pre></td></tr></table></figure></p>
+<p>.Z<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　解压：uncompress FileName.Z</div><div class="line">　压缩：compress FileName</div></pre></td></tr></table></figure></p>
+<p>.tar.Z<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　解压：tar Zxvf FileName.tar.Z</div><div class="line">　　压缩：tar Zcvf FileName.tar.Z DirName</div></pre></td></tr></table></figure></p>
+<p>.zip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压：unzip FileName.zip</div><div class="line">　　压缩：zip FileName.zip DirName</div><div class="line">　　压缩一个目录使用 -r 参数，-r 递归。例： $ zip -r FileName.zip DirName</div></pre></td></tr></table></figure></p>
+<p>.rar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　解压：rar x FileName.rar</div><div class="line">　　压缩：rar a FileName.rar DirName</div><div class="line">　　</div><div class="line">　　rar请到：http://www.rarsoft.com/download.htm 下载！</div><div class="line">　　解压后请将rar_static拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp rar_static /usr/bin/rar</div></pre></td></tr></table></figure></p>
+<p>.lha<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　解压：lha -e FileName.lha</div><div class="line">　　压缩：lha -a FileName.lha FileName</div><div class="line">　　</div><div class="line">　　lha请到：http://www.infor.kanazawa-it.ac.jp/~ishii/lhaunix/下载！</div><div class="line">　　&gt;解压后请将lha拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp lha /usr/bin/</div></pre></td></tr></table></figure></p>
+<p>　　.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　解包：rpm2cpio FileName.rpm | cpio -div</div></pre></td></tr></table></figure></p>
+<p>　　.deb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　解包：ar p FileName.deb data.tar.gz | tar zxf -</div></pre></td></tr></table></figure></p>
+<p>　　.tar .tgz .tar.gz .tar.Z .tar.bz .tar.bz2 .zip .cpio .rpm .deb .slp .arj .rar .ace .lha .lzh .lzx .lzs .arc .sda .sfx .lnx .zoo .cab .kar .cpt .pit .sit .sea<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　　解压：sEx x FileName.*</div><div class="line">　　压缩：sEx a FileName.* FileName</div><div class="line">　　</div><div class="line">　　sEx只是调用相关程序，本身并无压缩、解压功能，请注意！</div><div class="line">　　sEx请到： http://sourceforge.net/projects/sex下载！</div><div class="line">　　解压后请将sEx拷贝到/usr/bin目录（其他由$PATH环境变量指定的目录也可以）：</div><div class="line">　　[root@www2 tmp]# cp sEx /usr/bin/</div></pre></td></tr></table></figure></p>
+<p>Linux下常见文件解压方法及命令</p>
+<blockquote>
+<ol>
+<li>以.a为扩展名的文件:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar xv file.a</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li><p>以.z为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uncompress file.Z</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.gz为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gunzip file.gz</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.bz2为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bunzip2 file.bz2</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.Z为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvZf file.tar.Z</div><div class="line">或 compress -dc file.tar.Z | tar xvf</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.gz/.tgz为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvzf file.tar.gz</div><div class="line">或 gzip -dc file.tar.gz | tar xvf -</div></pre></td></tr></table></figure>
+</li>
+<li><p>以.tar.bz2为扩展名的文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar xvIf file.tar.bz2</div><div class="line">或 bzip2 -dc file.tar.bz2 | xvf -</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>8.以.cpio.gz/.cgz为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gzip -dc file.cgz | cpio -div</div></pre></td></tr></table></figure></p>
+<p>9.以.cpio/cpio为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cpio -div file.cpio</div><div class="line">或cpio -divc file.cpio</div></pre></td></tr></table></figure></p>
+<p>10.以.rpm为扩展名的文件安装:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -i file.rpm</div></pre></td></tr></table></figure></p>
+<p>11.以.rpm为扩展名的文件解压缩：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm2cpio file.rpm | cpio -div</div></pre></td></tr></table></figure></p>
+<p>12.以.deb为扩展名的文件安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg -i file.deb</div></pre></td></tr></table></figure></p>
+<p>13.以.deb为扩展名的文件解压缩:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dpkg-deb -fsys-tarfile file.deb | tar xvf - ar p</div><div class="line">file.deb data.tar.gz | tar xvzf -</div></pre></td></tr></table></figure></p>
+<p>14.以.zip为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip file.zip</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1165,151 +1335,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="leoatchina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="leoatchina的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/23/hello-world/" itemprop="url">
-                  leoatchina的第一篇hexo博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T16:28:13+08:00">
-                2017-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
-<ol>
-<li>免费</li>
-<li>配置可以用github进行同步</li>
-<li>插件丰富,我主要用到的有<ul>
-<li>markdown-preview-plus</li>
-<li>markdown-writer </li>
-<li>markdown-previwe-opener //自动打开markdown preview</li>
-<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
-<li>atom-hexo //hexo命令</li>
-<li>vim-mode // 习惯vim的操作模式了</li>
-<li><strong>markclip</strong>，//这个是利器 见下面</li>
-</ul>
-</li>
-<li>写作时插入图片的方法<ol>
-<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
-<li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
-<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li>hexo clean | hexo g | hexo d，完成布置</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1487,6 +1512,151 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/hello-world/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="leoatchina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="leoatchina的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/23/hello-world/" itemprop="url">
+                  leoatchina的第一篇hexo博客
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T16:28:13+08:00">
+                2017-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1619,159 +1789,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="leoatchina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="leoatchina的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/20/anaconda-starter-turtorials/" itemprop="url">
-                  学习Anaconda过程中的一些笔记，或者说踩过的坑
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-20T14:12:52+08:00">
-                2017-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
-<ul>
-<li>包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
-<li>Anaconda则是一个打包的集合，里面预装好了conda、某个版本的python、众多packages、科学计算工具等等，所以也称为Python的一种发行版</li>
-<li>conda将几乎所有的工具、第三方包都当做package对待，甚至包括python和conda自身。所以，conda打破了包管理和环境管理约束，能非常方便地安装各种python</li>
-<li>conda和virtualenv: 在我看来，<code>conda</code>是用于科学计算环境布置，<code>virtualenv</code>主要是用于web服务。</li>
-</ul>
-<h3 id="Anaconda安装"><a href="#Anaconda安装" class="headerlink" title="Anaconda安装"></a>Anaconda安装</h3><blockquote>
-<p>去 <a href="https://repo.continuum.io/archive/" target="_blank" rel="external">https://repo.continuum.io/archive/</a> 下载最新版的 Anaconda<br>要说明的是, Anaconda有for python2和python3的版本，不过除了这个不同，其他基本没什么区别，我的生信服务器默认是python2，安装了Anaconda2<br>可以直接用wget下载 ，<code>wget -c https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh</code><br>不用root安装 ，直接安装到<strong>当前用户</strong>，<code>bash Anaconda2-4.3.0-Linux-x86_64.sh</code>，会安装在<code>~/anaconda2</code><br><strong>注意运行路径</strong>，在安装anaconda时，会提醒你在<code>~/.bashrc</code>里加一句<code>export PATH=&quot;~/anaconda2/bin:$PATH&quot;</code>,但如果你是和我一样，是用<code>zsh</code>为shell，请注意在<code>~/.zshrc</code>里加上这一句<br>用户安装的不同的python环境都会被放在<code>~/anaconda/envs</code>下，可以在命令中运行<code>conda info -e</code> 查看已经安装的环境，当前已被激活的环境会显示有一个星号或者括号</p>
-</blockquote>
-<h3 id="换成更快的服务器"><a href="#换成更快的服务器" class="headerlink" title="换成更快的服务器"></a>换成更快的服务器</h3><blockquote>
-<p><code>conda</code>的服务器在国外，如果直接去升级安装会很慢，<strong>要换成清华的镜像</strong><br><strong>如果不做这一步，非常容易出现不能升级安装conda包的情况</strong></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加Anaconda的TUNA镜像</span></div><div class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</div><div class="line"><span class="comment"># 设置搜索时显示通道地址</span></div><div class="line">conda config --set show_channel_urls yes</div></pre></td></tr></table></figure>
-<h3 id="conda的环境管理"><a href="#conda的环境管理" class="headerlink" title="conda的环境管理"></a>conda的环境管理</h3><p>Conda的环境管理功能允许我们同时安装若干不同版本的Python，并能自由切换。对于上述安装过程，假设我们采用的是Python 2.7对应的安装包，那么Python 2.7就是默认的环境（默认名字是root，注意这个root不是超级管理员的意思。<br>比如我的python的是2.7.13，运行<code>python -V</code>，会显示<code>Python 2.7.13 :: Anaconda 4.3.0 (64-bit)</code><br>如果我要使用 python3.5，那就安装一个起名为python35的环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">conda create --name python35 python3.5</div><div class="line"><span class="comment"># 安装好后，使用activate激活某个环境</span></div><div class="line">activate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> activate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"><span class="comment"># 激活后，会发现terminal输入的地方多了python35的字样，实际上，此时系统/做的事情就是把默认2.7环境从PATH中去除，再把3.5对应的命令加入PATH</span></div><div class="line"><span class="comment"># 你可以用 `which python`或者 `python -V`查看</span></div><div class="line"></div><div class="line"><span class="comment"># 如果想返回默认的python 2.7环境，运行</span></div><div class="line">deactivate python35 <span class="comment"># for Windows</span></div><div class="line"><span class="built_in">source</span> deactivate python35 <span class="comment"># for Linux &amp; Mac</span></div><div class="line"></div><div class="line"><span class="comment"># 删除一个已有的环境</span></div><div class="line">conda remove --name python35 --all</div></pre></td></tr></table></figure></p>
-<h3 id="conda的包管理，和pip类似，比如你想安装scipy"><a href="#conda的包管理，和pip类似，比如你想安装scipy" class="headerlink" title="conda的包管理，和pip类似，比如你想安装scipy"></a>conda的包管理，和pip类似，比如你想安装scipy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装scipy</span></div><div class="line">conda install scipy</div><div class="line"><span class="comment"># conda会从从远程搜索scipy的相关信息和依赖项目，对于python 3.4，conda会同时安装numpy和mkl（运算加速的库）</span></div></pre></td></tr></table></figure>
-<p>conda的一些常用操作如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看当前环境下已安装的包</span></div><div class="line">conda list</div><div class="line"></div><div class="line"><span class="comment"># 查看某个指定环境的已安装包</span></div><div class="line">conda list -n python35</div><div class="line"></div><div class="line"><span class="comment"># 查找package信息</span></div><div class="line">conda search numpy</div><div class="line"></div><div class="line"><span class="comment"># 安装package</span></div><div class="line">conda install -n python35 numpy</div><div class="line"><span class="comment"># 如果不用-n指定环境名称，则被安装在当前活跃环境</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 更新package</span></div><div class="line">conda update -n python35 numpy</div><div class="line"></div><div class="line"><span class="comment"># 删除package</span></div><div class="line">conda remove -n python35 numpy</div></pre></td></tr></table></figure></p>
-<p>conda将conda、python等都视为package，因此，完全可以使用conda来管理conda和python的版本，例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 更新conda，保持conda最新</span></div><div class="line">conda update conda</div><div class="line"></div><div class="line"><span class="comment"># 更新anaconda</span></div><div class="line">conda update anaconda</div><div class="line"></div><div class="line"><span class="comment"># 更新python</span></div><div class="line">conda update python</div><div class="line"></div><div class="line"><span class="comment"># 安装python3.5的anaconda</span></div><div class="line">conda install -n python35 anacodnda</div><div class="line"><span class="comment"># 然后你会看到要安装这么多包!!!!!!</span></div></pre></td></tr></table></figure></p>
-<p><img src="/2017/02/20/anaconda-starter-turtorials/342a8f848a70403e779c33891f407671.png" alt="你会看到这么多包！"></p>
-<h3 id="布置jupyter-nookbook"><a href="#布置jupyter-nookbook" class="headerlink" title="布置jupyter nookbook"></a>布置jupyter nookbook</h3><p>首先安装下<code>ipython</code></p>
-<blockquote>
-<p>sudo yum install ipython</p>
-</blockquote>
-<p>生成配置文件</p>
-<blockquote>
-<p>jupyter notebook –generate-config<br>生成的文件为<code>~/.jupyter/jupyter_notebook_config.py</code></p>
-</blockquote>
-<p>生成密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ipython</div><div class="line">In [1]: from IPython.lib import passwd</div><div class="line">In [2]: passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line">Out[2]: &apos;sha1:7467b7351f12:79fc65998**************3003b87f3&apos;</div></pre></td></tr></table></figure></p>
-<p>记录下这个 <code>sha1</code>值，以后要用到</p>
-<p>生成jupyter配置文件<br><code>jupyter notebook --generate-config</code><br>以上将会在 ~/.jupyter/ 下创建默认config 文件: jupyter_notebook_config.py</p>
-<p>修改jupyter配置文件 ，<code>vim ~/.jupyter/jupyter_notebook_config.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">c.NotebookApp.ip = <span class="string">'*'</span> <span class="comment">#任何ip都可以</span></div><div class="line">c.NotebookApp.open_browser = <span class="keyword">False</span></div><div class="line">c.NotebookApp.password = <span class="string">u'sha1:209f151dcd7f:a730a81fd00********3ec0a6aa31'</span><span class="comment">#设置密码的时候生成的sha1</span></div><div class="line">c.NotebookApp.port = <span class="number">8888</span><span class="comment"># 设置未被使用的端口</span></div><div class="line">c.NotebookApp.notebook_dir = <span class="string">u'/mnt/projects'</span> <span class="comment"># Notebook启动目录</span></div></pre></td></tr></table></figure></p>
-<h3 id="启动jupyter"><a href="#启动jupyter" class="headerlink" title="启动jupyter"></a>启动jupyter</h3><p><code>jupyter notebook</code><br>然后你通过 <code>http://ip:8888就可以访问你的工作目录了</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.jianshu.com/p/2f3be7781451" target="_blank" rel="external">Anaconda使用总结 ypyb PeterYuan</a><br><a href="http://www.voidcn.com/blog/SA14023053/article/p-6066215.html" target="_blank" rel="external">Jupyter notebook 服务器端部署</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1819,7 +1836,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
