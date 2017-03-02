@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-03-01T07:14:11.000Z</updated>
+  <updated>2017-03-02T01:59:30.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu-MATE  16.04 LTS 安装笔记</title>
+    <link href="http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/"/>
+    <id>http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/</id>
+    <published>2017-03-02T01:56:34.000Z</published>
+    <updated>2017-03-02T01:59:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 bash 下删除libreoffice<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove --purge libreoffice*</div><div class="line"></div><div class="line">sudo apt-get clean</div><div class="line"></div><div class="line">sudo apt-get autoremove</div></pre></td></tr></table></figure></p>
+<p>安装vim 等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:wiznote-team ppa:plushuang-tw/uget-stable ppa:t-tujikawa/ppa</div><div class="line"></div><div class="line">sudo apt-get remove vim</div><div class="line"></div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">sudo apt-get install vim-gnome wiznote fcitx-table-wbpy exfat-fuse exfat-utils uget aria2 clipit git zsh openssh-server grub-customizer software-center terminator okular</div></pre></td></tr></table></figure></p>
+<p>安装编译相关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev</div></pre></td></tr></table></figure></p>
+<p>安装chromium</p>
+<blockquote>
+<p>在软件中心里搜索并且安装</p>
+</blockquote>
+<p>安装owncloud<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://software.opensuse.org/download/package?project=isv:ownCloud:desktop&amp;package=owncloud-client</div></pre></td></tr></table></figure></p>
+<p>安装spf13<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/leoatchina/spf13-leoatchina-vim.git  </div><div class="line">cd spf13-leoatchina-vim </div><div class="line">bash bootstrap.sh</div></pre></td></tr></table></figure></p>
+<p>安装atom<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https://atom.io/download/deb</div><div class="line">注意同步</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 bash 下删除libreoffice&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>aria2+chrome+BaiduExporter破除速度限制下载百度云上的内容</title>
@@ -97,6 +125,68 @@
   </entry>
   
   <entry>
+    <title>leoatchina的第一篇hexo博客</title>
+    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
+    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-15T10:24:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/</id>
@@ -160,68 +250,6 @@
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
     
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leoatchina的第一篇hexo博客</title>
-    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
-    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-15T10:24:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
-<ol>
-<li>免费</li>
-<li>配置可以用github进行同步</li>
-<li>插件丰富,我主要用到的有<ul>
-<li>markdown-preview-plus</li>
-<li>markdown-writer </li>
-<li>markdown-previwe-opener //自动打开markdown preview</li>
-<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
-<li>atom-hexo //hexo命令</li>
-<li>vim-mode // 习惯vim的操作模式了</li>
-<li><strong>markclip</strong>，//这个是利器 见下面</li>
-</ul>
-</li>
-<li>写作时插入图片的方法<ol>
-<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
-<li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
-<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li>hexo clean | hexo g | hexo d，完成布置</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
-    </summary>
-    
     
   </entry>
   
