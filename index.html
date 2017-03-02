@@ -247,6 +247,138 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="leoatchina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="leoatchina的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/02/copy-vim-words-from-vps-without-x/" itemprop="url">
+                  没有X的vps上怎么配置才能复制vim界面里的文字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T10:02:33+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>讨论见我在知乎上的提问<a href="https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card" target="_blank" rel="external">知乎讨论，没有X的vps上怎么配置才能复制vim界面里的文字？</a></p>
+<p>环境阿里云，centos，无论是编译还是yum安装vim,在本地都不能在远程的vim上复制文字</p>
+<blockquote>
+<ol>
+<li>在vps上安装 neovim或者vim-X11</li>
+<li>并且安装xclip或者xsel</li>
+<li>ssh <strong>-X</strong> user@host (注意 这个 -X)</li>
+<li>用 nvim/vimx target，然后按正常操作</li>
+<li>你可以在本地的clipboard里发现你复制过来的东西 ！！</li>
+</ol>
+</blockquote>
+<p>如果你用 windows ssh过去，应该是 nvim+本地 lemonade或者doitclent的组合</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -799,127 +931,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="leoatchina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="leoatchina的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/23/install_samtools_etc/" itemprop="url">
-                  安装新版htslib、bcftools、samtools
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T16:28:13+08:00">
-                2017-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1057,6 +1068,127 @@
 <p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
 </blockquote>
 <p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="leoatchina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="leoatchina的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/23/install_samtools_etc/" itemprop="url">
+                  安装新版htslib、bcftools、samtools
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-23T16:28:13+08:00">
+                2017-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
 
           
         
@@ -1506,168 +1638,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="leoatchina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="leoatchina的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/atom-shortcuts-macos/" itemprop="url">
-                  Atom MacOs 快捷键
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T13:39:55+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件  </p>
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>（等价于上下左右）<br><code>ctrl-p</code> 前一行<br><code>ctrl-n</code> 后一行<br><code>ctrl-f</code> 前一个字符<br><code>ctrl-b</code> 后一个字符  </p>
-<p><code>alt-B</code>, <code>alt-left</code> 移动到单词开始<br><code>alt-F</code>, <code>alt-right</code> 移动到单词末尾  </p>
-<p><code>cmd-right</code>, <code>ctrl-E</code> 移动到一行结束<br><code>cmd-left</code>, <code>ctrl-A</code>  移动到一行开始  </p>
-<p><code>cmd-up</code> 移动到文件开始<br><code>cmd-down</code> 移动到文件结束  </p>
-<p><code>ctrl-g</code> 移动到指定行 row:column 处</p>
-<p><code>cmd-r</code> 在方法之间跳转</p>
-<h2 id="目录树操作"><a href="#目录树操作" class="headerlink" title="目录树操作"></a>目录树操作</h2><p><code>cmd-\</code> 或者 <code>cmd-k cmd-b</code> 显示(隐藏)目录树<br><code>ctrl-0</code> 焦点切换到目录树(再按一次或者<code>Esc</code>退出目录树)<br><code>a</code> 添加文件<br><code>d</code> 将当前文件另存为(duplicate)<br><code>i</code> 显示(隐藏)版本控制忽略的文件<br><code>alt-right</code> 和 <code>alt-left</code> 展开(隐藏)所有目录<br><code>ctrl-al-]</code> 和 <code>ctrl-al-[</code> 同上<br><code>ctrl-[</code> 和 <code>ctrl-]</code> 展开(隐藏)当前目录<br><code>ctrl-f</code> 和 <code>ctrl-b</code> 同上<br><code>cmd-k h</code> 或者 <code>cmd-k left</code> 在左半视图中打开文件<br><code>cmd-k j</code> 或者 <code>cmd-k down</code> 在下半视图中打开文件<br><code>cmd-k k</code> 或者 <code>cmd-k up</code> 在上半视图中打开文件<br><code>cmd-k l</code> 或者 <code>cmd-k right</code> 在右半视图中打开文件<br><code>ctrl-shift-C</code> 复制当前文件绝对路径</p>
-<h2 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h2><p><code>cmd-F2</code> 在本行增加书签<br><code>F2</code> 跳到当前文件的下一条书签<br><code>shift-F2</code> 跳到当前文件的上一条书签<br><code>ctrl-F2</code> 列出当前工程所有书签  </p>
-<h2 id="选取"><a href="#选取" class="headerlink" title="选取"></a>选取</h2><blockquote>
-<p>大部分和导航一致，只不过加上shift  </p>
-</blockquote>
-<p><code>ctrl-shift-P</code>  选取至上一行<br><code>ctrl-shift-N</code>  选取至下一样<br><code>ctrl-shift-B</code>  选取至前一个字符<br><code>ctrl-shift-F</code>  选取至后一个字符<br><code>alt-shift-B</code>, <code>alt-shift-left</code>  选取至字符开始<br><code>alt-shift-F</code>, <code>alt-shift-right</code>  选取至字符结束<br><code>ctrl-shift-E</code>, <code>cmd-shift-right</code>  选取至本行结束<br><code>ctrl-shift-A</code>, <code>cmd-shift-left</code>  选取至本行开始<br><code>cmd-shift-up</code>  选取至文件开始<br><code>cmd-shift-down</code>  选取至文件结尾<br><code>cmd-A</code>  全选<br><code>cmd-L</code>  选取一行，继续按回选取下一行<br><code>ctrl-shift-W</code>  选取当前单词  </p>
-<h2 id="编辑和删除文本"><a href="#编辑和删除文本" class="headerlink" title="编辑和删除文本"></a>编辑和删除文本</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><code>ctrl-T</code> 使光标前后字符交换<br><code>cmd-J</code> 将下一行与当前行合并<br><code>ctrl-cmd-up</code>, <code>ctrl-cmd-down</code> 使当前行向上或者向下移动<br><code>cmd-shift-D</code> 复制当前行到下一行<br><code>cmd-K</code>, <code>cmd-U</code> 使当前字符大写<br><code>cmd-K</code>, <code>cmd-L</code> 使当前字符小写<br><code>cmd-shift-P</code> 搜索命令  </p>
-<h3 id="删除和剪切"><a href="#删除和剪切" class="headerlink" title="删除和剪切"></a>删除和剪切</h3><p><code>ctrl-shift-K</code> 删除当前行<br><code>cmd-backspace</code> 删除到当前行开始<br><code>cmd-fn-backspace</code> 删除到当前行结束<br><code>ctrl-K</code> 剪切到当前行结束<br><code>alt-backspace</code> 或 <code>alt-H</code> 删除到当前单词开始<br><code>alt-delete</code> 或 <code>alt-D</code> 删除到当前单词结束  </p>
-<h3 id="多光标和多处选取"><a href="#多光标和多处选取" class="headerlink" title="多光标和多处选取"></a>多光标和多处选取</h3><p><code>cmd-click</code> 增加新光标<br><code>cmd-shift-L</code> 将多行选取改为多行光标<br><code>ctrl-shift-up</code>, <code>ctrl-shift-down</code> 增加上（下）一行光标<br><code>cmd-D</code> 选取文档中和当前单词相同的下一处<br><code>ctrl-cmd-G</code> 选取文档中所有和当前光标单词相同的位置  </p>
-<h3 id="括号跳转"><a href="#括号跳转" class="headerlink" title="括号跳转"></a>括号跳转</h3><p><code>ctrl-m</code> 相应括号之间，html tag之间等跳转<br><code>ctrl-cmd-m</code> 括号(tag)之间文本选取<br><code>alt-cmd-.</code> 关闭当前XML/HTML tag  </p>
-<h3 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h3><p><code>ctrl-shift-U</code> 调出切换编码选项  </p>
-<h2 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h2><p><code>cmd-F</code> 在buffer中查找<br><code>cmd-shift-f</code> 在整个工程中查找  </p>
-<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p><code>alt-shift-S</code> 查看当前可用代码片段  </p>
-<blockquote>
-<p>在<code>~/.atom</code>目录下<code>snippets.cson</code>文件中存放了你定制的snippets  </p>
-</blockquote>
-<p><a href="https://atom.io/docs/v1.0.0/using-atom-snippets" target="_blank" rel="external">定制说明</a>  </p>
-<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p><code>ctrl-space</code> 提示补全信息  </p>
-<h2 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h2><p><code>alt-cmd-[</code> 折叠<br><code>alt-cmd-]</code> 展开<br><code>alt-cmd-shift-{</code> 折叠全部<br><code>alt-cmd-shift-}</code> 展开全部<br><code>cmd-k cmd-N</code> 指定折叠层级 N为层级数  </p>
-<h2 id="文件语法高亮"><a href="#文件语法高亮" class="headerlink" title="文件语法高亮"></a>文件语法高亮</h2><p><code>ctrl-shift-L</code> 选择文本类型  </p>
-<h2 id="使用Atom进行写作"><a href="#使用Atom进行写作" class="headerlink" title="使用Atom进行写作"></a>使用Atom进行写作</h2><p><code>ctrl-shift-M</code> Markdown预览<br>可用代码片段</p>
-<blockquote>
-<p>b, legal, img, l, i, code, t, table</p>
-</blockquote>
-<h2 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h2><p><code>cmd-alt-Z</code> checkout HEAD 版本<br><code>cmd-shift-B</code> 弹出untracked 和 modified文件列表<br><code>alt-g down</code> <code>alt-g up</code> 在修改处跳转<br><code>alt-G D</code> 弹出diff列表<br><code>alt-G O</code> 在github上打开文件<br><code>alt-G G</code> 在github上打开项目地址<br><code>alt-G B</code> 在github上打开文件blame<br><code>alt-G H</code> 在github上打开文件history<br><code>alt-G I</code> 在github上打开issues<br><code>alt-G R</code> 在github打开分支比较<br><code>alt-G C</code> 拷贝当前文件在gihub上的网址  </p>
-<h2 id="推荐一些好用的插件"><a href="#推荐一些好用的插件" class="headerlink" title="推荐一些好用的插件"></a>推荐一些好用的插件</h2><ul>
-<li>主题<br><a href="https://atom.io/themes/atom-material-ui" target="_blank" rel="external">atom-material-ui</a> 好看到爆<br><a href="https://atom.io/themes/atom-material-syntax" target="_blank" rel="external">atom-material-syntax</a></li>
-<li>美化<br><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="external">atom-beautify</a> 一键代码美化<br><a href="https://atom.io/packages/file-icons" target="_blank" rel="external">file-icons</a> 给文件加上好看的图标<br><a href="https://atom.io/users/atom-minimap" target="_blank" rel="external">atom-minimap</a> 方便美观的缩略滚动图<br><a href="https://atom.io/packages/pretty-json" target="_blank" rel="external">pretty-json</a> json格式化工具<br><a href="https://atom.io/packages/activate-power-mode" target="_blank" rel="external">activate-power-mode</a> 炫酷的打字特效</li>
-<li>git<br><a href="https://atom.io/packages/atomatigit" target="_blank" rel="external">atomatigit</a> 可视化git操作<br><a href="https://atom.io/packages/git-time-machine" target="_blank" rel="external">git-time-machine</a> git版本对比工具，可视化选择每一个commit<br><a href="https://atom.io/packages/merge-conflicts" target="_blank" rel="external">merge-conflicts</a> 合并冲突可视化工具</li>
-<li>代码提示<br><a href="https://atom.io/packages/emmet" target="_blank" rel="external">emmet</a> 这个不用介绍了吧<br><a href="https://atom.io/packages/atom-ternjs" target="_blank" rel="external">atom-ternjs</a> js代码提示很强大，高度定制化<br><a href="https://atom.io/packages/docblockr" target="_blank" rel="external">docblockr</a> jsdoc 给js添加注释<br><a href="https://atom.io/packages/autoclose-html" target="_blank" rel="external">autoclose-html</a> 闭合html标签<br><a href="https://atom.io/packages/color-picker" target="_blank" rel="external">color-picker</a> 取色器 必备插件<br><a href="https://atom.io/packages/pigments" target="_blank" rel="external">pigments</a> 颜色显示插件 必装<br><a href="https://atom.io/packages/terminal-panel" target="_blank" rel="external">terminal-panel</a> 直接在atom里面写命令了<br><a href="https://atom.io/packages/svg-preview" target="_blank" rel="external">svg-preview</a> svg预览</li>
-<li>便捷操作<br><a href="https://atom.io/packages/advanced-open-file" target="_blank" rel="external">advanced-open-file</a> 快速打开、切换文件<br><a href="https://atom.io/packages/project-folder" target="_blank" rel="external">project-folder</a> 快速打开、切换项目<br><a href="https://atom.io/packages/script" target="_blank" rel="external">script</a> 立即执行当前js文件</li>
-<li>高亮<br><a href="https://atom.io/packages/language-vue" target="_blank" rel="external">language-vue</a> vue框架代码高亮</li>
-<li>终端<br><a href="https://atom.io/packages/platformio-ide-terminal" target="_blank" rel="external">platformio-atom-ide-terminal</a> 终端插件，支持显示、隐藏及多窗口</li>
-</ul>
-<p>就这些了，欢迎pull更多好用的插件！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1715,7 +1685,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

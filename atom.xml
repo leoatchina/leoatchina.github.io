@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-03-02T01:59:30.000Z</updated>
+  <updated>2017-03-02T02:03:17.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>没有X的vps上怎么配置才能复制vim界面里的文字</title>
+    <link href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/"/>
+    <id>http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/</id>
+    <published>2017-03-02T02:02:33.000Z</published>
+    <updated>2017-03-02T02:03:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>讨论见我在知乎上的提问<a href="https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card" target="_blank" rel="external">知乎讨论，没有X的vps上怎么配置才能复制vim界面里的文字？</a></p>
+<p>环境阿里云，centos，无论是编译还是yum安装vim,在本地都不能在远程的vim上复制文字</p>
+<blockquote>
+<ol>
+<li>在vps上安装 neovim或者vim-X11</li>
+<li>并且安装xclip或者xsel</li>
+<li>ssh <strong>-X</strong> user@host (注意 这个 -X)</li>
+<li>用 nvim/vimx target，然后按正常操作</li>
+<li>你可以在本地的clipboard里发现你复制过来的东西 ！！</li>
+</ol>
+</blockquote>
+<p>如果你用 windows ssh过去，应该是 nvim+本地 lemonade或者doitclent的组合</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讨论见我在知乎上的提问&lt;a href=&quot;https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;知乎讨
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ubuntu-MATE  16.04 LTS 安装笔记</title>
@@ -168,25 +198,6 @@
   </entry>
   
   <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/</id>
@@ -250,6 +261,25 @@
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
     
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
     
   </entry>
   
