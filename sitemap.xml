@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</loc>
+    
+    <lastmod>2017-03-02T02:15:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/</loc>
     
     <lastmod>2017-03-02T02:03:17.000Z</lastmod>
