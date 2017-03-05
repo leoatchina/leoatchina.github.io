@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-03-02T02:39:11.000Z</updated>
+  <updated>2017-03-05T03:48:12.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu服务器samba、ftp、timemachine配置过程</title>
+    <link href="http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/"/>
+    <id>http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/</id>
+    <published>2017-03-05T02:41:35.000Z</published>
+    <updated>2017-03-05T03:48:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为家里htpc服务器的ubuntu电脑由于前面操作不慎，系统出了一些非常影响检验的总是，特别是owncloud功能挂了，最后决定重装。<br>重装后先把最重要的 samba，ftp，timemachine功能给恢复回来，其他以后慢慢搞。<br>在这过程中，又重新看了以前的笔记，查了一些资料，在实践中发现无论原来的笔记，人家的经验都有一些繁琐，或不是非常正确的地方， 这里记录下自己的配置备参考 。</p>
+<h3 id="电脑硬盘和目录"><a href="#电脑硬盘和目录" class="headerlink" title="电脑硬盘和目录"></a>电脑硬盘和目录</h3><p>有一个ssd和一个hdd，hdd mount成 <code>/mnt/</code>。<br><strong>这里有一个非常容易忽视的设置，要把 /mnt/和其子目录设置成 samba帐号 可读写和执行，否则samba服务会报权限错误</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod 770 -R /mnt</div></pre></td></tr></table></figure></p>
+<p>我的/mnt下面的文件夹分配<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># htpc @ htpc in /mnt [10:48:35]</div><div class="line">$ ls -alh</div><div class="line">total 36K</div><div class="line">drwxrwxrwx  8 htpc     htpc 4.0K 3月   4 22:30 .</div><div class="line">drwxr-xr-x 24 root     root 4.0K 3月   4 10:39 ..</div><div class="line">drwxrwx---  4 htpc     htpc 4.0K 3月   4 09:39 backup</div><div class="line">drwxrwx---  5 htpc     htpc 4.0K 3月   4 11:16 config</div><div class="line">dr-xr-x---  5 share    htpc 4.0K 3月   4 22:31 ftp # ftp主目录</div><div class="line">drwxrwx---  4 www-data htpc 4.0K 2月  21 22:02 owncloud # owncloud目录</div><div class="line">drwxrwx--- 10 share    htpc 4.0K 3月   4 22:43 share # 这个是samba的</div><div class="line">drwxrwx---  8 tm       htpc 4.0K 3月   5 10:48 timemachine # mac用的timemachine目录</div></pre></td></tr></table></figure></p>
+<p>其中， share目录通过修改 <code>/etc/fstab</code> 开机mount到  <code>/mnt/ftp/share</code>中去。在这个文件最后加这样一句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/mnt/share /mnt/ftp/share none bind 0 0</div></pre></td></tr></table></figure></p>
+<p>为什么要这么做，是因为<strong>vsftp</strong>的要求：不能在ftp的根目录可写，所以ftp这个目录的权限也要设置成 <strong>550</strong></p>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><h4 id="samba和ftp的share帐号"><a href="#samba和ftp的share帐号" class="headerlink" title="samba和ftp的share帐号"></a>samba和ftp的<strong>share</strong>帐号</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo useradd share -d /mnt/ftp -s /usr/sbin/nologin -g htpc</div></pre></td></tr></table></figure>
+<p>说明下</p>
+<blockquote>
+<ul>
+<li>-d 主目录，为了ftp服务</li>
+<li>-s 设置shell为 nologin，就是不能远程登陆</li>
+<li>-g 设置成htpc组，这个其实是为了htpc这个主账号登陆上去后管理方便，不是一定要设置</li>
+</ul>
+</blockquote>
+<h3 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install samba</div></pre></td></tr></table></figure>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><blockquote>
+<p>sudo vim /etc/samba/smb.conf  </p>
+</blockquote>
+<p>网上的教程太冗余，我先贴我的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">netbios name        = htpc  #局域网显示名称</div><div class="line">server string       = Samba Server Version %v </div><div class="line">workgroup           = workgroup #局域网共享分组</div><div class="line">load printers       = no</div><div class="line">security            = user # 这个比较重要，设计成user是根据你linux内帐户权限对共享目录进行访问</div><div class="line">log level           = 8</div><div class="line">log file            = /var/log/samba/samba.log</div><div class="line">max log size        = 50</div><div class="line">unix charset        = utf8 #这个也比较重要</div><div class="line">map hidden          = no</div><div class="line"></div><div class="line">[share]</div><div class="line">comment             = share </div><div class="line">path                = /mnt/share # 路径</div><div class="line">browseable          = yes #这个其实比较重要的，如果设置成no，你的这个目录在共享里是看不到的，除非输入路径</div><div class="line">writable            = yes</div><div class="line">read only           = no</div><div class="line">valid users         = share,@htpc # 允许访问的用户和用户组</div><div class="line">write list          = share,@htpc # 允许写入的用户和用户组</div></pre></td></tr></table></figure></p>
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><blockquote>
+<p>sudo service smbd restart</p>
+</blockquote>
+<p>再强调一次，设置samba目录时，要把父目录也设置成share帐户可读入，否则不能访问samba目录</p>
+<h3 id="ftp-其实就是vsftp"><a href="#ftp-其实就是vsftp" class="headerlink" title="ftp,其实就是vsftp"></a>ftp,其实就是vsftp</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><blockquote>
+<p>sudo apt-get install vsftpd</p>
+</blockquote>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><p><code>sudo vim /etc/vsftp</code><br>还是一句话，网上的配置太麻烦，贴我的,其实就几个地方比较重要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">listen=YES</div><div class="line">anonymous_enable=NO</div><div class="line">local_enable=YES #用本地帐户登陆</div><div class="line">write_enable=YES</div><div class="line">local_umask=022</div><div class="line">local_root=/mnt/ftp # 主目录</div><div class="line">max_clients=5</div><div class="line">dirmessage_enable=YES</div><div class="line">use_localtime=YES</div><div class="line">xferlog_enable=YES</div><div class="line">idle_session_timeout=600</div><div class="line">data_connection_timeout=120</div><div class="line">secure_chroot_dir=/var/run/vsftpd/empty</div><div class="line">pam_service_name=ftp</div><div class="line">rsa_cert_file=/etc/ssl/private/vsftpd.pem</div><div class="line">chroot_local_user=YES #限制在ftp 主目录内，这也是前面 mount share目录的原因</div></pre></td></tr></table></figure></p>
+<h4 id="重启和登陆ftp"><a href="#重启和登陆ftp" class="headerlink" title="重启和登陆ftp"></a>重启和登陆ftp</h4><blockquote>
+<p>sudo service vsftpd restart</p>
+</blockquote>
+<p>然后你用 ubuntu share账户就可以登陆了</p>
+<h3 id="timemachine"><a href="#timemachine" class="headerlink" title="timemachine"></a>timemachine</h3><p>这里我必须吐槽一下， 网上找到很多教程，装这个装那个，配这个配那个，其实在最新版的ubuntu下面，avahi服务是自带的，根本不用装，而且一般人要用到的配置也很简单，抄来抄去写那么多干什么。</p>
+<h4 id="安装-，就装这个就行了"><a href="#安装-，就装这个就行了" class="headerlink" title="安装 ，就装这个就行了"></a>安装 ，就装这个就行了</h4><blockquote>
+<p>sudo apt-get install netatalk </p>
+</blockquote>
+<h4 id="配置，就改最后两行就够了"><a href="#配置，就改最后两行就够了" class="headerlink" title="配置，就改最后两行就够了"></a>配置，就改最后两行就够了</h4><blockquote>
+<p>sudo vim /etc/netatalk/AppleVolumes.default   </p>
+</blockquote>
+<p>注释掉 <code>&quot;Home Directory&quot;</code>，加上这么一句 <code>/mnt/timemachine/ &quot;TimeMachine&quot; volsizelimit:600000 options:tm</code><br>然后呢，最多对 <code>/mnt/timemachine</code>目录设置一个专门帐号，就行了</p>
+<h4 id="重启和访问"><a href="#重启和访问" class="headerlink" title="重启和访问"></a>重启和访问</h4><blockquote>
+<p>sudo service netatalk restart</p>
+</blockquote>
+<p>在finder里，按 <code>cmd+k</code>，输入 <code>afp://ip</code> 访问你的<code>TimeMachine</code>服务器，然后你打开timemachine设置选择你的 TimeMachine</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为家里htpc服务器的ubuntu电脑由于前面操作不慎，系统出了一些非常影响检验的总是，特别是owncloud功能挂了，最后决定重装。&lt;br&gt;重装后先把最重要的 samba，ftp，timemachine功能给恢复回来，其他以后慢慢搞。&lt;br&gt;在这过程中，又重新看了以前的
+    
+    </summary>
+    
+    
+      <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
+    
+      <category term="samba" scheme="http://leoatchina.github.io/tags/samba/"/>
+    
+      <category term="ftp" scheme="http://leoatchina.github.io/tags/ftp/"/>
+    
+      <category term="timemachine" scheme="http://leoatchina.github.io/tags/timemachine/"/>
+    
+  </entry>
   
   <entry>
     <title>用ubuntu+owncloud+nginx+php-fpm+mysql+aria2打造私有云+远程下载器</title>
@@ -475,25 +544,6 @@ location ^~ /owncloud {
   </entry>
   
   <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>leoatchina的第一篇hexo博客</title>
     <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
     <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
@@ -530,6 +580,25 @@ location ^~ /owncloud {
     <summary type="html">
     
       &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
     
     </summary>
     
