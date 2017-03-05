@@ -526,7 +526,7 @@
 <h4 id="出人意料的NTFS权限问题"><a href="#出人意料的NTFS权限问题" class="headerlink" title="出人意料的NTFS权限问题"></a>出人意料的NTFS权限问题</h4><ul>
 <li>这个是历史遗留问题：<br>我的三块硬盘在放到htpc里时全是ntfs格式，上面都有数据，不能无损转成EXT4</li>
 <li>owncloud的存贮路径是在其中一块硬盘上，原来是直接mount到/mnt目录下，在后面配置owncloud时指定存贮目录时，出现权限<strong>770</strong>问题</li>
-<li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决 <figure class="highlight plain"><figcaption><span>/mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 上面的uid=33,gid=33分别对应远行nginx的用户 ```www-data```和用户组```www-data</div></pre></td></tr></table></figure>
+<li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决 <figure class="highlight plain"><figcaption><span>/mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 上面的uid=33,gid=33分别对应远行nginx的用户 ```www-data```和用户组```www-data</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
