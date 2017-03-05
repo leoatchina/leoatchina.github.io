@@ -500,8 +500,7 @@
 <hr>
 <h4 id="主机配置"><a href="#主机配置" class="headerlink" title="主机配置"></a>主机配置</h4><ul>
 <li>主机放于家庭电视机柜中，24小时开机，乔思伯V3 ITX HTPC机箱<br><img src="http://upload-images.jianshu.io/upload_images/109760-b50678062c7a4950.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="乔思伯V3机箱"></li>
-<li>放了3块以前留下的2.5寸硬盘，一共2.5T，其中两块是装在PCIE硬盘挂架上。 </li>
-<li>内存2G（以前淘汰下来的，基本够用），系统装在一块64Gssd上</li>
+<li>内存2G x 2，系统装在一块64Gssd上，另外有一块4T的硬盘作主力盘</li>
 <li>主板集成J1800 CPU，无风扇，TDP 15w，足够放1080p X264编码的高清电影，不过现在建议用更高级的J3455主板，能放4k的高清。<br><img src="http://upload-images.jianshu.io/upload_images/109760-d8dccadd19b56b00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="J1800主板"></li>
 <li>不算硬盘，HTPC的资金投入是 主板250+内存100+机箱200+电源150=<strong>700</strong></li>
 </ul>
@@ -509,17 +508,21 @@
 <li>一般情况下，家庭局域网出口在公网环境下是没有固定ip，所以路由要有动态域名解析功能，能从公网环境中反向通过家庭路由访问到局域网</li>
 <li>由于电信封了80和8080端口，同时又要把对路由公网ip的访问转到HTPC上，所以要有端口映射功能</li>
 <li>又有其他翻墙、路由分离功能</li>
-<li>openwrt是一个比较好的方案，我的方案是淘宝上这一款<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.lO3pnV&amp;id=520910420562&amp;_u=1vope65d47" target="_blank" rel="external"> 841N 五口 OpenWrt 无线路由器 16M 64M 双天线</a>，体积小，拆掉天线后放入弱电箱，无线功能靠二级路由实现，要注意要把二级跟帖的ip段设置的和主路由一样。</li>
-<li>以下我都把我用的这个路由器称作为<strong>openwrt</strong><br><img src="http://upload-images.jianshu.io/upload_images/109760-47f39fd3e3ab2b9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" 841N 五口 OpenWrt 无线路由器 "></li>
+<li>openwrt是一个比较好的方案，我的方案是淘宝上这一款<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.lO3pnV&amp;id=520910420562&amp;_u=1vope65d47" target="_blank" rel="external"> 841N 五口 OpenWrt 无线路由器 16M 64M 双天线</a>，体积小，拆掉天线后放入弱电箱，无线功能靠二级路由实现，要注意要把二级跟帖的ip段设置的和主路由一样。<br><img src="http://upload-images.jianshu.io/upload_images/109760-47f39fd3e3ab2b9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" 841N 五口 OpenWrt 无线路由器 "></li>
+<li>现在换成了斐讯k2 <img src="/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/af3bbc95c3be2aba6619fa4f46218797.png" alt="k2路由器"> 请去刷入 padavan系统</li>
 </ul>
 <hr>
-<h4 id="修改openwrt路由器root密码和端口"><a href="#修改openwrt路由器root密码和端口" class="headerlink" title="修改openwrt路由器root密码和端口"></a>修改openwrt路由器root密码和端口</h4><ul>
-<li>上述路由器的默认帐户和密码是root，出于安全的需要，请把密码改了<br><img src="http://upload-images.jianshu.io/upload_images/109760-312f2d0c4cbef75d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="改root密码"></li>
-<li>电信封了家庭用户的80和8080端口，如果你想在办公室里修改家里路由器的设置，请修改。</li>
-<li>方法:在<strong>局域网</strong>环境下，  <figure class="highlight plain"><figcaption><span>root@192.168.10.1```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  - windows下建议用xshell，在此下载 -&gt;[Zdfans上的xshell下载](http://www.zdfans.com/4555.html)</div><div class="line">  - linux下直接terminal</div><div class="line">- 进入  /etc/config后编辑 uhttp，`` vi uhttp``，把两个listen_http后面的端口改成800。</div></pre></td></tr></table></figure></li>
+<h4 id="开启路由器的端口映射"><a href="#开启路由器的端口映射" class="headerlink" title="开启路由器的端口映射"></a>开启路由器的端口映射</h4><ul>
+<li>首先要确定你的机器（下面统称HTPC）的静态IP </li>
+<li><p>在web界面，网络-防火墙-端口转发里，增加以下几条转发到此静态IP的规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">21-&gt;21：#For FTP</div><div class="line">20-&gt;20：#For FTP</div><div class="line">22-&gt;22：#For SSH remote login </div><div class="line">443-&gt;443：#For Https</div><div class="line">6800-&gt;6800：#For Aria2</div><div class="line">6801-&gt;6801：#For Aria2</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>你们可以注意到没有规则对80转发或者转发到80端口</strong></p>
+</li>
 </ul>
-<p>config uhttpd ‘main’<br>        list listen_http ‘0.0.0.0:800’<br>        list listen_http ‘[::]:800’<br>        list listen_https ‘0.0.0.0:443’<br>        list listen_https ‘[::]:443’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- 重启路由</div><div class="line"></div><div class="line"></div><div class="line">#### 开启openwrt的端口映射</div><div class="line">- 首先要确定你的机器（下面统称HTPC）的静态IP </div><div class="line">- 在web界面，网络-防火墙-端口转发里，增加以下几条转发到此静态IP的规则</div></pre></td></tr></table></figure></p>
-<p>21-&gt;21：#For FTP<br>20-&gt;20：#For FTP<br>22-&gt;22：#For SSH remote login<br>443-&gt;443：#For Https<br>6800-&gt;6800：#For Aria2<br>6801-&gt;6801：#For Aria2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- **你们可以注意到没有规则对80转发或者转发到80端口**</div><div class="line"></div><div class="line">#### 开启动态域名 </div><div class="line">- openwrt内置动态域名解析功能，可以在 [changeip.com](http://changeip.com)去申请，比如我申请了一个  [testdomain.changeip.com](http://testdomain.changeip.com)，这样在外网环境中结合上述端口映射，可以直接对内网中的HTPC进行操作，安装软件、修改服务、。</div><div class="line">![](http://upload-images.jianshu.io/upload_images/109760-3c69e9f50e814e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line">***</div><div class="line">#### 安装samba和vsftp</div><div class="line">- ssh到HTPC后自行安装，并设置好目录，我 木木是把 三块 HDD  mount 到 /mnt目录下，开启对samba用户和ftp用户的访问权。</div><div class="line">- 我的samba的配置要用到图形界面软件```system-config-samba```，最好在htpc上直接用键盘操作。</div><div class="line"></div><div class="line">#### 安装mysql</div><div class="line">```sudo apt-get install mysql-server mysql-client</div></pre></td></tr></table></figure></p>
+<h4 id="开启动态域名"><a href="#开启动态域名" class="headerlink" title="开启动态域名"></a>开启动态域名</h4><ul>
+<li>可以在 <a href="http://changeip.com" target="_blank" rel="external">changeip.com</a>去申请，比如我申请了一个  <a href="http://testdomain.changeip.com" target="_blank" rel="external">testdomain.changeip.com</a>，这样在外网环境中结合上述端口映射，可以直接对内网中的HTPC进行操作，安装软件、修改服务、。<br><img src="http://upload-images.jianshu.io/upload_images/109760-3c69e9f50e814e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
 <h4 id="出人意料的NTFS权限问题"><a href="#出人意料的NTFS权限问题" class="headerlink" title="出人意料的NTFS权限问题"></a>出人意料的NTFS权限问题</h4><ul>
 <li>这个是历史遗留问题：<br>我的三块硬盘在放到htpc里时全是ntfs格式，上面都有数据，不能无损转成EXT4</li>
 <li>owncloud的存贮路径是在其中一块硬盘上，原来是直接mount到/mnt目录下，在后面配置owncloud时指定存贮目录时，出现权限<strong>770</strong>问题</li>
@@ -527,7 +530,13 @@
 </li>
 </ul>
 <hr>
-<h4 id="安装nginx和php-fpm和mysql"><a href="#安装nginx和php-fpm和mysql" class="headerlink" title="安装nginx和php-fpm和mysql"></a>安装nginx和php-fpm和mysql</h4><ul>
+<h4 id="安装samba和vsftp"><a href="#安装samba和vsftp" class="headerlink" title="安装samba和vsftp"></a>安装samba和vsftp</h4><ul>
+<li>ssh到HTPC后自行安装，并设置好目录</li>
+</ul>
+<h4 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h4><ul>
+<li>sudo apt-get install mysql-server mysql-client</li>
+</ul>
+<h4 id="安装nginx和php-fpm"><a href="#安装nginx和php-fpm" class="headerlink" title="安装nginx和php-fpm"></a>安装nginx和php-fpm</h4><ul>
 <li>请给你的mysql设置一个比较强的root密码，并且为owncloud创建专有用户<blockquote>
 <p>sudo apt-get install nginx<br>sudo add-apt-repository ppa:ondrej/php<br>sudo apt-get update<br>sudo apt-get install php7.0 php-fpm php-mysql php-mbstring  </p>
 </blockquote>
@@ -538,180 +547,56 @@
 <li>我的web服务根目录是 <code>/home/test/www</code></li>
 <li>改变目录拥有者 <code>sudo chown www-data -R /home/test/www</code></li>
 <li>改变权限 <code>sudo chmod 755 -R /home/test/www</code></li>
-<li>配置phpmyadmin<blockquote>
+<li><p>配置phpmyadmin</p>
 <ul>
-<li>拷贝原始配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd /home/test/www/phpmyadmin</div><div class="line">cp config.sample.inc.php config.inc.php</div><div class="line">``` </div><div class="line">  - ``vi /home/test/www/phpmyadmin/config.inc.php`` </div><div class="line">  - 配置 ``$cfg[&apos;blowfish_secret&apos;] = &apos;$#%#$%#$%#$^#^ETETR&apos;;  ``就是一个加密信息，越乱越好</div><div class="line">  - 配置另一个config文件</div></pre></td></tr></table></figure>
+<li>拷贝原始配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/test/www/phpmyadmin</div><div class="line">cp config.sample.inc.php config.inc.php</div><div class="line">``` </div><div class="line">  - 修改phpmyadmin的配置文件</div><div class="line">  ``vi /home/test/www/phpmyadmin/config.inc.php ``</div><div class="line">  - 配置 ``$cfg[&apos;blowfish_secret&apos;] = &apos;$#%#$%#$%#$^#^ETETR&apos;;  ``就是一个加密信息，越乱越好</div><div class="line">  - 配置另一个config文件</div></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
 </li>
 </ul>
-<p>cd /home/test/www/phpmyadmin/libraries<br>vi config.default.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  - 同样配置``$cfg[&apos;blowfish_secret&apos;]``</div><div class="line">  - 其他用默认</div><div class="line"></div><div class="line">#### 分别配置php7-fpm和php5-fpm</div><div class="line">- 先装的是php7-fpm，和新版phpmyadmin 配合的比较好，但是和owncloud9.0不兼容</div><div class="line">- 幸好php7-fpm里也有php5-fpm，经过一番试验后，可以分别配置两个php的后台运行</div><div class="line">- php7.0的 配置环境在 /etc/php/7.0/fpm里，有*php-fpm.conf*和*php.ini*两个重要的配置文件</div><div class="line"> &gt; - **php.ini:**  </div><div class="line">   1. 设置 ```short_open_tag = On</div></pre></td></tr></table></figure></p>
+<p>cd /home/test/www/phpmyadmin/libraries<br>vi config.default.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  - 同样配置``$cfg[&apos;blowfish_secret&apos;]``</div><div class="line">  - 其他用默认</div><div class="line"></div><div class="line">#### 配置php7-fpm</div><div class="line">- php7.0的 配置环境在 /etc/php/7.0/fpm里，有*php-fpm.conf*和*php.ini*两个重要的配置文件</div><div class="line"> &gt; - **php.ini:**  </div><div class="line">   1. 设置 ```short_open_tag = On</div></pre></td></tr></table></figure></p>
 <ol>
-<li><figure class="highlight plain"><figcaption><span>= "/usr/lib/php/20151012"```，目录通过``catfish``搜索``mysql.so``找到，用于安装各种扩展，应该是``apt-get install``时自动放入。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    3. 开启对mysql的支持:``extension=mysqli.so``，``extension=pdo_mysql.so``</div><div class="line">    4. 设置&apos;&apos;cgi.fix_pathinfo=0&apos;&apos; </div><div class="line"> - **php-fpm.conf:**</div><div class="line">可以看到 ``include=/etc/php/7.0/fpm/pool.d/*.conf``，里面有``www.conf``文件</div><div class="line">   1. 配置``listen``: ``listen = /run/php/php7.0-fpm.sock``，配置nginx时会用到</div><div class="line">   2. 重启php-fpm:``sudo service php7-fpm restart``</div><div class="line">- php5的配置文件夹为``/etc/php5/fpm``，也是这两个文件* php-fmp.conf*和*php.ini*两个重要的文件</div><div class="line"> &gt; - **php.ini**</div><div class="line">    1. 设置 ```short_open_tag = On</div></pre></td></tr></table></figure>
-<ol>
-<li><code>extension_dir=&quot;/usr/lib/php5/20121212&quot;</code>，注意和php7的不同，估计也是编译时生成</li>
-<li><code>cgi.fix_pathinfo=1</code>，应该是和owncloud有关的一个设置，否则会报错。</li>
-<li>各种extensions，有部分是和owncloud相关<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">extension=mysql.so</div><div class="line">extension=mysqli.so</div><div class="line">extension=pdo_mysql.so</div><div class="line">extension=pdo.so</div><div class="line">extension=json.so</div><div class="line">extension=gd.so</div><div class="line">extension=opcache.so</div></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><figcaption><span>= "/usr/lib/php/20151012"```，目录通过``catfish``搜索``mysql.so``找到，用于安装各种扩展，应该是``apt-get install``时自动放入。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">   3. 开启对mysql的支持:``extension=mysqli.so``，``extension=pdo_mysql.so``</div><div class="line">   4. 设置&apos;&apos;cgi.fix_pathinfo=0&apos;&apos; </div><div class="line"> - **php-fpm.conf:**</div><div class="line">可以看到 ``include=/etc/php/7.0/fpm/pool.d/*.conf``，里面有``www.conf``文件</div><div class="line">   1. 配置``listen``: ``listen = /run/php/php7.0-fpm.sock``，配置nginx时会用到</div><div class="line">   2. 重启php-fpm:``sudo service php7-fpm restart``</div><div class="line"></div><div class="line"></div><div class="line">#### nginx开启https，两种方案</div><div class="line">owncloud9.0强制要求https服务，需要对自己web站进行认证，实际中我试过两种方案，最后用的是第一种方案</div><div class="line">1. ###### 用自签名的SSL证书</div><div class="line">&gt; - 采用自验证方案，借用廖雪峰大神的脚本[给Nginx配置一个自签名的SSL证书](http://www.liaoxuefeng.com/article/0014189023237367e8d42829de24b6eaf893ca47df4fb5e000)</div><div class="line">&gt; - 运行这个脚本后，把生成的key文件和crt文件复制到``/etc/nginx/ssl/``目录，</div><div class="line">如``/etc/nginx/ssl/testdomain.changeip.com.crt``</div><div class="line">和``/etc/nginx/ssl/testdomain.changeip.com.key``</div><div class="line">配置nginx时要用到</div><div class="line">或者你直接在后面写nginx文件时指向这两个文件</div><div class="line"></div><div class="line">2.  ###### 用letsencypt加密自己的服务器</div><div class="line"> &gt; - 被大牛吐槽自授权是错误的价值观，在他的建议下换成 [Let’s Encrypt](https://letsencrypt.org/)（是一个免费、自动化、开放的证书颁发机构，由网络安全研究小组运作）的免费授权系统，主要参考了[Let&apos;s Encrypt SSL证书配置](http://www.jianshu.com/p/eaac0d082ba2)和[折腾Let‘s Encrypt免费SSL证书](https://xiaoai.me/?p=223)</div><div class="line">  - 下载安装</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>git clone <a href="https://github.com/certbot/certbot.git" target="_blank" rel="external">https://github.com/certbot/certbot.git</a><br>cd certbot<br>./letsencrypt-auto –help<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 生成密钥，在这之前要**停止nginx**</div></pre></td></tr></table></figure></p>
+<p>./letsencrypt-auto certonly -d testdomain.changip.com -m testdomain@gmail.com<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  - 这样，会生成</div><div class="line">```/etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">两个文件，不用移动位置</div><div class="line">  - 生成2048位 DH parameters：</div><div class="line">```sudo openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048</div></pre></td></tr></table></figure>
 <ul>
-<li><strong>php-fpm.conf</strong><br>可以看到 <code>include=/etc/php5/fpm/pool.d/*.conf</code>，里面有<code>www.conf</code>文件，找listen参数：<code>listen = /var/run/php5-fpm.sock</code></li>
+<li>美中不足的是，这种方案只有90天的有效期，要到时候运行脚本renew </li>
 </ul>
-</li>
+<hr>
+<h4 id="owncloud"><a href="#owncloud" class="headerlink" title="owncloud"></a>owncloud</h4><ul>
+<li>前面已经提到了很多owncloud的配置，都为实践中一一摸索得来，主要有<ol>
+<li>专用mysql用户</li>
 </ol>
-<h4 id="nginx开启https，两种方案"><a href="#nginx开启https，两种方案" class="headerlink" title="nginx开启https，两种方案"></a>nginx开启https，两种方案</h4><p>owncloud9.0强制要求https服务，需要对自己web站进行认证，实际中我试过两种方案，最后用的是第一种方案</p>
-<ol>
-<li><h6 id="用自签名的SSL证书"><a href="#用自签名的SSL证书" class="headerlink" title="用自签名的SSL证书"></a>用自签名的SSL证书</h6><blockquote>
 <ul>
-<li>采用自验证方案，借用廖雪峰大神的脚本<a href="http://www.liaoxuefeng.com/article/0014189023237367e8d42829de24b6eaf893ca47df4fb5e000" target="_blank" rel="external">给Nginx配置一个自签名的SSL证书</a></li>
-<li>运行这个脚本后，把生成的key文件和crt文件复制到<code>/etc/nginx/ssl/</code>目录，<br>如<code>/etc/nginx/ssl/testdomain.changeip.com.crt</code><br>和<code>/etc/nginx/ssl/testdomain.changeip.com.key</code><br>配置nginx时要用到<br>或者你直接在后面写nginx文件时指向这两个文件</li>
-</ul>
-</blockquote>
-</li>
-<li><h6 id="用letsencypt加密自己的服务器"><a href="#用letsencypt加密自己的服务器" class="headerlink" title="用letsencypt加密自己的服务器"></a>用letsencypt加密自己的服务器</h6><blockquote>
-<ul>
-<li>被大牛吐槽自授权是错误的价值观，在他的建议下换成 <a href="https://letsencrypt.org/" target="_blank" rel="external">Let’s Encrypt</a>（是一个免费、自动化、开放的证书颁发机构，由网络安全研究小组运作）的免费授权系统，主要参考了<a href="http://www.jianshu.com/p/eaac0d082ba2" target="_blank" rel="external">Let’s Encrypt SSL证书配置</a>和<a href="https://xiaoai.me/?p=223" target="_blank" rel="external">折腾Let‘s Encrypt免费SSL证书</a></li>
-<li>下载安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/certbot/certbot.git</div><div class="line">cd certbot</div><div class="line">./letsencrypt-auto --help</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li>生成密钥，在这之前要<strong>停止nginx</strong></li>
+<li>https证书</li>
+<li>php.ini配置</li>
+<li>文件夹权限</li>
+<li>端口映射</li>
+<li>特别要强调，要把owncloud的数据文件目录的用户改成 <strong>www-data</strong>，权限也要改770</li>
 </ul>
 </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./letsencrypt-auto certonly -d testdomain.changip.com -m testdomain@gmail.com</div></pre></td></tr></table></figure>
-<ul>
-<li>这样，会生成<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">````/etc/letsencrypt/live/testdomain.changeip.com/privkey.pem</div></pre></td></tr></table></figure>
+</ul>
+<h4 id="aria2和yaaw"><a href="#aria2和yaaw" class="headerlink" title="aria2和yaaw"></a>aria2和yaaw</h4><ul>
+<li>aria2可以apt-get安装或者编译安装，参考网上教程，至少能安装到1.19版本</li>
+<li>yaaw下载后直接解压缩到/home/kodi/yaaw下</li>
+<li><p>aria2的教程网上很多，我这里贴出我的配置，放在~/.aria2/aria2.conf里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">rpc-secret=secret #token加密方式</div><div class="line">enable-rpc=true</div><div class="line">rpc-allow-origin-all=true</div><div class="line">rpc-listen-all=true</div><div class="line">rpc-listen-port=6800#nginx里有个转发到这个端口的设置</div><div class="line">rpc-secure=true</div><div class="line">rpc-certificate=/etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem</div><div class="line">rpc-private-key=/etc/letsencrypt/live/testdomain.changeip.com/privkey.pem</div><div class="line">max-concurrent-downloads=5</div><div class="line">continue=true</div><div class="line">max-connection-per-server=5</div><div class="line">min-split-size=10M</div><div class="line">split=10</div><div class="line">max-overall-download-limit=3M</div><div class="line">max-download-limit=0</div><div class="line">max-overall-upload-limit=256K</div><div class="line">max-upload-limit=0</div><div class="line">dir=/mnt/disk2/Downloads</div><div class="line">disk-cache=32M</div><div class="line">file-allocation=prealloc</div><div class="line">input-file=/home/kodi/.aria2/aria2.session</div><div class="line">save-session=/home/kodi/.aria2/aria2.session</div></pre></td></tr></table></figure>
+</li>
+<li><p>在配置yaaw是关键一步，在<code>setting</code>后，要把<code>JSON-RPC Path</code>设置成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://token:secret@testdomain.changeip.com:6801/jsonrpc #请注意https和6801</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>两个文件，不用移动位置</p>
-<ul>
-<li><p>生成2048位 DH parameters：</p>
-<figure class="highlight plain"><figcaption><span>openssl dhparam -out</span><a href="/etc/nginx/ssl/dhparams.pem">2048```</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">  - 美中不足的是，这种方案只有90天的有效期，要到时候运行脚本renew </div><div class="line">***</div><div class="line"></div><div class="line">#### owncloud</div><div class="line">- 前面已经提到了很多owncloud的配置，都为实践中一一摸索得来，主要有</div><div class="line">  1. 专用mysql用户</div><div class="line">  - https证书</div><div class="line">  - php.ini配置</div><div class="line">  - 文件夹权限</div><div class="line">  - 端口映射</div><div class="line">  - 特别要强调，要把owncloud的数据文件目录的用户改成 **www-data**，权限也要改770</div><div class="line"></div><div class="line">#### aria2和yaaw</div><div class="line">- aria2可以apt-get安装或者编译安装，参考网上教程，至少能安装到1.19版本</div><div class="line">- yaaw下载后直接解压缩到/home/kodi/yaaw下</div><div class="line">- aria2的教程网上很多，我这里贴出我的配置，放在~/.aria2/aria2.conf里</div></pre></td></tr></table></figure>
-<p>rpc-secret=secret #token加密方式<br>enable-rpc=true<br>rpc-allow-origin-all=true<br>rpc-listen-all=true<br>rpc-listen-port=6800#nginx里有个转发到这个端口的设置<br>rpc-secure=true<br>rpc-certificate=/etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem<br>rpc-private-key=/etc/letsencrypt/live/testdomain.changeip.com/privkey.pem<br>max-concurrent-downloads=5<br>continue=true<br>max-connection-per-server=5<br>min-split-size=10M<br>split=10<br>max-overall-download-limit=3M<br>max-download-limit=0<br>max-overall-upload-limit=256K<br>max-upload-limit=0<br>dir=/mnt/disk2/Downloads<br>disk-cache=32M<br>file-allocation=prealloc<br>input-file=/home/kodi/.aria2/aria2.session<br>save-session=/home/kodi/.aria2/aria2.session</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-  在配置yaaw是关键一步，在`setting`后，要把`JSON-RPC Path`设置成</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><ul>
+<li>这一步配的头大，后来参考了owncloud官方配置文件才写出来</li>
+<li>实际使用过程中又进行了不断的调整</li>
+<li>你们可以注意到有个对 6801进行ssl加密又转发到6800端口的配置 ，这是为了让yaaw在全站加密的情况下，突破aria2c的server对https的兼容性问题</li>
+<li>要解释的东西太多了，有些我还看不懂，以后一一写来<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line">upstream php5-handler &#123;</div><div class="line">    server unix:/var/run/php5-fpm.sock;</div><div class="line">&#125;</div><div class="line">upstream php7-handler &#123;</div><div class="line">    server unix:/run/php/php7.0-fpm.sock;</div><div class="line">&#125;</div><div class="line">server&#123;</div><div class="line">    listen 6801 ssl;</div><div class="line">    server_name testdomain.changeip.com;</div><div class="line">    ssl_certificate /etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem;</div><div class="line">    ssl_certificate_key /etc/letsencrypt/live/testdomain.changeip.com/privkey.pem;</div><div class="line">    ssl_dhparam /etc/nginx/ssl/dhparams.pem;</div><div class="line">    ssl_ciphers &apos;ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA&apos;;</div><div class="line">    ssl_prefer_server_ciphers  on;</div><div class="line">    location / &#123;</div><div class="line">        proxy_redirect off;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        proxy_pass http://127.0.0.1:6800;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">server &#123;</div><div class="line">    listen 443 ssl;</div><div class="line">    server_name testdomain.changeip.com 192.168.10.150;</div><div class="line">    ssl_certificate /etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem;</div><div class="line">    ssl_certificate_key /etc/letsencrypt/live/testdomain.changeip.com/privkey.pem;</div><div class="line">    ssl_dhparam /etc/nginx/ssl/dhparams.pem;</div><div class="line">    ssl_ciphers &apos;ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA&apos;;</div><div class="line">    ssl_prefer_server_ciphers  on; </div><div class="line">    # Add headers to serve security related headers</div><div class="line">    # Before enabling Strict-Transport-Security headers please read into this topic first.</div><div class="line">    #add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot;;</div><div class="line">    add_header X-Content-Type-Options nosniff;</div><div class="line">    add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</div><div class="line">    add_header X-XSS-Protection &quot;1; mode=block&quot;;</div><div class="line">    add_header X-Robots-Tag none;</div><div class="line">    add_header X-Download-Options noopen;</div><div class="line">    add_header X-Permitted-Cross-Domain-Policies none;</div><div class="line">    add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains; preload&quot;;</div><div class="line">    # Path to the root of your installation</div><div class="line">    root /home/kodi/www/;</div><div class="line">    location = /robots.txt &#123;</div><div class="line">        allow all;</div><div class="line">        log_not_found off;</div><div class="line">        access_log off;</div><div class="line">    &#125;</div><div class="line">    location /luci&#123;</div><div class="line">	proxy_redirect off;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">        proxy_pass https://192.168.10.1;</div><div class="line">    &#125; </div><div class="line">    # The following 2 rules are only needed for the user_webfinger app.</div><div class="line">    # Uncomment it if you&apos;re planning to use this app.</div><div class="line">    #rewrite ^/.well-known/host-meta /owncloud/public.php?service=host-meta last;</div><div class="line">    #rewrite ^/.well-known/host-meta.json /owncloud/public.php?service=host-meta-json last;</div><div class="line">    location = /.well-known/carddav &#123; return 301 $scheme://$host/owncloud/remote.php/dav; &#125;</div><div class="line">    location = /.well-known/caldav &#123; return 301 $scheme://$host/owncloud/remote.php/dav; &#125;</div><div class="line">    location /.well-known/acme-challenge &#123; &#125;</div><div class="line">    location ^~ /phpmyadmin&#123;</div><div class="line">        location /phpmyadmin&#123;</div><div class="line">    		server_name_in_redirect off;</div><div class="line">    		index index.php;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/phpmyadmin/(?:build|tests|config|lib|3rdparty|templates|data)/ &#123;</div><div class="line">            deny all;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/phpmyadmin/(?:\.|autotest|occ|issue|indie|console) &#123;</div><div class="line">            deny all;</div><div class="line">        &#125;</div><div class="line">        location ~ &quot;^\/phpmyadmin\/.*\.php$&quot; &#123;</div><div class="line">     	    include fastcgi_params;</div><div class="line">            fastcgi_split_path_info ^(.+\.php)(/.+)$;</div><div class="line">            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</div><div class="line">            fastcgi_param PATH_INFO $fastcgi_path_info;</div><div class="line">            fastcgi_param HTTPS on;</div><div class="line">            fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice</div><div class="line">            fastcgi_param front_controller_active true;</div><div class="line">            fastcgi_pass php5-handler;</div><div class="line">            fastcgi_intercept_errors on;</div><div class="line">           # fastcgi_request_buffering off;</div><div class="line">        &#125;</div><div class="line">        location ~ &quot;^\/phpmyadmin\/.*\.\(htm|html|gif|jpg|png|js|css\)$&quot; &#123;</div><div class="line">            root /home/kodi/www;</div><div class="line">        &#125;     </div><div class="line">    &#125;</div><div class="line">    location ^~ /owncloud &#123;</div><div class="line">        # set max upload size</div><div class="line">        client_max_body_size 51200M;</div><div class="line">        fastcgi_buffers 64 4K;</div><div class="line">        # Disable gzip to avoid the removal of the ETag header</div><div class="line">        gzip off;</div><div class="line">        # Uncomment if your server is build with the ngx_pagespeed module</div><div class="line">        # This module is currently not supported.</div><div class="line">        #pagespeed off;</div><div class="line">        location /owncloud &#123;</div><div class="line">            rewrite ^ /owncloud/index.php$uri;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/owncloud/(?:build|tests|config|lib|3rdparty|templates|data)/ &#123;</div><div class="line">            deny all;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/owncloud/(?:\.|autotest|occ|issue|indie|db_|console) &#123;</div><div class="line">            deny all;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/owncloud/(?:index|remote|public|cron|core/ajax/update|status|ocs/v[12]|updater/.+|ocs-provider/.+|core/templates/40[34])\.php(?:$|/) &#123;</div><div class="line">            include fastcgi_params;</div><div class="line">	    fastcgi_split_path_info ^(.+\.php)(/.+)$;</div><div class="line">            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;Gggg</div><div class="line">            fastcgi_param PATH_INFO $fastcgi_path_info;</div><div class="line">            fastcgi_param HTTPS on;</div><div class="line">            fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice</div><div class="line">            fastcgi_param front_controller_active true;</div><div class="line">            fastcgi_pass php5-handler;</div><div class="line">            fastcgi_intercept_errors on;</div><div class="line">           # fastcgi_request_buffering off;</div><div class="line">        &#125;</div><div class="line">        location ~ ^/owncloud/(?:updater|ocs-provider)(?:$|/) &#123;</div><div class="line">            try_files $uri/ =404;</div><div class="line">            index index.php;</div><div class="line">        &#125;</div><div class="line">        # Adding the cache control header for js and css files</div><div class="line">        # Make sure it is BELOW the PHP block</div><div class="line">        location ~* \.(?:css|js)$ &#123;</div><div class="line">            try_files $uri /owncloud/index.php$uri$is_args$args;</div><div class="line">            add_header Cache-Control &quot;public, max-age=7200&quot;;</div><div class="line">            # Add headers to serve security related headers  (It is intended to have those duplicated to the ones above)</div><div class="line">            # Before enabling Strict-Transport-Security headers please read into this topic first.</div><div class="line">            #add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot;;</div><div class="line">            add_header X-Content-Type-Options nosniff;</div><div class="line">            add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</div><div class="line">            add_header X-XSS-Protection &quot;1; mode=block&quot;;</div><div class="line">            add_header X-Robots-Tag none;</div><div class="line">            add_header X-Download-Options noopen;</div><div class="line">            add_header X-Permitted-Cross-Domain-Policies none;</div><div class="line">            # Optional: Don&apos;t log access to assets</div><div class="line">            access_log off;</div><div class="line">        &#125;</div><div class="line">        location ~* \.(?:svg|gif|png|html|ttf|woff|ico|jpg|jpeg)$ &#123;</div><div class="line">            try_files $uri /owncloud/index.php$uri$is_args$args;</div><div class="line">            # Optional: Don&apos;t log access to other assets</div><div class="line">            access_log off;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><a href="https://token:secret@testdomain.changeip.com:6801/jsonrpc" target="_blank" rel="external">https://token:secret@testdomain.changeip.com:6801/jsonrpc</a> #请注意https和6801<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">***</div><div class="line">#### nginx配置</div><div class="line">- 这一步配的头大，后来参考了owncloud官方配置文件才写出来</div><div class="line">- 实际使用过程中又进行了不断的调整</div><div class="line">- 你们可以注意到有个对 6801进行ssl加密又转发到6800端口的配置 ，这是为了让yaaw在全站加密的情况下，突破aria2c的server对https的兼容性问题</div><div class="line">- 要解释的东西太多了，有些我还看不懂，以后一一写来</div></pre></td></tr></table></figure></p>
-<p>upstream php5-handler {<br>    server unix:/var/run/php5-fpm.sock;<br>}<br>upstream php7-handler {<br>    server unix:/run/php/php7.0-fpm.sock;<br>}<br>server{<br>    listen 6801 ssl;<br>    server_name testdomain.changeip.com;<br>    ssl_certificate /etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem;<br>    ssl_certificate_key /etc/letsencrypt/live/testdomain.changeip.com/privkey.pem;<br>    ssl_dhparam /etc/nginx/ssl/dhparams.pem;<br>    ssl_ciphers ‘ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA’;<br>    ssl_prefer_server_ciphers  on;<br>    location / {<br>        proxy_redirect off;<br>        proxy_set_header Host $host;<br>        proxy_set_header X-Real-IP $remote_addr;<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_pass <a href="http://127.0.0.1:6800" target="_blank" rel="external">http://127.0.0.1:6800</a>;<br>    }<br>}<br>server {<br>    listen 443 ssl;<br>    server_name testdomain.changeip.com 192.168.10.150;<br>    ssl_certificate /etc/letsencrypt/live/testdomain.changeip.com/fullchain.pem;<br>    ssl_certificate_key /etc/letsencrypt/live/testdomain.changeip.com/privkey.pem;<br>    ssl_dhparam /etc/nginx/ssl/dhparams.pem;<br>    ssl_ciphers ‘ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA’;<br>    ssl_prefer_server_ciphers  on; </p>
-<pre><code># Add headers to serve security related headers
-# Before enabling Strict-Transport-Security headers please read into this topic first.
-#add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot;;
-add_header X-Content-Type-Options nosniff;
-add_header X-Frame-Options &quot;SAMEORIGIN&quot;;
-add_header X-XSS-Protection &quot;1; mode=block&quot;;
-add_header X-Robots-Tag none;
-add_header X-Download-Options noopen;
-add_header X-Permitted-Cross-Domain-Policies none;
-add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains; preload&quot;;
-# Path to the root of your installation
-root /home/kodi/www/;
-location = /robots.txt {
-    allow all;
-    log_not_found off;
-    access_log off;
-}
-location /luci{
-proxy_redirect off;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass https://192.168.10.1;
-} 
-# The following 2 rules are only needed for the user_webfinger app.
-# Uncomment it if you&apos;re planning to use this app.
-#rewrite ^/.well-known/host-meta /owncloud/public.php?service=host-meta last;
-#rewrite ^/.well-known/host-meta.json /owncloud/public.php?service=host-meta-json last;
-location = /.well-known/carddav { return 301 $scheme://$host/owncloud/remote.php/dav; }
-location = /.well-known/caldav { return 301 $scheme://$host/owncloud/remote.php/dav; }
-location /.well-known/acme-challenge { }
-location ^~ /phpmyadmin{
-    location /phpmyadmin{
-        server_name_in_redirect off;
-        index index.php;
-    }
-    location ~ ^/phpmyadmin/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-        deny all;
-    }
-    location ~ ^/phpmyadmin/(?:\.|autotest|occ|issue|indie|console) {
-        deny all;
-    }
-    location ~ &quot;^\/phpmyadmin\/.*\.php$&quot; {
-         include fastcgi_params;
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
-        fastcgi_param HTTPS on;
-        fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
-        fastcgi_param front_controller_active true;
-        fastcgi_pass php5-handler;
-        fastcgi_intercept_errors on;
-       # fastcgi_request_buffering off;
-    }
-    location ~ &quot;^\/phpmyadmin\/.*\.\(htm|html|gif|jpg|png|js|css\)$&quot; {
-        root /home/kodi/www;
-    }     
-}
-location ^~ /owncloud {
-    # set max upload size
-    client_max_body_size 51200M;
-    fastcgi_buffers 64 4K;
-    # Disable gzip to avoid the removal of the ETag header
-    gzip off;
-    # Uncomment if your server is build with the ngx_pagespeed module
-    # This module is currently not supported.
-    #pagespeed off;
-    location /owncloud {
-        rewrite ^ /owncloud/index.php$uri;
-    }
-    location ~ ^/owncloud/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-        deny all;
-    }
-    location ~ ^/owncloud/(?:\.|autotest|occ|issue|indie|db_|console) {
-        deny all;
-    }
-    location ~ ^/owncloud/(?:index|remote|public|cron|core/ajax/update|status|ocs/v[12]|updater/.+|ocs-provider/.+|core/templates/40[34])\.php(?:$|/) {
-        include fastcgi_params;
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;Gggg
-        fastcgi_param PATH_INFO $fastcgi_path_info;
-        fastcgi_param HTTPS on;
-        fastcgi_param modHeadersAvailable true; #Avoid sending the security headers twice
-        fastcgi_param front_controller_active true;
-        fastcgi_pass php5-handler;
-        fastcgi_intercept_errors on;
-       # fastcgi_request_buffering off;
-    }
-    location ~ ^/owncloud/(?:updater|ocs-provider)(?:$|/) {
-        try_files $uri/ =404;
-        index index.php;
-    }
-    # Adding the cache control header for js and css files
-    # Make sure it is BELOW the PHP block
-    location ~* \.(?:css|js)$ {
-        try_files $uri /owncloud/index.php$uri$is_args$args;
-        add_header Cache-Control &quot;public, max-age=7200&quot;;
-        # Add headers to serve security related headers  (It is intended to have those duplicated to the ones above)
-        # Before enabling Strict-Transport-Security headers please read into this topic first.
-        #add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains; preload;&quot;;
-        add_header X-Content-Type-Options nosniff;
-        add_header X-Frame-Options &quot;SAMEORIGIN&quot;;
-        add_header X-XSS-Protection &quot;1; mode=block&quot;;
-        add_header X-Robots-Tag none;
-        add_header X-Download-Options noopen;
-        add_header X-Permitted-Cross-Domain-Policies none;
-        # Optional: Don&apos;t log access to assets
-        access_log off;
-    }
-    location ~* \.(?:svg|gif|png|html|ttf|woff|ico|jpg|jpeg)$ {
-        try_files $uri /owncloud/index.php$uri$is_args$args;
-        # Optional: Don&apos;t log access to other assets
-        access_log off;
-    }
-}
-</code></pre><p>}<br>```</p>
 
           
         
