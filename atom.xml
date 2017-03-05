@@ -89,7 +89,7 @@
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</id>
     <published>2017-03-02T02:14:34.000Z</published>
-    <updated>2017-03-05T14:08:11.000Z</updated>
+    <updated>2017-03-05T14:09:07.000Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <h4 id="起由"><a href="#起由" class="headerlink" title="起由"></a>起由</h4><ul>
@@ -130,7 +130,6 @@
 <li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决<br><code>/dev/sdb5 /mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0</code></li>
 <li>上面的uid=33,gid=33分别对应远行nginx的用户 <strong>www-data</strong> 和用户组 <strong>www-data</strong></li>
 </ul>
-<hr>
 <h4 id="安装samba和vsftp"><a href="#安装samba和vsftp" class="headerlink" title="安装samba和vsftp"></a>安装samba和vsftp</h4><ul>
 <li>ssh到HTPC后自行安装，并设置好目录</li>
 </ul>
@@ -429,6 +428,25 @@
   </entry>
   
   <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>leoatchina的第一篇hexo博客</title>
     <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
     <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
@@ -465,25 +483,6 @@
     <summary type="html">
     
       &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
     
     </summary>
     

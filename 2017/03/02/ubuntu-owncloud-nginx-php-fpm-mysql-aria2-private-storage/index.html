@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/109760-47f39fd3e3ab2b9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/af3bbc95c3be2aba6619fa4f46218797.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/109760-3c69e9f50e814e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-03-05T14:08:11.000Z">
+<meta property="og:updated_time" content="2017-03-05T14:09:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用ubuntu+owncloud+nginx+php-fpm+mysql+aria2打造私有云+远程下载器">
 <meta name="twitter:description" content="起由
@@ -378,7 +378,6 @@
 <li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决<br><code>/dev/sdb5 /mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0</code></li>
 <li>上面的uid=33,gid=33分别对应远行nginx的用户 <strong>www-data</strong> 和用户组 <strong>www-data</strong></li>
 </ul>
-<hr>
 <h4 id="安装samba和vsftp"><a href="#安装samba和vsftp" class="headerlink" title="安装samba和vsftp"></a>安装samba和vsftp</h4><ul>
 <li>ssh到HTPC后自行安装，并设置好目录</li>
 </ul>
