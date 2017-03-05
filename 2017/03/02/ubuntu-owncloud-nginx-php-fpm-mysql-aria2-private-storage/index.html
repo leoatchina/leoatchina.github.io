@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/109760-47f39fd3e3ab2b9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/af3bbc95c3be2aba6619fa4f46218797.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/109760-3c69e9f50e814e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-03-05T14:23:55.000Z">
+<meta property="og:updated_time" content="2017-03-05T14:24:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用ubuntu+owncloud+nginx+php-fpm+mysql+aria2打造私有云+远程下载器">
 <meta name="twitter:description" content="起由
@@ -397,23 +397,19 @@
 <li>改变权限 <code>sudo chmod 755 -R /home/test/www</code></li>
 </ul>
 <h5 id="配置phpmyadmin"><a href="#配置phpmyadmin" class="headerlink" title="配置phpmyadmin"></a>配置phpmyadmin</h5><ul>
-<li><p>备份原始配置文件  </p>
-<blockquote>
+<li>备份原始配置文件  <blockquote>
 <p>cd /home/test/www/phpmyadmin<br>cp config.sample.inc.php config.inc.php   </p>
 </blockquote>
 </li>
-<li><p>修改phpmyadmin的配置文件</p>
-<blockquote>
+<li>修改phpmyadmin的配置文件<blockquote>
 <p>vi /home/test/www/phpmyadmin/config.inc.php<br>配置 <code>$cfg[&#39;blowfish_secret&#39;] = &#39;$#%#$%#$%#$^#^ETETR&#39;;</code> 就是一个加密信息，越乱越好    </p>
 </blockquote>
 </li>
-<li><p>配置另一个config文件    </p>
-<blockquote>
+<li>配置另一个config文件    <blockquote>
 <p>cd /home/test/www/phpmyadmin/libraries<br>vi config.default.php<br>同样配置<code>$cfg[&#39;blowfish_secret&#39;]</code></p>
 </blockquote>
 </li>
-<li><p>其他用默认</p>
-</li>
+<li>其他用默认</li>
 </ul>
 <h5 id="配置php7-fpm"><a href="#配置php7-fpm" class="headerlink" title="配置php7-fpm"></a>配置php7-fpm</h5><ul>
 <li>php7.0的 配置环境在 /etc/php/7.0/fpm里，有<em>php-fpm.conf</em>和<em>php.ini</em>两个重要的配置文件<blockquote>

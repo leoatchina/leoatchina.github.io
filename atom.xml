@@ -89,7 +89,7 @@
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</id>
     <published>2017-03-02T02:14:34.000Z</published>
-    <updated>2017-03-05T14:23:55.000Z</updated>
+    <updated>2017-03-05T14:24:52.000Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <h4 id="起由"><a href="#起由" class="headerlink" title="起由"></a>起由</h4><ul>
@@ -149,23 +149,19 @@
 <li>改变权限 <code>sudo chmod 755 -R /home/test/www</code></li>
 </ul>
 <h5 id="配置phpmyadmin"><a href="#配置phpmyadmin" class="headerlink" title="配置phpmyadmin"></a>配置phpmyadmin</h5><ul>
-<li><p>备份原始配置文件  </p>
-<blockquote>
+<li>备份原始配置文件  <blockquote>
 <p>cd /home/test/www/phpmyadmin<br>cp config.sample.inc.php config.inc.php   </p>
 </blockquote>
 </li>
-<li><p>修改phpmyadmin的配置文件</p>
-<blockquote>
+<li>修改phpmyadmin的配置文件<blockquote>
 <p>vi /home/test/www/phpmyadmin/config.inc.php<br>配置 <code>$cfg[&#39;blowfish_secret&#39;] = &#39;$#%#$%#$%#$^#^ETETR&#39;;</code> 就是一个加密信息，越乱越好    </p>
 </blockquote>
 </li>
-<li><p>配置另一个config文件    </p>
-<blockquote>
+<li>配置另一个config文件    <blockquote>
 <p>cd /home/test/www/phpmyadmin/libraries<br>vi config.default.php<br>同样配置<code>$cfg[&#39;blowfish_secret&#39;]</code></p>
 </blockquote>
 </li>
-<li><p>其他用默认</p>
-</li>
+<li>其他用默认</li>
 </ul>
 <h5 id="配置php7-fpm"><a href="#配置php7-fpm" class="headerlink" title="配置php7-fpm"></a>配置php7-fpm</h5><ul>
 <li>php7.0的 配置环境在 /etc/php/7.0/fpm里，有<em>php-fpm.conf</em>和<em>php.ini</em>两个重要的配置文件<blockquote>
@@ -445,6 +441,25 @@
   </entry>
   
   <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
+    <published>2017-02-23T08:28:13.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>leoatchina的第一篇hexo博客</title>
     <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
     <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
@@ -551,25 +566,6 @@
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
     
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
-    </summary>
-    
     
   </entry>
   
