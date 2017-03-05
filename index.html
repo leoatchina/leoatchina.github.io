@@ -562,10 +562,8 @@
 </li>
 <li>其他用默认</li>
 </ul>
-<h5 id="配置php7-fpm"><a href="#配置php7-fpm" class="headerlink" title="配置php7-fpm"></a>配置php7-fpm</h5><ul>
-<li>php7.0的 配置环境在 /etc/php/7.0/fpm里，有<em>php-fpm.conf</em>和<em>php.ini</em>两个重要的配置文件<h6 id="php-ini"><a href="#php-ini" class="headerlink" title="php.ini:"></a><strong>php.ini:</strong></h6></li>
-</ul>
-<ol>
+<h5 id="配置php7-fpm"><a href="#配置php7-fpm" class="headerlink" title="配置php7-fpm"></a>配置php7-fpm</h5><p>php7.0的 配置环境在 /etc/php/7.0/fpm里，有<em>php-fpm.conf</em>和<em>php.ini</em>两个重要的配置文件</p>
+<h6 id="php-ini"><a href="#php-ini" class="headerlink" title="php.ini:"></a><strong>php.ini:</strong></h6><ol>
 <li>设置 <figure class="highlight plain"><figcaption><span>= On```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">2. ```extension_dir = &quot;/usr/lib/php/20151012&quot;```，目录通过``catfish``搜索``mysql.so``找到，用于安装各种扩展，应该是``apt-get install``时自动放入。</div><div class="line">3. 开启对mysql的支持:``extension=mysqli.so``，``extension=pdo_mysql.so``</div><div class="line">4. 设置&apos;&apos;cgi.fix_pathinfo=0&apos;&apos; </div><div class="line">###### **php-fpm.conf:**</div><div class="line">可以看到 ``include=/etc/php/7.0/fpm/pool.d/*.conf``，里面有``www.conf``文件</div><div class="line">1. 配置``listen``: ``listen = /run/php/php7.0-fpm.sock``，配置nginx时会用到</div><div class="line">2. 重启php-fpm:``sudo service php7-fpm restart``</div><div class="line"></div><div class="line"></div><div class="line">#### nginx开启https，两种方案</div><div class="line">owncloud9.0强制要求https服务，需要对自己web站进行认证，实际中我试过两种方案，最后用的是第一种方案</div><div class="line">1. ###### 用自签名的SSL证书</div><div class="line">&gt; - 采用自验证方案，借用廖雪峰大神的脚本[给Nginx配置一个自签名的SSL证书](http://www.liaoxuefeng.com/article/0014189023237367e8d42829de24b6eaf893ca47df4fb5e000)</div><div class="line">&gt; - 运行这个脚本后，把生成的key文件和crt文件复制到``/etc/nginx/ssl/``目录，</div><div class="line">如``/etc/nginx/ssl/testdomain.changeip.com.crt``</div><div class="line">和``/etc/nginx/ssl/testdomain.changeip.com.key``</div><div class="line">配置nginx时要用到</div><div class="line">或者你直接在后面写nginx文件时指向这两个文件</div><div class="line"></div><div class="line">2.  ###### 用letsencypt加密自己的服务器</div><div class="line"> &gt; - 被大牛吐槽自授权是错误的价值观，在他的建议下换成 [Let’s Encrypt](https://letsencrypt.org/)（是一个免费、自动化、开放的证书颁发机构，由网络安全研究小组运作）的免费授权系统，主要参考了[Let&apos;s Encrypt SSL证书配置](http://www.jianshu.com/p/eaac0d082ba2)和[折腾Let‘s Encrypt免费SSL证书](https://xiaoai.me/?p=223)</div><div class="line">  - 下载安装</div></pre></td></tr></table></figure></li>
 </ol>
 <p>git clone <a href="https://github.com/certbot/certbot.git" target="_blank" rel="external">https://github.com/certbot/certbot.git</a><br>cd certbot<br>./letsencrypt-auto –help<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 生成密钥，在这之前要**停止nginx**</div></pre></td></tr></table></figure></p>
@@ -1355,7 +1353,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="leoatchina">
@@ -1380,8 +1378,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/23/sslocal-proxychains-aliyun-github/" itemprop="url">
-                  sslocal+proxychains4解决阿里云vps访问github过慢问题
+                <a class="post-title-link" href="/2017/02/23/install_samtools_etc/" itemprop="url">
+                  安装新版htslib、bcftools、samtools
                 </a>
               
             
@@ -1407,28 +1405,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/翻墙/" itemprop="url" rel="index">
-                    <span itemprop="name">翻墙</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1457,41 +1433,7 @@
       
         
           
-            <p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
-<p><strong>1. 安装pip</strong></p>
-<blockquote>
-<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
-</blockquote>
-<p><strong>2. 安装 sslocal</strong></p>
-<blockquote>
-<p>pip install shadowsocks</p>
-</blockquote>
-<p><strong>3. 配置sslocal</strong></p>
-<blockquote>
-<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
-<blockquote>
-<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
-</blockquote>
-<p><strong>5. 编译安装最新版 proxychains4</strong></p>
-<blockquote>
-<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
-</blockquote>
-<p><strong>6. 编辑proxychains4配置文件</strong></p>
-<blockquote>
-<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
-</blockquote>
-<p><strong>7. 测试下你的代理</strong></p>
-<blockquote>
-<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
-</blockquote>
-<p>如果配置正确，返回你的ss服务器的ip地址</p>
-<p><strong>8. 用proxychain4+git下载</strong></p>
-<blockquote>
-<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
-</blockquote>
-<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
 
           
         
@@ -1677,7 +1619,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="leoatchina">
@@ -1702,8 +1644,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/23/install_samtools_etc/" itemprop="url">
-                  安装新版htslib、bcftools、samtools
+                <a class="post-title-link" href="/2017/02/23/sslocal-proxychains-aliyun-github/" itemprop="url">
+                  sslocal+proxychains4解决阿里云vps访问github过慢问题
                 </a>
               
             
@@ -1729,6 +1671,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻墙/" itemprop="url" rel="index">
+                    <span itemprop="name">翻墙</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1757,7 +1721,41 @@
       
         
           
-            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+            <p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
+<p><strong>1. 安装pip</strong></p>
+<blockquote>
+<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
+</blockquote>
+<p><strong>2. 安装 sslocal</strong></p>
+<blockquote>
+<p>pip install shadowsocks</p>
+</blockquote>
+<p><strong>3. 配置sslocal</strong></p>
+<blockquote>
+<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
+<blockquote>
+<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
+</blockquote>
+<p><strong>5. 编译安装最新版 proxychains4</strong></p>
+<blockquote>
+<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
+</blockquote>
+<p><strong>6. 编辑proxychains4配置文件</strong></p>
+<blockquote>
+<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
+</blockquote>
+<p><strong>7. 测试下你的代理</strong></p>
+<blockquote>
+<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
+</blockquote>
+<p>如果配置正确，返回你的ss服务器的ip地址</p>
+<p><strong>8. 用proxychain4+git下载</strong></p>
+<blockquote>
+<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
+</blockquote>
+<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
 
           
         
