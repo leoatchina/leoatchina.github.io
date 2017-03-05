@@ -89,7 +89,7 @@
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</id>
     <published>2017-03-02T02:14:34.000Z</published>
-    <updated>2017-03-05T14:05:57.000Z</updated>
+    <updated>2017-03-05T14:06:50.000Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <h4 id="起由"><a href="#起由" class="headerlink" title="起由"></a>起由</h4><ul>
@@ -127,34 +127,10 @@
 <h4 id="出人意料的NTFS权限问题"><a href="#出人意料的NTFS权限问题" class="headerlink" title="出人意料的NTFS权限问题"></a>出人意料的NTFS权限问题</h4><ul>
 <li>这个是历史遗留问题：<br>我的三块硬盘在放到htpc里时全是ntfs格式，上面都有数据，不能无损转成EXT4</li>
 <li>owncloud的存贮路径是在其中一块硬盘上，原来是直接mount到/mnt目录下，在后面配置owncloud时指定存贮目录时，出现权限<strong>770</strong>问题</li>
-<li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决 <figure class="highlight plain"><figcaption><span>/mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 上面的uid=33,gid=33分别对应远行nginx的用户 ```www-data```和用户组```www-data</div></pre></td></tr></table></figure>
-</li>
+<li>数据太多，不能格盘，在owncloud的官方网站上找了好久，找出是mount时出的 用户权限分配问题，后来通过修改 /etc/fstab 指定 mount时的uid等来解决<br><code>/dev/sdb5 /mnt/disk1 ntfs locale=zh_CN.UTF-8,uid=33,gid=33,dmask=007,windows_names 0 0</code></li>
+<li>上面的uid=33,gid=33分别对应远行nginx的用户 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">***</div><div class="line">#### 安装samba和vsftp</div><div class="line">- ssh到HTPC后自行安装，并设置好目录</div><div class="line"></div><div class="line">#### 安装mysql</div><div class="line">- sudo apt-get install mysql-server mysql-client</div><div class="line"></div><div class="line">#### 安装nginx和php-fpm</div><div class="line">- 请给你的mysql设置一个比较强的root密码，并且为owncloud创建专有用户</div><div class="line">&gt; sudo apt-get install nginx  </div><div class="line">sudo add-apt-repository ppa:ondrej/php  </div><div class="line">sudo apt-get update     </div><div class="line">sudo apt-get install php7.0 php-fpm php-mysql php-mbstring  </div><div class="line"></div><div class="line">#### 安装phpmyadmin和owncloud</div><div class="line">- 直接从网上下载，解压到web服务目录</div><div class="line">- 我的web服务根目录是 ``/home/test/www``</div><div class="line">- 改变目录拥有者 ``sudo chown www-data -R /home/test/www``</div><div class="line">- 改变权限 `` sudo chmod 755 -R /home/test/www``</div><div class="line">- 配置phpmyadmin</div><div class="line"></div><div class="line">  - 拷贝原始配置文件</div></pre></td></tr></table></figure></li>
 </ul>
-<hr>
-<h4 id="安装samba和vsftp"><a href="#安装samba和vsftp" class="headerlink" title="安装samba和vsftp"></a>安装samba和vsftp</h4><ul>
-<li>ssh到HTPC后自行安装，并设置好目录</li>
-</ul>
-<h4 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h4><ul>
-<li>sudo apt-get install mysql-server mysql-client</li>
-</ul>
-<h4 id="安装nginx和php-fpm"><a href="#安装nginx和php-fpm" class="headerlink" title="安装nginx和php-fpm"></a>安装nginx和php-fpm</h4><ul>
-<li>请给你的mysql设置一个比较强的root密码，并且为owncloud创建专有用户<blockquote>
-<p>sudo apt-get install nginx<br>sudo add-apt-repository ppa:ondrej/php<br>sudo apt-get update<br>sudo apt-get install php7.0 php-fpm php-mysql php-mbstring  </p>
-</blockquote>
-</li>
-</ul>
-<h4 id="安装phpmyadmin和owncloud"><a href="#安装phpmyadmin和owncloud" class="headerlink" title="安装phpmyadmin和owncloud"></a>安装phpmyadmin和owncloud</h4><ul>
-<li>直接从网上下载，解压到web服务目录</li>
-<li>我的web服务根目录是 <code>/home/test/www</code></li>
-<li>改变目录拥有者 <code>sudo chown www-data -R /home/test/www</code></li>
-<li>改变权限 <code>sudo chmod 755 -R /home/test/www</code></li>
-<li><p>配置phpmyadmin</p>
-<ul>
-<li>拷贝原始配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /home/test/www/phpmyadmin</div><div class="line">cp config.sample.inc.php config.inc.php</div><div class="line">``` </div><div class="line">  - 修改phpmyadmin的配置文件</div><div class="line">  ``vi /home/test/www/phpmyadmin/config.inc.php ``</div><div class="line">  - 配置 ``$cfg[&apos;blowfish_secret&apos;] = &apos;$#%#$%#$%#$^#^ETETR&apos;;  ``就是一个加密信息，越乱越好</div><div class="line">  - 配置另一个config文件</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
+<p>cd /home/test/www/phpmyadmin<br>cp config.sample.inc.php config.inc.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- 修改phpmyadmin的配置文件</div><div class="line">``vi /home/test/www/phpmyadmin/config.inc.php ``</div><div class="line">- 配置 ``$cfg[&apos;blowfish_secret&apos;] = &apos;$#%#$%#$%#$^#^ETETR&apos;;  ``就是一个加密信息，越乱越好</div><div class="line">- 配置另一个config文件</div></pre></td></tr></table></figure></p>
 <p>cd /home/test/www/phpmyadmin/libraries<br>vi config.default.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  - 同样配置``$cfg[&apos;blowfish_secret&apos;]``</div><div class="line">  - 其他用默认</div><div class="line"></div><div class="line">#### 配置php7-fpm</div><div class="line">- php7.0的 配置环境在 /etc/php/7.0/fpm里，有*php-fpm.conf*和*php.ini*两个重要的配置文件</div><div class="line"> &gt; - **php.ini:**  </div><div class="line">   1. 设置 ```short_open_tag = On</div></pre></td></tr></table></figure></p>
 <ol>
 <li><figure class="highlight plain"><figcaption><span>= "/usr/lib/php/20151012"```，目录通过``catfish``搜索``mysql.so``找到，用于安装各种扩展，应该是``apt-get install``时自动放入。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">   3. 开启对mysql的支持:``extension=mysqli.so``，``extension=pdo_mysql.so``</div><div class="line">   4. 设置&apos;&apos;cgi.fix_pathinfo=0&apos;&apos; </div><div class="line"> - **php-fpm.conf:**</div><div class="line">可以看到 ``include=/etc/php/7.0/fpm/pool.d/*.conf``，里面有``www.conf``文件</div><div class="line">   1. 配置``listen``: ``listen = /run/php/php7.0-fpm.sock``，配置nginx时会用到</div><div class="line">   2. 重启php-fpm:``sudo service php7-fpm restart``</div><div class="line"></div><div class="line"></div><div class="line">#### nginx开启https，两种方案</div><div class="line">owncloud9.0强制要求https服务，需要对自己web站进行认证，实际中我试过两种方案，最后用的是第一种方案</div><div class="line">1. ###### 用自签名的SSL证书</div><div class="line">&gt; - 采用自验证方案，借用廖雪峰大神的脚本[给Nginx配置一个自签名的SSL证书](http://www.liaoxuefeng.com/article/0014189023237367e8d42829de24b6eaf893ca47df4fb5e000)</div><div class="line">&gt; - 运行这个脚本后，把生成的key文件和crt文件复制到``/etc/nginx/ssl/``目录，</div><div class="line">如``/etc/nginx/ssl/testdomain.changeip.com.crt``</div><div class="line">和``/etc/nginx/ssl/testdomain.changeip.com.key``</div><div class="line">配置nginx时要用到</div><div class="line">或者你直接在后面写nginx文件时指向这两个文件</div><div class="line"></div><div class="line">2.  ###### 用letsencypt加密自己的服务器</div><div class="line"> &gt; - 被大牛吐槽自授权是错误的价值观，在他的建议下换成 [Let’s Encrypt](https://letsencrypt.org/)（是一个免费、自动化、开放的证书颁发机构，由网络安全研究小组运作）的免费授权系统，主要参考了[Let&apos;s Encrypt SSL证书配置](http://www.jianshu.com/p/eaac0d082ba2)和[折腾Let‘s Encrypt免费SSL证书](https://xiaoai.me/?p=223)</div><div class="line">  - 下载安装</div></pre></td></tr></table></figure>
