@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-03-19T01:00:35.000Z</updated>
+  <updated>2017-04-22T03:06:22.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/"/>
     <id>http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/</id>
     <published>2017-03-19T00:59:26.000Z</published>
-    <updated>2017-03-19T01:00:35.000Z</updated>
+    <updated>2017-04-22T03:06:22.000Z</updated>
     
     <content type="html"><![CDATA[<p>转自微信公众号，<a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661929&amp;idx=1&amp;sn=69e00516a30723c5a20af3c7a84173a4&amp;scene=23&amp;srcid=0620iNWQy1VoAV8LATVlC0x1#rd" target="_blank" rel="external">AndroidDevelper</a></p>
 <p>告诉大家一个比较屌的命令，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative</div></pre></td></tr></table></figure></p>
@@ -28,7 +28,7 @@
 <p>是不是比较清晰，整个分支的走向也很明确，但是每次都要输这么一大串是不是也很烦？这时候你就该想到 alias 啊。</p>
 <p>这样以后直接输入 <strong>git lg</strong> 就行了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global alias.lg &quot;log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative&quot;</div></pre></td></tr></table></figure>
-<p><strong><em>还有其他常用的缩写</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git config --global alias.st status</div><div class="line">git config --global alias.co checkout</div><div class="line">git config --global alias.ci commit</div><div class="line">git config --global alias.br branch</div></pre></td></tr></table></figure></p>
+<p><strong><em>还有其他常用的缩写</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config --global alias.st status</div><div class="line">git config --global alias.co checkout</div><div class="line">git config --global alias.ci commit</div><div class="line">git config --global alias.cim commit -m</div><div class="line">git config --global alias.br branch</div></pre></td></tr></table></figure></p>
 ]]></content>
     
     <summary type="html">
@@ -246,9 +246,9 @@
     </summary>
     
     
-      <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
-    
       <category term="owncloud" scheme="http://leoatchina.github.io/tags/owncloud/"/>
+    
+      <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
     
       <category term="nginix" scheme="http://leoatchina.github.io/tags/nginix/"/>
     
