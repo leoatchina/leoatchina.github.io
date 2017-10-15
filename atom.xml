@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-04-22T03:06:22.000Z</updated>
+  <updated>2017-02-14T07:07:27.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -16,11 +16,140 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/08/26/install_samtools_etc/</id>
+    <published>2017-08-26T00:15:47.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
+    <link href="http://leoatchina.github.io/2017/08/26/sslocal-proxychains-aliyun-github/"/>
+    <id>http://leoatchina.github.io/2017/08/26/sslocal-proxychains-aliyun-github/</id>
+    <published>2017-08-26T00:15:47.000Z</published>
+    <updated>2017-02-15T04:52:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
+<p><strong>1. 安装pip</strong></p>
+<blockquote>
+<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
+</blockquote>
+<p><strong>2. 安装 sslocal</strong></p>
+<blockquote>
+<p>pip install shadowsocks</p>
+</blockquote>
+<p><strong>3. 配置sslocal</strong></p>
+<blockquote>
+<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
+<blockquote>
+<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
+</blockquote>
+<p><strong>5. 编译安装最新版 proxychains4</strong></p>
+<blockquote>
+<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
+</blockquote>
+<p><strong>6. 编辑proxychains4配置文件</strong></p>
+<blockquote>
+<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
+</blockquote>
+<p><strong>7. 测试下你的代理</strong></p>
+<blockquote>
+<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
+</blockquote>
+<p>如果配置正确，返回你的ss服务器的ip地址</p>
+<p><strong>8. 用proxychain4+git下载</strong></p>
+<blockquote>
+<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
+</blockquote>
+<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;阿里云从github clone一些软件后再编译安装 ，速度都很慢。&lt;br&gt;试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 安装pip&lt;/strong&gt;&lt;/p&gt;
+&lt;blo
+    
+    </summary>
+    
+      <category term="翻墙" scheme="http://leoatchina.github.io/categories/%E7%BF%BB%E5%A2%99/"/>
+    
+    
+      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
+    
+      <category term="sslocal" scheme="http://leoatchina.github.io/tags/sslocal/"/>
+    
+      <category term="gfwlist" scheme="http://leoatchina.github.io/tags/gfwlist/"/>
+    
+      <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
+    
+      <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leoatchina的第一篇hexo博客</title>
+    <link href="http://leoatchina.github.io/2017/08/26/hello-world/"/>
+    <id>http://leoatchina.github.io/2017/08/26/hello-world/</id>
+    <published>2017-08-26T00:15:47.000Z</published>
+    <updated>2017-02-15T10:24:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
+<ol>
+<li>免费</li>
+<li>配置可以用github进行同步</li>
+<li>插件丰富,我主要用到的有<ul>
+<li>markdown-preview-plus</li>
+<li>markdown-writer </li>
+<li>markdown-previwe-opener //自动打开markdown preview</li>
+<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
+<li>atom-hexo //hexo命令</li>
+<li>vim-mode // 习惯vim的操作模式了</li>
+<li><strong>markclip</strong>，//这个是利器 见下面</li>
+</ul>
+</li>
+<li>写作时插入图片的方法<ol>
+<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
+<li>按正常的markdown语言进行写作</li>
+<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
+<p><img src="/2017/08/26/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>hexo clean | hexo g | hexo d，完成布置</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>一个缩写，让你的git log命令界面更加直观和酷炫</title>
     <link href="http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/"/>
     <id>http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/</id>
-    <published>2017-03-19T00:59:26.000Z</published>
-    <updated>2017-04-22T03:06:22.000Z</updated>
+    <published>2017-03-19T08:59:26.000Z</published>
+    <updated>2017-04-22T06:12:23.000Z</updated>
     
     <content type="html"><![CDATA[<p>转自微信公众号，<a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661929&amp;idx=1&amp;sn=69e00516a30723c5a20af3c7a84173a4&amp;scene=23&amp;srcid=0620iNWQy1VoAV8LATVlC0x1#rd" target="_blank" rel="external">AndroidDevelper</a></p>
 <p>告诉大家一个比较屌的命令，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative</div></pre></td></tr></table></figure></p>
@@ -28,7 +157,7 @@
 <p>是不是比较清晰，整个分支的走向也很明确，但是每次都要输这么一大串是不是也很烦？这时候你就该想到 alias 啊。</p>
 <p>这样以后直接输入 <strong>git lg</strong> 就行了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global alias.lg &quot;log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative&quot;</div></pre></td></tr></table></figure>
-<p><strong><em>还有其他常用的缩写</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config --global alias.st status</div><div class="line">git config --global alias.co checkout</div><div class="line">git config --global alias.ci commit</div><div class="line">git config --global alias.cim commit -m</div><div class="line">git config --global alias.br branch</div></pre></td></tr></table></figure></p>
+<p><strong><em>还有其他常用的缩写</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config --global alias.st status</div><div class="line">git config --global alias.co checkout</div><div class="line">git config --global alias.ci commit</div><div class="line">git config --global alias.cim &apos;commit -m&apos;</div><div class="line">git config --global alias.br branch</div></pre></td></tr></table></figure></p>
 ]]></content>
     
     <summary type="html">
@@ -46,7 +175,7 @@
     <title>ubuntu服务器samba、ftp、timemachine配置过程</title>
     <link href="http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/"/>
     <id>http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/</id>
-    <published>2017-03-05T02:41:35.000Z</published>
+    <published>2017-03-05T10:41:35.000Z</published>
     <updated>2017-03-05T03:48:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>作为家里htpc服务器的ubuntu电脑由于前面操作不慎，系统出了一些非常影响检验的总是，特别是owncloud功能挂了，最后决定重装。<br>重装后先把最重要的 samba，ftp，timemachine功能给恢复回来，其他以后慢慢搞。<br>在这过程中，又重新看了以前的笔记，查了一些资料，在实践中发现无论原来的笔记，人家的经验都有一些繁琐，或不是非常正确的地方， 这里记录下自己的配置备参考 。</p>
@@ -115,7 +244,7 @@
     <title>用ubuntu+owncloud+nginx+php-fpm+mysql+aria2打造私有云+远程下载器</title>
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</id>
-    <published>2017-03-02T02:14:34.000Z</published>
+    <published>2017-03-02T10:14:34.000Z</published>
     <updated>2017-03-05T14:44:27.000Z</updated>
     
     <content type="html"><![CDATA[<hr>
@@ -262,7 +391,7 @@
     <title>linux下 各种解压文件使用方法</title>
     <link href="http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/"/>
     <id>http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/</id>
-    <published>2017-03-02T02:04:49.000Z</published>
+    <published>2017-03-02T10:04:49.000Z</published>
     <updated>2017-03-02T02:17:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>.xz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解包：tar xvf FileName.tar.xz</div><div class="line">打包：tar cvf FileName.tar DirName</div></pre></td></tr></table></figure></p>
@@ -330,7 +459,7 @@
     <title>没有X的vps上怎么配置才能复制vim界面里的文字</title>
     <link href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/"/>
     <id>http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/</id>
-    <published>2017-03-02T02:02:33.000Z</published>
+    <published>2017-03-02T10:02:33.000Z</published>
     <updated>2017-03-02T02:03:17.000Z</updated>
     
     <content type="html"><![CDATA[<p>讨论见我在知乎上的提问<a href="https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card" target="_blank" rel="external">知乎讨论，没有X的vps上怎么配置才能复制vim界面里的文字？</a></p>
@@ -360,7 +489,7 @@
     <title>ubuntu-MATE  16.04 LTS 安装笔记</title>
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/</id>
-    <published>2017-03-02T01:56:34.000Z</published>
+    <published>2017-03-02T09:56:34.000Z</published>
     <updated>2017-03-02T01:59:30.000Z</updated>
     
     <content type="html"><![CDATA[<p>在 bash 下删除libreoffice<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove --purge libreoffice*</div><div class="line"></div><div class="line">sudo apt-get clean</div><div class="line"></div><div class="line">sudo apt-get autoremove</div></pre></td></tr></table></figure></p>
@@ -388,7 +517,7 @@
     <title>aria2+chrome+BaiduExporter破除速度限制下载百度云上的内容</title>
     <link href="http://leoatchina.github.io/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/"/>
     <id>http://leoatchina.github.io/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/</id>
-    <published>2017-03-01T06:51:46.000Z</published>
+    <published>2017-03-01T14:51:46.000Z</published>
     <updated>2017-03-01T07:14:11.000Z</updated>
     
     <content type="html"><![CDATA[<p>以前我在windows下面时曾经写过一篇<br><a href="http://www.jianshu.com/p/540b20f1a6a3" target="_blank" rel="external">aria2+chrome+BaiduExporter下载百度云</a></p>
@@ -408,7 +537,7 @@
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/03/01/proxychain-aliyun-shadowsocks/"/>
     <id>http://leoatchina.github.io/2017/03/01/proxychain-aliyun-shadowsocks/</id>
-    <published>2017-03-01T06:47:56.000Z</published>
+    <published>2017-03-01T14:47:56.000Z</published>
     <updated>2017-03-25T03:09:11.000Z</updated>
     
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
@@ -466,139 +595,10 @@
   </entry>
   
   <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/02/23/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/02/23/install_samtools_etc/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>leoatchina的第一篇hexo博客</title>
-    <link href="http://leoatchina.github.io/2017/02/23/hello-world/"/>
-    <id>http://leoatchina.github.io/2017/02/23/hello-world/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-15T10:24:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
-<ol>
-<li>免费</li>
-<li>配置可以用github进行同步</li>
-<li>插件丰富,我主要用到的有<ul>
-<li>markdown-preview-plus</li>
-<li>markdown-writer </li>
-<li>markdown-previwe-opener //自动打开markdown preview</li>
-<li>markdown-scroll-sync //进行markdown写作时，写作区和预览区同步滚动</li>
-<li>atom-hexo //hexo命令</li>
-<li>vim-mode // 习惯vim的操作模式了</li>
-<li><strong>markclip</strong>，//这个是利器 见下面</li>
-</ul>
-</li>
-<li>写作时插入图片的方法<ol>
-<li>首先，在<strong>主配置</strong>目录的_config.yml里，设置 <code>post_asset_folder: true</code></li>
-<li>按正常的markdown语言进行写作</li>
-<li>写作时正常截图，在安装了<strong>markclip</strong>之后，在文章里直接按<code>ctrl+v</code>,就可以在<code>source/_posts</code>目录下，建立一个和当前编辑的文件同名的文件夹，你的截图文件会自动放入这个文件夹，并在你markdown文件中插入这个图片的链接，如下<blockquote>
-<p><img src="/2017/02/23/hello-world/aedc252b5e531dc5609dc30ce8b6f68e.png" alt=""></p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li>hexo clean | hexo g | hexo d，完成布置</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
-    <link href="http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/"/>
-    <id>http://leoatchina.github.io/2017/02/23/sslocal-proxychains-aliyun-github/</id>
-    <published>2017-02-23T08:28:13.000Z</published>
-    <updated>2017-02-15T04:52:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
-<p><strong>1. 安装pip</strong></p>
-<blockquote>
-<p>wget -c <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a><br>python get-pip.py</p>
-</blockquote>
-<p><strong>2. 安装 sslocal</strong></p>
-<blockquote>
-<p>pip install shadowsocks</p>
-</blockquote>
-<p><strong>3. 配置sslocal</strong></p>
-<blockquote>
-<p>vim ~/sslocal.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;server&quot;:&quot;1.1.1.1&quot;,    #可以使用的ss服务器IP</div><div class="line">  &quot;server_port&quot;:1035,    #ss服务器端口</div><div class="line">  &quot;local_address&quot;: &quot;0.0.0.0&quot;, #本地ip 注意：不要使用127.0.0.1或192.168.1.100等ip</div><div class="line">  &quot;local_port&quot;:1080,#本地端口</div><div class="line">  &quot;password&quot;:&quot;password&quot;,#连接ss服务器密码</div><div class="line">  &quot;timeout&quot;:600,#等待超时</div><div class="line">  &quot;method&quot;:&quot;rc4-md5&quot;#加密方式</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>4. 启动sslocal，并加入开机启动</strong></p>
-<blockquote>
-<p>nohup sslocal -c ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;<br>echo “ nohup sslocal -c  ~/sslocal .json &gt;/dev/null 2&gt;&amp;1 &amp;”  &gt;/etc/rc.local</p>
-</blockquote>
-<p><strong>5. 编译安装最新版 proxychains4</strong></p>
-<blockquote>
-<p>wget -c <a href="https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o" target="_blank" rel="external">https://github.com/rofl0r/proxychains-ng/releases/download/v4.11/proxychains-ng-5.11.tar.bz2o</a><br>tar zxf proxychains-ng-4.11.tar.bz2<br>cd proxychains-ng-4.11<br>./configure &amp;&amp; make &amp;&amp; make install &amp;&amp; make install-config</p>
-</blockquote>
-<p><strong>6. 编辑proxychains4配置文件</strong></p>
-<blockquote>
-<p>vim /usr/local/etc/proxychains.conf<br>更改 <code>socks4 127.0.0.1 9050</code>为<code>socks5 127.0.0.1 1080</code></p>
-</blockquote>
-<p><strong>7. 测试下你的代理</strong></p>
-<blockquote>
-<p>proxychains4 curl <a href="https://api.ipify.org/?format=json" target="_blank" rel="external">https://api.ipify.org/?format=json</a></p>
-</blockquote>
-<p>如果配置正确，返回你的ss服务器的ip地址</p>
-<p><strong>8. 用proxychain4+git下载</strong></p>
-<blockquote>
-<p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
-</blockquote>
-<p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;阿里云从github clone一些软件后再编译安装 ，速度都很慢。&lt;br&gt;试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. 安装pip&lt;/strong&gt;&lt;/p&gt;
-&lt;blo
-    
-    </summary>
-    
-      <category term="翻墙" scheme="http://leoatchina.github.io/categories/%E7%BF%BB%E5%A2%99/"/>
-    
-    
-      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
-    
-      <category term="sslocal" scheme="http://leoatchina.github.io/tags/sslocal/"/>
-    
-      <category term="gfwlist" scheme="http://leoatchina.github.io/tags/gfwlist/"/>
-    
-      <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
-    
-      <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
-    
-  </entry>
-  
-  <entry>
     <title>在服务器上装r时踩到的坑</title>
     <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
     <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
-    <published>2017-02-21T01:53:13.000Z</published>
+    <published>2017-02-21T09:53:13.000Z</published>
     <updated>2017-02-21T09:17:58.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
@@ -645,7 +645,7 @@
     <title>学习Anaconda过程中的一些笔记，或者说踩过的坑</title>
     <link href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/"/>
     <id>http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/</id>
-    <published>2017-02-20T06:12:52.000Z</published>
+    <published>2017-02-20T14:12:52.000Z</published>
     <updated>2017-02-20T09:26:49.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
@@ -702,7 +702,7 @@
     <title>atom-shortcuts-windows</title>
     <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/"/>
     <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/</id>
-    <published>2017-02-16T06:00:08.000Z</published>
+    <published>2017-02-16T14:00:08.000Z</published>
     <updated>2017-02-16T06:02:10.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>‘ctrl-shift-s’ 保存所有打开的文件<br>‘ctrl-shift-o’ 打开目录<br>‘ctrl-p’ 从添加的项目中查找文件<br>‘ctrl-f’ 向下翻页<br>‘ctrl-b’ 向上翻页<br>alt-b 或 ctrl-left 移动到单词开始<br>alt-f 或 ctrl-right 移动到单词末尾<br>ctrl-g 移动到指定行<br>ctrl-j 将下一行与当前行合并<br>ctrl-up, ctrl-down 使当前行向上或者向下移动<br>ctrl-enter,ctrl-shift-enter在当前行的下一行或上一行插入新的一行<br>ctrl-k ctrl-l使当前字符小写<br>ctrl-k ctrl-u使当前字符大写<br>ctrl-shift-D 复制当前行到下一行<br>ctrl-shift-K 删除当前行<br>ctrl-u删除到当前行开始<br>alt-backspace或ctrl-alt-h删除到当前子单词开始<br>alt-delete或ctrl-alt-d删除到当前子单词结束<br>ctrl-backspace或ctrl-w或alt-h删除到当前单词开始<br>alt-d或ctrl-delete删除到当前子单词开始<br>alt-left: ‘editor:move-to-previous-subword-boundary’<br>alt-right: ‘editor:move-to-next-subword-boundary’<br>alt-shift-left: ‘editor:select-to-previous-subword-boundary’<br>alt-shift-right: ‘editor:select-to-next-subword-boundary’</p>
@@ -728,7 +728,7 @@
     <title>Atom MacOs 快捷键</title>
     <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/"/>
     <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/</id>
-    <published>2017-02-16T05:39:55.000Z</published>
+    <published>2017-02-16T13:39:55.000Z</published>
     <updated>2017-02-16T05:42:21.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件  </p>
@@ -792,7 +792,7 @@
     <title>centos升级gcc</title>
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
-    <published>2017-02-15T01:43:18.000Z</published>
+    <published>2017-02-15T09:43:18.000Z</published>
     <updated>2017-02-15T04:55:30.000Z</updated>
     
     <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。</p>
@@ -864,7 +864,7 @@
     <title>python_thread_sync</title>
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
-    <published>2017-02-14T07:55:14.000Z</published>
+    <published>2017-02-14T15:55:14.000Z</published>
     <updated>2017-02-17T07:30:11.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。<br>对Python虚拟机的访问是由全局解释锁（GIL）控制的。这个锁就是用来保证同时只能有一个线程运行的。在多线程环境中，Python虚拟机将按下面所述的方式执行。</p>
