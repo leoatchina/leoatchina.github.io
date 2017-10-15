@@ -247,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/10/15/leoatchin-vimrc-forked-from-spf13/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="leoatchina">
@@ -272,8 +272,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/26/install_samtools_etc/" itemprop="url">
-                  安装新版htslib、bcftools、samtools
+                <a class="post-title-link" href="/2017/10/15/leoatchin-vimrc-forked-from-spf13/" itemprop="url">
+                  leoatchin_vimrc_forked_from_spf13
                 </a>
               
             
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-26T00:15:47+00:00">
-                2017-08-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-15T07:04:48+00:00">
+                2017-10-15
               </time>
             
 
@@ -327,7 +327,184 @@
       
         
           
-            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+            <h1 id="leoatchina的vim配置文件"><a href="#leoatchina的vim配置文件" class="headerlink" title="leoatchina的vim配置文件"></a>leoatchina的vim配置文件</h1><p>This is leoatchina’s vim config forked from <a href="https://github.com/spf13/spf13-vim" target="_blank" rel="external">spf13-vim:steve francia’s vim distribution</a>.I sincerely thank him for great job. To meet my needs,I have changed lots of settings and plugins.</p>
+<pre><code>            __ _ _____              _
+ ___ _ __  / _/ |___ /      __   __(_)_ __ ___
+/ __| &apos;_ \| |_| | |_ \ _____\ \ / /| | &apos;_ ` _ \
+\__ \ |_) |  _| |___) |_____|\ V / | | | | | | |
+|___/ .__/|_| |_|____/        \_/  |_|_| |_| |_|
+    |_|
+</code></pre><p><a href="">spf13</a>对他自己作品的介绍</p>
+<blockquote>
+<p>spf13-vim is a distribution of vim plugins and resources for Vim, Gvim and MacVim.<br>It is a good starting point for anyone intending to use VIM for development running equally well on Windows, Linux, *nix and Mac.<br>The distribution is completely customisable using a <code>~/.vimrc.local</code>, <code>~/.vimrc.bundles.local</code>, and <code>~/.vimrc.before.local</code> Vim RC files.</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本人是生信工程师,主要使用的语文是<code>python</code>,<code>R</code>,<code>perl</code>,<code>shell</code>,经常要ssh到远程服务器上写代码,因此学习了vim,后来发现了<a href="https://github.com/spf13/spf13-vim" target="_blank" rel="external">spf13-vim:steve francia’s vim distribution</a>,大大提高了写代码的效率。但是,原配置仍然有很多插件和配置不符合我的需要,因此,fork后进行了大量的修改.请访问<a href="https://github.com/leoatchina/spf13-vim-leoatchina" target="_blank" rel="external">leoatchina的vim配置文件</a>.由于本人水平所限,一定有很多错误和bug,望各位指正.<br><strong>注意</strong>使本配置文件后可能会影响vim运行流畅度.</p>
+<h2 id="对使用者的要求"><a href="#对使用者的要求" class="headerlink" title="对使用者的要求"></a>对使用者的要求</h2><p>掌握vim的大部分操作,了解<code>leader</code>,<code>map</code>,<code>hjkl</code>,<code>d</code>,<code>w</code>,<code>s</code>,<code>i</code>,<code>u</code>,<code>:</code>,<code>\</code>等操作命令</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p><strong>各配置文件执行次序</strong></p>
+<ul>
+<li><code>.vimrc.before</code>  # 参数配置文件</li>
+<li><code>.vimrc.before.local</code></li>
+<li><code>.vimrc.bundles</code> # 插件管理文件</li>
+<li><code>.vimrc.bundles.local</code></li>
+<li><code>.vimrc</code>      # 最主要的配置文件,配色、快捷键、显示方式等参数都在这里设置</li>
+<li><code>.vimrc.local</code></li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><em>安装本配置 需要 Git 1.7+ 和 Vim 7.3+（编译时加入对lua和python的支持），部分插件如<code>Nvim-R</code>,<code>AsyncRun</code>,需要Vim8.0</em><br>如果要安装<a href="https://github.com/Shougo/neocomplete.vim" target="_blank" rel="external">neocomplete</a>, 需要<a href="">vim with lua</a>.</p>
+<h3 id="Linux-nix-Mac-OSX-下的安装"><a href="#Linux-nix-Mac-OSX-下的安装" class="headerlink" title="Linux, *nix, Mac OSX 下的安装"></a>Linux, *nix, Mac OSX 下的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/leoatchina/spf13-vim-leoatchina.git</div><div class="line"><span class="built_in">cd</span> spf13-vim-leoatchina</div><div class="line">bash bootstrap.sh</div></pre></td></tr></table></figure>
+<h3 id="windows下的安装"><a href="#windows下的安装" class="headerlink" title="windows下的安装"></a>windows下的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/leoatchina/spf13-vim-leoatchina.git</div><div class="line"><span class="built_in">cd</span> spf13-vim-leoatchina</div><div class="line">点击install.cmd</div></pre></td></tr></table></figure>
+<h3 id="升级到最新版本"><a href="#升级到最新版本" class="headerlink" title="升级到最新版本"></a>升级到最新版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim +BundleUpdate</div><div class="line">或者在vim里直接  :BundleUpdate</div></pre></td></tr></table></figure>
+<p><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171009103100770.png" alt=""></p>
+<h2 id="一些功能"><a href="#一些功能" class="headerlink" title="一些功能"></a>一些功能</h2><ul>
+<li>复制内容直接放到系统剪贴本</li>
+<li>显示行号,多种语法高亮</li>
+<li>修改文档后马上生效</li>
+<li>Visual模式下用<code>&gt;</code>,<code>&lt;</code>移动文字不会取消选择</li>
+<li>不生成backup文件</li>
+<li>关闭拼写检查</li>
+<li>关闭声音</li>
+<li>关闭列光标加亮</li>
+<li>关闭行光标加亮</li>
+<li>允许折行</li>
+<li>不代码折叠</li>
+<li>开启实时搜索功能</li>
+<li>显示光标当前位置</li>
+<li>高亮显示搜索结果</li>
+<li>折叠模式下翻页的改进</li>
+<li>智能缩进</li>
+<li>没有滚动条</li>
+<li>没有菜单和工具条</li>
+<li>总是显示状态栏</li>
+</ul>
+<h2 id="主要改动"><a href="#主要改动" class="headerlink" title="主要改动"></a>主要改动</h2><p>我在spf13的基础上，做了一些<em>微小</em>的工作</p>
+<ol>
+<li>去除了一些比较冗余的插件，如<a href="wildfire">wildfire</a>，并加入了自己喜欢的插件</li>
+<li>修改了安装代码，变成直接从clone的目录中软链接到用户目录下，<strong>不再支持XP</strong></li>
+<li>按自己习惯修改了大量插件的快捷键</li>
+<li>去除了原来定义的一些函数</li>
+<li>重点修改了代码补全插件<a href="YoucompleteMe">YouCompleteMe</a>、<a href="Neocomplete">Neocomplete</a>的配置和快捷键</li>
+<li>去除了fork功能，仅保留before功能</li>
+<li>增加对R和Markdown的支持,不过要在<code>~/.vimrc.before.local</code>里开启</li>
+<li>默认<strong>不进行代码补全</strong>，要使用者在 <code>~/.vimrc.before.local</code>里进行配置,如我加入了对<code>youcompletme</code>的配置,也可以使用<code>neocomplte</code>和<code>neocomplcache</code></li>
+<li>我的<code>~/.vimrc.before.local</code>,可以看到有对<code>python</code>,<code>R</code>,<code>markdown</code>的支持<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let g:spf13_bundle_groups=[&apos;general&apos;,  &apos;programming&apos;, &apos;python&apos;, &apos;youcompleteme&apos;,&apos;php&apos;, &apos;javascript&apos;, &apos;html&apos;,&apos;R&apos;,&apos;markdown&apos;,&apos;material&apos;]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="基本快捷键"><a href="#基本快捷键" class="headerlink" title="基本快捷键"></a>基本快捷键</h2><ul>
+<li><code>&lt;leader&gt;</code>键改为空格键,这个在键盘上最大的按键就有了更强的作用;<code>&lt;localleader&gt;</code>改为<code>\</code>,<code>\</code>在R编写调试时使用率比较高</li>
+<li><code>~</code>作为进入<code>ex</code>模式的快捷键,<code>Q</code>键map为<code>&lt;Nop&gt;</code></li>
+<li><code>F1</code>: 为<code>:h</code>，方便启动帮助</li>
+<li><code>F2</code>: 打开关闭代码折叠 或 <code>&lt;leader&gt;wd</code></li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><code>F3</code>: 打开关闭换行 或 <code>&lt;leader&gt;fd</code></li>
+<li><code>F4</code>:leader&gt;wd`</li>
+<li><p><code>F3</code>: 打开关éent&gt;_  : tabm -1<cr><br>nnoremap <silent>+  : tabm +1<cr></cr></silent></cr></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">* `Ctrl+e`移到一行的结尾;`Ctrl+y`移到一行的开头</div><div class="line">* `Ctrl+m`括号之间跳转</div><div class="line">* `&lt;leader&gt;w`保存当前文件;`&lt;leader&gt;W`保存所有文件</div><div class="line">* `&lt;leader&gt;q`关闭当然文件;`Q`为`:qa`,不过给你反悔的机会不直接按下回车</div><div class="line">* 复制粘贴等</div></pre></td></tr></table></figure>
+<p>“ 设置快捷键将选中文本块复制至系统剪贴板<br>vnoremap  <leader>y  “+y<br>nnoremap  <leader>y  “+y<br>nnoremap  <leader>Y  “+yg<br>nnoremap  <leader>yy  “+yy<br>“ Yank from the cursor to the end of the line<br>nnoremap Y y$<br>“ p and P for paste<br>nnoremap <leader>p “+p<br>nnoremap <leader>P “+P<br>vnoremap <leader>p “+p<br>vnoremap <leader>P “+P</leader></leader></leader></leader></leader></leader></leader></leader></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 其他一些快捷键</div></pre></td></tr></table></figure>
+<p>“ buffer switch<br>nnoremap <leader>bn :bn<cr><br>nnoremap <leader>bp :bp<cr><br>“ 定义快捷键保存当前窗口内容<br>nmap <leader>w :w<cr><br>nmap <leader>W :wq!<cr><br>“ 定义快捷键保存所有窗口内容并退出 vim<br>nmap <leader>WQ :wa<cr>:q<cr><br>“ 定义快捷键关闭当前窗口<br>nmap <leader>q :q<cr><br>“ 不做任何保存，直接退出 vim<br>nmap <leader>Q :qa!<cr><br>“ 设置分割页面<br>nmap <leader>- :split<space><br>nmap <leader>\ :vsplit<space><br>nmap <leader>= <c-w>=<br>“设置垂直高度减增<br>nmap <leader>{ :resize -3<cr><br>nmap <leader>} :resize +3<cr><br>“设置水平宽度减增<br>nmap <leader>[ :vertical resize -3<cr><br>nmap <leader>] :vertical resize +3<cr><br>“至左方的子窗口<br>nnoremap <leader>H <c-w>H<br>“至右方的子窗口<br>nnoremap <leader>L <c-w>L<br>“至上方的子窗口<br>nnoremap <leader>K <c-w>K<br>“至下方的子窗口<br>nnoremap <leader>J <c-w>J<br>“ Visual shifting (does not exit Visual mode)<br>vnoremap &lt; <gv vnoremap=""> &gt;gv<br>“ Ctrl-m for switch between brackets<br>map <c-m> %</c-m></gv></c-w></leader></c-w></leader></c-w></leader></c-w></leader></cr></leader></cr></leader></cr></leader></cr></leader></c-w></leader></space></leader></space></leader></cr></leader></cr></leader></cr></cr></leader></cr></leader></cr></leader></cr></leader></cr></leader></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[spf13](spf13)设计了一系列巧妙的`配置变量`，在`.vimrc.before.local`里写入配置变量后，可打开/关闭某些配置</div><div class="line">如，关闭自动cd到某个目录</div><div class="line">```bash</div><div class="line">    echo let g:spf13_no_autochdir = 1 &gt;&gt; ~/.vimrc.before.local</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在 <code>~/.vimrc.before</code>文件里可以看到各个变量详细说明</p>
+<h2 id="插件系统"><a href="#插件系统" class="headerlink" title="插件系统"></a>插件系统</h2><p>强大的插件系统是<a href="https://github.com/spf13/spf13-vim" target="_blank" rel="external">spf13-vim</a>的突出优点，通过这些插件，将原版的vim的功能作了极大的丰富。让界面更加美观，操作更加方便。在原有的基础上，我加入了很多自己用的插件和对配置文件进行了修改<br>spf13没有选用<a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="external">pathongen</a>作为插件管理器，还是选用经典的<a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">vundle</a></p>
+<h3 id="使用的插件"><a href="#使用的插件" class="headerlink" title="使用的插件"></a>使用的插件</h3><h4 id="内置两套颜色主题"><a href="#内置两套颜色主题" class="headerlink" title="内置两套颜色主题"></a>内置两套颜色主题</h4><h5 id="tyrannicaltoucan-vim-quantum"><a href="#tyrannicaltoucan-vim-quantum" class="headerlink" title="tyrannicaltoucan/vim-quantum"></a><a href="https://github.com/tyrannicaltoucan/vim-quantum" target="_blank" rel="external">tyrannicaltoucan/vim-quantum</a></h5><p>这是我在mac下的iterm2终端下使用的主题，material配色，配合半透明效果看起来很酷炫。<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171012074022187.png" alt=""><br>但要求终端支持<code>True Color</code>，如果不支持，效果会惨不忍睹。因此改成手动开启，方法：在<code>~/.vimrc.before.local</code>里的<code>g:spf13_bundle_groups</code>列表里加入<code>material</code><br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011100637235.png" alt=""></p>
+<h5 id="altercation-vim-colors-solarized"><a href="#altercation-vim-colors-solarized" class="headerlink" title="altercation/vim-colors-solarized"></a><a href="https://github.com/altercation/vim-colors-solarized" target="_blank" rel="external">altercation/vim-colors-solarized</a></h5><p>经典主题，默认开启，给一张官方的图<br><img src="https://raw.githubusercontent.com/altercation/solarized/master/img/solarized-vim.png" alt=""><br>还有三套内置配色方案<code>ir_black</code>,<code>molokai</code>,<code>peaksea</code>,通过<code>:color</code>命令开启</p>
+<h4 id="scrooloose-nerdtree"><a href="#scrooloose-nerdtree" class="headerlink" title="scrooloose/nerdtree"></a><a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="external">scrooloose/nerdtree</a></h4><p>在侧边显示当前目录，Toggle快捷键为<code>Ctrl-N</code>或者<code>&lt;leader&gt;nn</code><br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011101641847.png" alt=""></p>
+<h4 id="majutsushi-tagbar"><a href="#majutsushi-tagbar" class="headerlink" title="majutsushi/tagbar"></a><a href="https://github.com/majutsushi/tagbar" target="_blank" rel="external">majutsushi/tagbar</a></h4><p>显示文档结构，在<code>python</code>,<code>vim</code>里肯定有用，要求在系统里安装<code>ctags</code><br>用<code>Ctrl+T</code> or <code>&lt;leader&gt;tt</code>切换在测边显示文档结构.在bar窗口里按<code>F1</code>调出帮助窗口<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011102150785.png" alt=""></p>
+<h4 id="vim-voom-VOoM"><a href="#vim-voom-VOoM" class="headerlink" title="vim-voom/VOoM"></a><a href="https://github.com/vim-voom/VOoM" target="_blank" rel="external">vim-voom/VOoM</a></h4><p>另一个显示文档结构的插件，和<code>TagBar</code>逻辑不一样，<code>python</code>里肯定有用，其他语言我还没有测试出来。快捷键<code>&lt;leader&gt;vo</code>打开 <code>:Voom</code>命令;<code>&lt;leader&gt;vt</code>为<code>:VoomToggle</code>voom状态切换<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171012105213969.png" alt=""></p>
+<h4 id="mbbill-undotree"><a href="#mbbill-undotree" class="headerlink" title="mbbill/undotree"></a><a href="https://github.com/mbbill/undotree" target="_blank" rel="external">mbbill/undotree</a></h4><p>undotree顾名思义,增强版的回退插件，快捷键<code>&lt;leader&gt;u</code></p>
+<h4 id="airline"><a href="#airline" class="headerlink" title="airline"></a><a href="https://github.com/vim-airline-themes" target="_blank" rel="external">airline</a></h4><p>漂亮的状态栏,能够显示很多状态。<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011105655369.png" alt=""></p>
+<h4 id="ywvim中文输入法"><a href="#ywvim中文输入法" class="headerlink" title="ywvim中文输入法"></a><a href="https://github.com/leoatchina/ywvim" target="_blank" rel="external">ywvim中文输入法</a></h4><p><code>ywvim</code>中文输入法,直接在vim里内置,无意中发现要和<a href="https://github.com/fcitx/fcitx" target="_blank" rel="external">fcitx</a>配合使用否则会有bug,在<code>insert</code>模式下通过<code>CTRL+@</code>或<code>CTRL+\</code>开启,<code>CTRL+^</code>进行配置.<code>;</code>临时英文输入法;注意,默认只输入<strong>英文状态</strong>的标点,而且首选是<code>五笔</code>;<code>z</code>临时拼音;<code>,.-=</code>上下翻页;<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011215538461.png" alt=""><br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171011212612850.png" alt=""></p>
+<h4 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a><a href="">markdown</a></h4><p>默认开户对markdown语言的高亮支持,如<code>.vimrc.before.local</code>里指定<code>markdown</code>支持,按<code>&lt;leadr&gt;mk</code>调用<code>chrome</code>打开markdown预览,不过这个功能还要仔细测试过.</p>
+<h4 id="fugitive"><a href="#fugitive" class="headerlink" title="fugitive"></a><a href="https://github.com/tpope/vim-fugitive" target="_blank" rel="external">fugitive</a></h4><p>对git的支持,具体可以看官方说明,不过我就设置了快捷键<code>&lt;leader&gt;gi :Git&lt;Space&gt;</code>,操作体验接近终端下输入<code>git</code>命令</p>
+<h4 id="scrooloose-nerdcommenter"><a href="#scrooloose-nerdcommenter" class="headerlink" title="scrooloose/nerdcommenter"></a><a href="https://github.com/scrooloose/nerdcommenter" target="_blank" rel="external">scrooloose/nerdcommenter</a></h4><p>注释插件,神器,直接上官方的快捷键,最常用的是<code>&lt;leader&gt;c&lt;space&gt;</code></p>
+<ul>
+<li><code>[count]&lt;leader&gt;cc</code> <strong>|NERDComComment|</strong><br>Comment out the current line or text selected in visual mode.</li>
+<li><code>[count]&lt;leader&gt;cn</code> <strong>|NERDComNestedComment|</strong><br>Same as <leader>cc but forces nesting.</leader></li>
+<li><code>[count]&lt;leader&gt;c&lt;space&gt;</code> <strong>|NERDComToggleComment|</strong><br>Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.</li>
+<li><code>[count]&lt;leader&gt;cm</code> <strong>|NERDComMinimalComment|</strong><br>Comments the given lines using only one set of multipart delimiters.</li>
+<li><code>[count]&lt;leader&gt;ci</code> <strong>|NERDComInvertComment|</strong><br>Toggles the comment state of the selected line(s) individually.</li>
+<li><code>[count]&lt;leader&gt;cs</code> <strong>|NERDComSexyComment|</strong><br>Comments out the selected lines with a pretty block formatted layout.</li>
+<li><code>[count]&lt;leader&gt;cy</code> <strong>|NERDComYankComment|</strong><br>Same as <leader>cc except that the commented line(s) are yanked first.</leader></li>
+<li><code>&lt;leader&gt;c$</code> <strong>|NERDComEOLComment|</strong><br>Comments the current line from the cursor to the end of line.</li>
+<li><code>&lt;leader&gt;cA</code> <strong>|NERDComAppendComment|</strong><br>Adds comment delimiters to the end of line and goes into insert mode between them.</li>
+<li><strong>|NERDComInsertComment|</strong><br>Adds comment delimiters at the current cursor position and inserts between. Disabled by default.</li>
+<li><code>&lt;leader&gt;ca</code> <strong>|NERDComAltDelim|</strong><br>Switches to the alternative set of delimiters.</li>
+<li><code>[count]&lt;leader&gt;cl</code><br><code>[count]&lt;leader&gt;cb</code> <strong>|NERDComAlignedComment|</strong><br>Same as <strong>|NERDComComment|</strong> except that the delimiters are aligned down the left side (<code>&lt;leader&gt;cl</code>) or both sides (<code>&lt;leader&gt;cb</code>).</li>
+<li><code>[count]&lt;leader&gt;cu</code> <strong>|NERDComUncommentLine|</strong><br>Uncomments the selected line(s).</li>
+</ul>
+<h4 id="rking-ag-vim"><a href="#rking-ag-vim" class="headerlink" title="rking/ag.vim"></a><a href="https://github.com/rking/ag.vim" target="_blank" rel="external">rking/ag.vim</a></h4><p> <code>Ag</code>是一个非常快的文件/文本搜索工具,通过<code>&lt;leader&gt;ag</code>开遍文本搜索,<code>&lt;leader&gt;af</code>文件搜索<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171012075230167.png" alt=""></p>
+<h4 id="Tabularize"><a href="#Tabularize" class="headerlink" title="Tabularize"></a><a href="https://github.com/godlygeek/tabular" target="_blank" rel="external">Tabularize</a></h4><p>自动按特定的符号对齐,快捷键见<code>.vimrc</code>里的配置文件<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">nmap &lt;Leader&gt;a&amp; :Tabularize /&amp;&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a&amp; :Tabularize /&amp;&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a= :Tabularize /^[^=]*\zs=&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a= :Tabularize /^[^=]*\zs=&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a=&gt; :Tabularize /=&gt;&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a=&gt; :Tabularize /=&gt;&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a: :Tabularize /:&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a: :Tabularize /:&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a:: :Tabularize /:\zs&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a:: :Tabularize /:\zs&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a, :Tabularize /,&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a, :Tabularize /,&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a,, :Tabularize /,\zs&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a,, :Tabularize /,\zs&lt;CR&gt;</div><div class="line">nmap &lt;Leader&gt;a&lt;Bar&gt; :Tabularize /&lt;Bar&gt;&lt;CR&gt;</div><div class="line">vmap &lt;Leader&gt;a&lt;Bar&gt; :Tabularize /&lt;Bar&gt;&lt;CR&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="sessionman"><a href="#sessionman" class="headerlink" title="sessionman"></a><a href="https://github.com/vim-scripts/sessionman.vim" target="_blank" rel="external">sessionman</a></h4><p>sessionmanager,<code>&lt;leader&gt;sl</code>显示session列表;<code>&lt;leader&gt;ss</code>保存session;<code>&lt;leader&gt;sc</code>关闭session</p>
+<h4 id="ctrlp"><a href="#ctrlp" class="headerlink" title="ctrlp"></a><a href="https://github.com/ctrlpvim/ctrlp.vim" target="_blank" rel="external">ctrlp</a></h4><p>杀手级插件,引用网上的一段话对它的介绍</p>
+<blockquote>
+<p>在 VIM 世界里，有人是分窗口编辑文件的忠实拥护者，有人则是多文件 tab 页的死忠骨灰粉。但无论哪种人， 在一些大项目内进行编辑工作时，如果要快速打开 ‘./lib/foo/bar/comm/base_utils.py’ 这类藏在大山深处的文件，都需像剥粽子一样，一层一层往下找，让人头疼。</p>
+<p>ctrlp.vim 则完美帮你解决了这个痛点，当你想打开某个文件时，只要按下 Ctrl + p 快捷键，输入文件名。 所有和这个文件名匹配的文件都会被按照优先级列出来，按下 enter 或者 Ctrl + t 就可以在当前 buffer 或者新 tab 页打开你要的文件了。</p>
+</blockquote>
+<p>网上找来的图<br><img src="http://zuyunfei.com/images/ctrlp-vim-demo.gif" alt=""></p>
+<p><code>ctrl+p</code>启动插件,<code>&lt;leader&gt;fu</code>启动funksky函数查询功能,在启动后,用<code>Ctrl+f</code>,<code>Ctrl+b</code>在不同模式中切换.<br>在文件列表中,<code>Ctrl+k/j</code>或者方向键向上/下选择文件,<code>t</code>在新标签里打开文件.其他快捷键见<a href="http://blog.codepiano.com/pages/ctrlp-cn.light.html" target="_blank" rel="external">ctrlp中文介绍</a></p>
+<h4 id="Pymode"><a href="#Pymode" class="headerlink" title="Pymode"></a><a href="https://github.com/python-mode/python-mode" target="_blank" rel="external">Pymode</a></h4><p><code>python</code>用的插件,具有语法检查,调试等功能.<code>F9</code>: python语法检查,<code>S+F9</code>切换语法是否检查.<code>&lt;leader&gt;R</code>:运行脚本;<code>&lt;leader&gt;T</code>:track_point toggle</p>
+<h4 id="surround"><a href="#surround" class="headerlink" title="surround"></a><a href="https://github.com/tpope/vim-surround" target="_blank" rel="external">surround</a></h4><p>给一段文字加上括号的插件，下面说明文字引用自<a href="http://zuyunfei.com/2013/04/17/killer-plugin-of-vim-surround/" target="_blank" rel="external">vim中的杀手级别的插件：surround</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Old text                  Command     New text</div><div class="line">&quot;Hello *world!&quot;           ds&quot;         Hello world!</div><div class="line">[123+4*56]/2              cs])        (123+456)/2</div><div class="line">&quot;Look ma, I&apos;m *HTML!&quot;     cs&quot;&lt;q&gt;      &lt;q&gt;Look ma, I&apos;m HTML!&lt;/q&gt;</div><div class="line">if *x&gt;3 &#123;                 ysW(        if ( x&gt;3 ) &#123;</div><div class="line">my $str = *whee!;         vlllls&apos;     my $str = &apos;whee!&apos;;</div><div class="line">&lt;div&gt;Yo!*&lt;/div&gt;           dst         Yo!</div><div class="line">&lt;div&gt;Yo!*&lt;/div&gt;           cst&lt;p&gt;      &lt;p&gt;Yo!&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+<p>如上面代码块所示，添加替换时使用后半括号)]}，添加的括号和内容间就没有空格（如第2个示例），反之会在内容前后添加一个空格（如第4个实例）。第6个示例中的t代表一对HTML或者xml tag。其他表示范围的符号：w代表word, W代表WORD(被空格分开的连续的字符窜），p代表paragraph。</p>
+<p><em>命令列表</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Normal mode</div><div class="line">-----------</div><div class="line">ds  - delete a surrounding</div><div class="line">cs  - change a surrounding</div><div class="line">ys  - add a surrounding</div><div class="line">yS  - add a surrounding and place the surrounded text on a new line + indent it</div><div class="line">yss - add a surrounding to the whole line</div><div class="line">ySs - add a surrounding to the whole line, place it on a new line + indent it</div><div class="line">ySS - same as ySs</div><div class="line">Visual mode</div><div class="line">-----------</div><div class="line">s   - in visual mode, add a surrounding</div><div class="line">S   - in visual mode, add a surrounding but place text on new line + indent it</div><div class="line">Insert mode &quot;不建议使用</div><div class="line">-----------</div><div class="line">&lt;CTRL-s&gt; - in insert mode, add a surrounding</div><div class="line">&lt;CTRL-s&gt;&lt;CTRL-s&gt; - in insert mode, add a new line + surrounding + indent</div><div class="line">&lt;CTRL-g&gt;s - same as &lt;CTRL-s&gt;</div><div class="line">&lt;CTRL-g&gt;S - same as &lt;CTRL-s&gt;&lt;CTRL-s&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="PIV"><a href="#PIV" class="headerlink" title="PIV"></a><a href="https://github.com/spf13/PIV" target="_blank" rel="external">PIV</a></h4><p>The most feature complete and up to date PHP Integration for Vim with proper support for PHP 5.3+ including latest syntax, functions, better fold support, etc.</p>
+<p>PIV provides:</p>
+<ul>
+<li>PHP 5.3 support</li>
+<li>Auto generation of PHP Doc (,pd on (function, variable, class) definition line)</li>
+<li>Autocomplete of classes, functions, variables, constants and language keywords</li>
+<li>Better indenting</li>
+<li>Full PHP documentation manual (hit K on any function for full docs)<br><img src="https://camo.githubusercontent.com/7650c13f52fd73dc788a218f6d5862be4399cd4d/68747470733a2f2f692e696d6775722e636f6d2f63304747502e706e67" alt=""></li>
+</ul>
+<h4 id="Nvim-R"><a href="#Nvim-R" class="headerlink" title="Nvim-R"></a><a href="https://github.com/jalvesaq/Nvim-R" target="_blank" rel="external">Nvim-R</a></h4><p>支持R语言的插件,需要<code>Vim8.0+</code>并在<code>.vimrc.before.local</code>里加入<code>R</code>.通过<code>&lt;leader&gt;rr</code>激活界面,<code>&lt;leader&gt;rq</code>退出R程序<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171012132459533.png" alt=""><br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171012132515614.png" alt=""><br>快捷键极多,请自行<code>:h nvim-r</code>查询</p>
+<h4 id="EasyMotion"><a href="#EasyMotion" class="headerlink" title="EasyMotion"></a><a href="https://github.com/easymotion/vim-easymotion" target="_blank" rel="external">EasyMotion</a></h4><p> 又一个杀手级别的插件<br> <img src="http://www.wklken.me/imgs/vim/easy_motion_search.gif" alt=""></p>
+<ol>
+<li>跳转到当前光标前后,快捷键<code>&lt;leader&gt;&lt;leader&gt;w</code>和<code>&lt;leader&gt;&lt;leader&gt;b</code></li>
+<li>搜索跳转,<code>&lt;leader&gt;&lt;leader&gt;s</code>,然后输入要搜索的字母</li>
+<li>行间/行内级别跳转,<code>&lt;leader&gt;&lt;leader&gt;</code>再<code>hjkl</code>不解释</li>
+<li>重复上一次的动作,<code>&lt;leader&gt;&lt;leader&gt;.</code></li>
+<li>还可以<code>&lt;leader&gt;&lt;leader&gt;f</code>和<code>&lt;leader&gt;&lt;leader&gt;t</code>,不过不建议使用</li>
+</ol>
+<h4 id="代码补全插件"><a href="#代码补全插件" class="headerlink" title="代码补全插件"></a>代码补全插件</h4><ul>
+<li>用了三种补全插件，要在<code>~/.vimrc.before.local</code>里加入<code>youcomplteme</code>或<code>neocomplte</code>或<code>neocomplcache</code>来激活安装。</li>
+<li>基本快捷键统一为<code>Tab</code>、<code>Shift-Tab</code>为<code>向下</code>，<code>向上</code>翻页，<code>ctrl-n/p</code>也能进行翻页.<code>enter</code>或<code>Ctrl+k</code>激活补全。<code>ctrl+l</code>显示各种实例可能<h5 id="YouComplteMe"><a href="#YouComplteMe" class="headerlink" title="YouComplteMe"></a><a href="https://github.com/Valloric/YouCompleteMe" target="_blank" rel="external">YouComplteMe</a></h5><img src="https://camo.githubusercontent.com/1f3f922431d5363224b20e99467ff28b04e810e2/687474703a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt=""><ul>
+<li>需要安装一系列编译用软件</li>
+<li>跳转键，<code>Ctrl+f</code>跳转到下一个待补全处，<code>Ctrl+b</code>中转到上一个待补全处。</li>
+<li>具体可参考<a href="http://howiefh.github.io/2015/05/22/vim-install-youcompleteme-plugin/" target="_blank" rel="external">Vim 自动补全插件 YouCompleteMe 安装与配置</a>.</li>
+<li>在安装好各种编译用的工具后<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.vim/bundle/YouCompleteMe</div><div class="line">python2 install.py #可能仅支持python等不需要编译的语言</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="neocomplete-amp-amp-neocomplcache"><a href="#neocomplete-amp-amp-neocomplcache" class="headerlink" title="neocomplete&amp;&amp;neocomplcache"></a><a href="">neocomplete&amp;&amp;neocomplcache</a></h5><ul>
+<li>这两者是同一个作者编写，<code>neocomplte</code>需要<code>lua</code>的支持<br><img src="https://camo.githubusercontent.com/2e00f5d1f66bcf290533cc0b006a692339dfa4a6/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f34313439352f3632323435372f66653930616435652d636634322d313165322d386530332d3866313839623565323665352e706e67" alt=""></li>
+</ul>
 
           
         
@@ -505,6 +682,127 @@
 <p>proxychains4 git clone <a href="https://github.com/xxxxx/xxxxx.git" target="_blank" rel="external">https://github.com/xxxxx/xxxxx.git</a></p>
 </blockquote>
 <p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="leoatchina">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="leoatchina的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/install_samtools_etc/" itemprop="url">
+                  安装新版htslib、bcftools、samtools
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-26T00:15:47+00:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
 
           
         
@@ -1640,128 +1938,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://leoatchina.github.io/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="leoatchina">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://jimmywash.com/leoatchina.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="leoatchina的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="leoatchina的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/" itemprop="url">
-                  aria2+chrome+BaiduExporter破除速度限制下载百度云上的内容
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-01T14:51:46+00:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>以前我在windows下面时曾经写过一篇<br><a href="http://www.jianshu.com/p/540b20f1a6a3" target="_blank" rel="external">aria2+chrome+BaiduExporter下载百度云</a></p>
-<p>转到mac平台后，方法有所调整</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1809,7 +1985,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1827,7 +2003,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
