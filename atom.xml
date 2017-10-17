@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-10-17T04:16:11.000Z</updated>
+  <updated>2017-10-17T04:18:18.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -20,10 +20,9 @@
     <link href="http://leoatchina.github.io/2017/10/17/osx-software/"/>
     <id>http://leoatchina.github.io/2017/10/17/osx-software/</id>
     <published>2017-10-17T04:13:46.000Z</published>
-    <updated>2017-10-17T04:16:11.000Z</updated>
+    <updated>2017-10-17T04:18:18.000Z</updated>
     
-    <content type="html"><![CDATA[<p>j# Mac下的推荐软件</p>
-<h2 id="spotlight"><a href="#spotlight" class="headerlink" title="spotlight"></a>spotlight</h2><p>这个不是第三方软件,是系统自带了,默认<code>ctrl+space</code>启动,相当一个<code>快速启动</code>+<code>搜索</code>利器<br>比如你要启动<code>终端</code>,那么按<code>ctrl+space</code>后,再输入<code>termina....</code>就会看到出来</p>
+    <content type="html"><![CDATA[<h1 id="Mac下的推荐软件"><a href="#Mac下的推荐软件" class="headerlink" title="Mac下的推荐软件"></a>Mac下的推荐软件</h1><h2 id="spotlight"><a href="#spotlight" class="headerlink" title="spotlight"></a>spotlight</h2><p>这个不是第三方软件,是系统自带了,默认<code>ctrl+space</code>启动,相当一个<code>快速启动</code>+<code>搜索</code>利器<br>比如你要启动<code>终端</code>,那么按<code>ctrl+space</code>后,再输入<code>termina....</code>就会看到出来</p>
 <h2 id="Iterm2-amp-amp-oh-my-zsh"><a href="#Iterm2-amp-amp-oh-my-zsh" class="headerlink" title="Iterm2 &amp;&amp; oh-my-zsh"></a>Iterm2 &amp;&amp; oh-my-zsh</h2><p>见<a href="http://youyusan.github.io/2016/07/28/iterm2-zsh/" target="_blank" rel="external">安装iterm2和oh-my-zsh</a><br><code>Iterm2</code>代替系统的终端,比原生的好太多。<br><code>oh-my-zsh</code>是一个<code>zsh</code>shell的主题,这两个结合起来届面友好度大大提升</p>
 <p><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171017102754384.png" alt=""></p>
 <p>顺带安装<code>homebrew</code></p>
@@ -40,11 +39,20 @@
     
     <summary type="html">
     
-      &lt;p&gt;j# Mac下的推荐软件&lt;/p&gt;
-&lt;h2 id=&quot;spotlight&quot;&gt;&lt;a href=&quot;#spotlight&quot; class=&quot;headerlink&quot; title=&quot;spotlight&quot;&gt;&lt;/a&gt;spotlight&lt;/h2&gt;&lt;p&gt;这个不是第三方软件,是系统自带了,默认&lt;co
+      &lt;h1 id=&quot;Mac下的推荐软件&quot;&gt;&lt;a href=&quot;#Mac下的推荐软件&quot; class=&quot;headerlink&quot; title=&quot;Mac下的推荐软件&quot;&gt;&lt;/a&gt;Mac下的推荐软件&lt;/h1&gt;&lt;h2 id=&quot;spotlight&quot;&gt;&lt;a href=&quot;#spotlight&quot; class
     
     </summary>
     
+    
+      <category term="mac" scheme="http://leoatchina.github.io/tags/mac/"/>
+    
+      <category term="osx" scheme="http://leoatchina.github.io/tags/osx/"/>
+    
+      <category term="iterm" scheme="http://leoatchina.github.io/tags/iterm/"/>
+    
+      <category term="vim" scheme="http://leoatchina.github.io/tags/vim/"/>
+    
+      <category term="karabiner" scheme="http://leoatchina.github.io/tags/karabiner/"/>
     
   </entry>
   
@@ -303,6 +311,25 @@
   </entry>
   
   <entry>
+    <title>安装新版htslib、bcftools、samtools</title>
+    <link href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/"/>
+    <id>http://leoatchina.github.io/2017/08/26/install_samtools_etc/</id>
+    <published>2017-08-26T00:15:47.000Z</published>
+    <updated>2017-02-14T07:07:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>leoatchina的第一篇hexo博客</title>
     <link href="http://leoatchina.github.io/2017/08/26/hello-world/"/>
     <id>http://leoatchina.github.io/2017/08/26/hello-world/</id>
@@ -339,25 +366,6 @@
     <summary type="html">
     
       &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>安装新版htslib、bcftools、samtools</title>
-    <link href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/"/>
-    <id>http://leoatchina.github.io/2017/08/26/install_samtools_etc/</id>
-    <published>2017-08-26T00:15:47.000Z</published>
-    <updated>2017-02-14T07:07:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
     
     </summary>
     
@@ -595,9 +603,9 @@
     </summary>
     
     
-      <category term="owncloud" scheme="http://leoatchina.github.io/tags/owncloud/"/>
-    
       <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
+    
+      <category term="owncloud" scheme="http://leoatchina.github.io/tags/owncloud/"/>
     
       <category term="nginix" scheme="http://leoatchina.github.io/tags/nginix/"/>
     
