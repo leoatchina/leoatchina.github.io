@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leoatchina.github.io/"/>
-  <updated>2017-10-15T07:16:42.000Z</updated>
+  <updated>2017-10-17T04:16:11.000Z</updated>
   <id>http://leoatchina.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>osx_software</title>
+    <link href="http://leoatchina.github.io/2017/10/17/osx-software/"/>
+    <id>http://leoatchina.github.io/2017/10/17/osx-software/</id>
+    <published>2017-10-17T04:13:46.000Z</published>
+    <updated>2017-10-17T04:16:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>j# Mac下的推荐软件</p>
+<h2 id="spotlight"><a href="#spotlight" class="headerlink" title="spotlight"></a>spotlight</h2><p>这个不是第三方软件,是系统自带了,默认<code>ctrl+space</code>启动,相当一个<code>快速启动</code>+<code>搜索</code>利器<br>比如你要启动<code>终端</code>,那么按<code>ctrl+space</code>后,再输入<code>termina....</code>就会看到出来</p>
+<h2 id="Iterm2-amp-amp-oh-my-zsh"><a href="#Iterm2-amp-amp-oh-my-zsh" class="headerlink" title="Iterm2 &amp;&amp; oh-my-zsh"></a>Iterm2 &amp;&amp; oh-my-zsh</h2><p>见<a href="http://youyusan.github.io/2016/07/28/iterm2-zsh/" target="_blank" rel="external">安装iterm2和oh-my-zsh</a><br><code>Iterm2</code>代替系统的终端,比原生的好太多。<br><code>oh-my-zsh</code>是一个<code>zsh</code>shell的主题,这两个结合起来届面友好度大大提升</p>
+<p><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171017102754384.png" alt=""></p>
+<p>顺带安装<code>homebrew</code></p>
+<h2 id="karabiner"><a href="#karabiner" class="headerlink" title="karabiner"></a>karabiner</h2><p>定义鼠标、按键功能，<a href="https://pqrs.org/osx/karabiner/" target="_blank" rel="external">官方网站</a><br>参照<a href="https://www.v2ex.com/t/182542" target="_blank" rel="external">使用 Karabiner 替代 Scroll Reverser 设置鼠标滚动方向反转</a>来设置鼠标反转</p>
+<h2 id="aria2gui"><a href="#aria2gui" class="headerlink" title="aria2gui"></a>aria2gui</h2><p>下载利器，配合<code>baiduexporter</code>可以破百度云限速<br><a href="https://github.com/yangshun1029/aria2gui" target="_blank" rel="external">aria2gui</a><br><a href="https://github.com/acgotaku/BaiduExporter" target="_blank" rel="external">baiduExporter</a></p>
+<h2 id="atom和vscode"><a href="#atom和vscode" class="headerlink" title="atom和vscode"></a>atom和vscode</h2><p>现在基本能代替sublime了，免费，看情况装<br>其中，装好插件后，Atom能作为一个很强的 <code>markdown</code>写作利器</p>
+<h2 id="PDF-Expert"><a href="#PDF-Expert" class="headerlink" title="PDF Expert"></a>PDF Expert</h2><p>阅读pdf的利器</p>
+<h2 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h2><p>程序员百科全书,和alfred结合非常好</p>
+<h2 id="Moom"><a href="#Moom" class="headerlink" title="Moom"></a>Moom</h2><p>类似windows下<code>win键+方向</code>键移动窗口的软件</p>
+<h2 id="Pasta"><a href="#Pasta" class="headerlink" title="Pasta"></a>Pasta</h2><p>加强版的剪贴本<br><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171017103600368.png" alt=""></p>
+<h2 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h2><p>超级软件 ，加强版的<code>spotlight</code>，内置增强的剪贴本工具，不喜欢安装太多软件的可以用内置的代替上面的<code>paste</code></p>
+<h2 id="spf13-vim-leoatchina"><a href="#spf13-vim-leoatchina" class="headerlink" title="spf13-vim-leoatchina"></a>spf13-vim-leoatchina</h2><p>我修改的vim配置 <a href="https://github.com/leoatchina/spf13-vim-leoatchina" target="_blank" rel="external">spf13-vim-leoatchina</a>,看文档</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;j# Mac下的推荐软件&lt;/p&gt;
+&lt;h2 id=&quot;spotlight&quot;&gt;&lt;a href=&quot;#spotlight&quot; class=&quot;headerlink&quot; title=&quot;spotlight&quot;&gt;&lt;/a&gt;spotlight&lt;/h2&gt;&lt;p&gt;这个不是第三方软件,是系统自带了,默认&lt;co
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>leoatchina的vim配置文件</title>
@@ -257,6 +290,8 @@
       <category term="翻墙" scheme="http://leoatchina.github.io/categories/%E7%BF%BB%E5%A2%99/"/>
     
     
+      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
+    
       <category term="sslocal" scheme="http://leoatchina.github.io/tags/sslocal/"/>
     
       <category term="gfwlist" scheme="http://leoatchina.github.io/tags/gfwlist/"/>
@@ -264,8 +299,6 @@
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
     
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
-    
-      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
     
   </entry>
   
@@ -773,9 +806,9 @@
     </summary>
     
     
-      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
-    
       <category term="shadowsocks" scheme="http://leoatchina.github.io/tags/shadowsocks/"/>
+    
+      <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
     
       <category term="阿里云" scheme="http://leoatchina.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
     
