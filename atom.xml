@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>leoatchina的博客</title>
-  <subtitle>一个折腾控写字的地方,生信小菜鸟弱弱地打怪升级中。</subtitle>
+  <title>leoatchina</title>
+  <subtitle>feedId:74101489881279488+userId:72093592147644416</subtitle>
   <link href="/atom.xml" rel="self"/>
-  
+
   <link href="http://leoatchina.github.io/"/>
   <updated>2017-10-18T09:43:20.000Z</updated>
   <id>http://leoatchina.github.io/</id>
-  
+
   <author>
     <name>leoatchina</name>
-    
+
   </author>
-  
+
   <generator uri="http://hexo.io/">Hexo</generator>
-  
+
   <entry>
     <title>rpkm-tpm</title>
     <link href="http://leoatchina.github.io/2017/10/18/rpkm-tpm/"/>
     <id>http://leoatchina.github.io/2017/10/18/rpkm-tpm/</id>
     <published>2017-10-18T09:38:17.000Z</published>
     <updated>2017-10-18T09:43:20.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h1 id="rpkm-tpm的区别"><a href="#rpkm-tpm的区别" class="headerlink" title="rpkm-tpm的区别"></a>rpkm-tpm的区别</h1><ol>
 <li>rpkm是normalize,再divided by count;tmp是先divided by count,再normalize</li>
 <li>tpm总和是million</li>
 <li>tpm能表现出某个基因的reads的比例</li>
 </ol>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h1 id=&quot;rpkm-tpm的区别&quot;&gt;&lt;a href=&quot;#rpkm-tpm的区别&quot; class=&quot;headerlink&quot; title=&quot;rpkm-tpm的区别&quot;&gt;&lt;/a&gt;rpkm-tpm的区别&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;rpkm是normalize,再divided by c
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>osx_software</title>
     <link href="http://leoatchina.github.io/2017/10/17/osx-software/"/>
     <id>http://leoatchina.github.io/2017/10/17/osx-software/</id>
     <published>2017-10-17T04:13:46.000Z</published>
     <updated>2017-10-17T04:18:18.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h1 id="Mac下的推荐软件"><a href="#Mac下的推荐软件" class="headerlink" title="Mac下的推荐软件"></a>Mac下的推荐软件</h1><h2 id="spotlight"><a href="#spotlight" class="headerlink" title="spotlight"></a>spotlight</h2><p>这个不是第三方软件,是系统自带了,默认<code>ctrl+space</code>启动,相当一个<code>快速启动</code>+<code>搜索</code>利器<br>比如你要启动<code>终端</code>,那么按<code>ctrl+space</code>后,再输入<code>termina....</code>就会看到出来</p>
 <h2 id="Iterm2-amp-amp-oh-my-zsh"><a href="#Iterm2-amp-amp-oh-my-zsh" class="headerlink" title="Iterm2 &amp;&amp; oh-my-zsh"></a>Iterm2 &amp;&amp; oh-my-zsh</h2><p>见<a href="http://youyusan.github.io/2016/07/28/iterm2-zsh/" target="_blank" rel="external">安装iterm2和oh-my-zsh</a><br><code>Iterm2</code>代替系统的终端,比原生的好太多。<br><code>oh-my-zsh</code>是一个<code>zsh</code>shell的主题,这两个结合起来届面友好度大大提升</p>
 <p><img src="http://oxa21co60.bkt.clouddn.com/markdown-img-paste-20171017102754384.png" alt=""></p>
@@ -60,33 +60,33 @@
 <h2 id="Alfred"><a href="#Alfred" class="headerlink" title="Alfred"></a>Alfred</h2><p>超级软件 ，加强版的<code>spotlight</code>，内置增强的剪贴本工具，不喜欢安装太多软件的可以用内置的代替上面的<code>paste</code></p>
 <h2 id="spf13-vim-leoatchina"><a href="#spf13-vim-leoatchina" class="headerlink" title="spf13-vim-leoatchina"></a>spf13-vim-leoatchina</h2><p>我修改的vim配置 <a href="https://github.com/leoatchina/spf13-vim-leoatchina" target="_blank" rel="external">spf13-vim-leoatchina</a>,看文档</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h1 id=&quot;Mac下的推荐软件&quot;&gt;&lt;a href=&quot;#Mac下的推荐软件&quot; class=&quot;headerlink&quot; title=&quot;Mac下的推荐软件&quot;&gt;&lt;/a&gt;Mac下的推荐软件&lt;/h1&gt;&lt;h2 id=&quot;spotlight&quot;&gt;&lt;a href=&quot;#spotlight&quot; class
-    
+
     </summary>
-    
-    
+
+
       <category term="vim" scheme="http://leoatchina.github.io/tags/vim/"/>
-    
+
       <category term="mac" scheme="http://leoatchina.github.io/tags/mac/"/>
-    
+
       <category term="osx" scheme="http://leoatchina.github.io/tags/osx/"/>
-    
+
       <category term="iterm" scheme="http://leoatchina.github.io/tags/iterm/"/>
-    
+
       <category term="karabiner" scheme="http://leoatchina.github.io/tags/karabiner/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>leoatchina的vim配置文件</title>
     <link href="http://leoatchina.github.io/2017/10/15/leoatchin-vimrc-forked-from-spf13/"/>
     <id>http://leoatchina.github.io/2017/10/15/leoatchin-vimrc-forked-from-spf13/</id>
     <published>2017-10-15T07:04:48.000Z</published>
     <updated>2017-10-15T07:16:42.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h1 id="leoatchina的vim配置文件"><a href="#leoatchina的vim配置文件" class="headerlink" title="leoatchina的vim配置文件"></a>leoatchina的vim配置文件</h1><p>This is leoatchina’s vim config forked from <a href="https://github.com/spf13/spf13-vim" target="_blank" rel="external">spf13-vim:steve francia’s vim distribution</a>.I sincerely thank him for great job. To meet my needs,I have changed lots of settings and plugins.</p>
 <pre><code>            __ _ _____              _
  ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -253,27 +253,27 @@
 <li>这两者是同一个作者编写，<code>neocomplte</code>需要<code>lua</code>的支持<br><img src="https://camo.githubusercontent.com/2e00f5d1f66bcf290533cc0b006a692339dfa4a6/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f34313439352f3632323435372f66653930616435652d636634322d313165322d386530332d3866313839623565323665352e706e67" alt=""></li>
 </ul>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h1 id=&quot;leoatchina的vim配置文件&quot;&gt;&lt;a href=&quot;#leoatchina的vim配置文件&quot; class=&quot;headerlink&quot; title=&quot;leoatchina的vim配置文件&quot;&gt;&lt;/a&gt;leoatchina的vim配置文件&lt;/h1&gt;&lt;p&gt;This i
-    
+
     </summary>
-    
-    
+
+
       <category term="vim" scheme="http://leoatchina.github.io/tags/vim/"/>
-    
+
       <category term="spf13" scheme="http://leoatchina.github.io/tags/spf13/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>leoatchina的第一篇hexo博客</title>
     <link href="http://leoatchina.github.io/2017/08/26/hello-world/"/>
     <id>http://leoatchina.github.io/2017/08/26/hello-world/</id>
     <published>2017-08-26T00:15:47.000Z</published>
     <updated>2017-02-15T10:24:10.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>leoatchina第一次用hexo进行博客写作，使用了<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>主题<br>leoatchina是用<strong>atom</strong>进行博客写作，可以在官方网站<a href="https://atom.io" target="_blank" rel="external">atom.io</a>上下载<br>之所以用这个软件，原因</p>
 <ol>
 <li>免费</li>
@@ -300,42 +300,42 @@
 <li>hexo clean | hexo g | hexo d，完成布置</li>
 </ol>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;leoatchina第一次用hexo进行博客写作，使用了&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;next&lt;/a&gt;主题&lt;br&gt;leoatchina是
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>安装新版htslib、bcftools、samtools</title>
     <link href="http://leoatchina.github.io/2017/08/26/install_samtools_etc/"/>
     <id>http://leoatchina.github.io/2017/08/26/install_samtools_etc/</id>
     <published>2017-08-26T00:15:47.000Z</published>
     <updated>2017-02-14T07:07:27.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h5 id="官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的"><a href="#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的" class="headerlink" title="官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的"></a>官方网站和github上的INSTALL/README有问题，要按照下面的方法安装develop版本的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone --branch=develop git://github.com/samtools/htslib.git</div><div class="line">git clone --branch=develop git://github.com/samtools/bcftools.git</div><div class="line">git clone --branch=develop git://github.com/samtools/samtools.git</div><div class="line">cd bcftools &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ../samtools &amp;&amp; make &amp;&amp; make install</div></pre></td></tr></table></figure>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h5 id=&quot;官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot;&gt;&lt;a href=&quot;#官方网站和github上的INSTALL-README有问题，要按照下面的方法安装develop版本的&quot; class=&quot;headerlin
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/08/26/sslocal-proxychains-aliyun-github/"/>
     <id>http://leoatchina.github.io/2017/08/26/sslocal-proxychains-aliyun-github/</id>
     <published>2017-08-26T00:15:47.000Z</published>
     <updated>2017-02-15T04:52:00.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
 <blockquote>
@@ -372,37 +372,37 @@
 </blockquote>
 <p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;阿里云从github clone一些软件后再编译安装 ，速度都很慢。&lt;br&gt;试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 安装pip&lt;/strong&gt;&lt;/p&gt;
 &lt;blo
-    
+
     </summary>
-    
+
       <category term="翻墙" scheme="http://leoatchina.github.io/categories/%E7%BF%BB%E5%A2%99/"/>
-    
-    
+
+
       <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
-    
+
       <category term="sslocal" scheme="http://leoatchina.github.io/tags/sslocal/"/>
-    
+
       <category term="gfwlist" scheme="http://leoatchina.github.io/tags/gfwlist/"/>
-    
+
       <category term="proxychains4" scheme="http://leoatchina.github.io/tags/proxychains4/"/>
-    
+
       <category term="aliyun" scheme="http://leoatchina.github.io/tags/aliyun/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>一个缩写，让你的git log命令界面更加直观和酷炫</title>
     <link href="http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/"/>
     <id>http://leoatchina.github.io/2017/03/19/git-abbreviate-gitlg/</id>
     <published>2017-03-19T08:59:26.000Z</published>
     <updated>2017-04-22T06:12:23.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>转自微信公众号，<a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=2650661929&amp;idx=1&amp;sn=69e00516a30723c5a20af3c7a84173a4&amp;scene=23&amp;srcid=0620iNWQy1VoAV8LATVlC0x1#rd" target="_blank" rel="external">AndroidDevelper</a></p>
 <p>告诉大家一个比较屌的命令，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative</div></pre></td></tr></table></figure></p>
 <p>然后日志这样了<br><img src="http://upload-images.jianshu.io/upload_images/109760-a49e77fc2651e878.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
@@ -411,25 +411,25 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global alias.lg &quot;log --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit --date=relative&quot;</div></pre></td></tr></table></figure>
 <p><strong><em>还有其他常用的缩写</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config --global alias.st status</div><div class="line">git config --global alias.co checkout</div><div class="line">git config --global alias.ci commit</div><div class="line">git config --global alias.cim &apos;commit -m&apos;</div><div class="line">git config --global alias.br branch</div></pre></td></tr></table></figure></p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;转自微信公众号，&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;amp;mid=2650661929&amp;amp;idx=1&amp;amp;sn=69e00516a30723c5a20af3c7a84173a4&amp;am
-    
+
     </summary>
-    
-    
+
+
       <category term="git" scheme="http://leoatchina.github.io/tags/git/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>ubuntu服务器samba、ftp、timemachine配置过程</title>
     <link href="http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/"/>
     <id>http://leoatchina.github.io/2017/03/05/ubuntu-samba-ftp-timemachine-config/</id>
     <published>2017-03-05T10:41:35.000Z</published>
     <updated>2017-03-05T03:48:12.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>作为家里htpc服务器的ubuntu电脑由于前面操作不慎，系统出了一些非常影响检验的总是，特别是owncloud功能挂了，最后决定重装。<br>重装后先把最重要的 samba，ftp，timemachine功能给恢复回来，其他以后慢慢搞。<br>在这过程中，又重新看了以前的笔记，查了一些资料，在实践中发现无论原来的笔记，人家的经验都有一些繁琐，或不是非常正确的地方， 这里记录下自己的配置备参考 。</p>
 <h3 id="电脑硬盘和目录"><a href="#电脑硬盘和目录" class="headerlink" title="电脑硬盘和目录"></a>电脑硬盘和目录</h3><p>有一个ssd和一个hdd，hdd mount成 <code>/mnt/</code>。<br><strong>这里有一个非常容易忽视的设置，要把 /mnt/和其子目录设置成 samba帐号 可读写和执行，否则samba服务会报权限错误</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod 770 -R /mnt</div></pre></td></tr></table></figure></p>
 <p>我的/mnt下面的文件夹分配<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># htpc @ htpc in /mnt [10:48:35]</div><div class="line">$ ls -alh</div><div class="line">total 36K</div><div class="line">drwxrwxrwx  8 htpc     htpc 4.0K 3月   4 22:30 .</div><div class="line">drwxr-xr-x 24 root     root 4.0K 3月   4 10:39 ..</div><div class="line">drwxrwx---  4 htpc     htpc 4.0K 3月   4 09:39 backup</div><div class="line">drwxrwx---  5 htpc     htpc 4.0K 3月   4 11:16 config</div><div class="line">dr-xr-x---  5 share    htpc 4.0K 3月   4 22:31 ftp # ftp主目录</div><div class="line">drwxrwx---  4 www-data htpc 4.0K 2月  21 22:02 owncloud # owncloud目录</div><div class="line">drwxrwx--- 10 share    htpc 4.0K 3月   4 22:43 share # 这个是samba的</div><div class="line">drwxrwx---  8 tm       htpc 4.0K 3月   5 10:48 timemachine # mac用的timemachine目录</div></pre></td></tr></table></figure></p>
@@ -474,31 +474,31 @@
 </blockquote>
 <p>在finder里，按 <code>cmd+k</code>，输入 <code>afp://ip</code> 访问你的<code>TimeMachine</code>服务器，然后你打开timemachine设置选择你的 TimeMachine</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;作为家里htpc服务器的ubuntu电脑由于前面操作不慎，系统出了一些非常影响检验的总是，特别是owncloud功能挂了，最后决定重装。&lt;br&gt;重装后先把最重要的 samba，ftp，timemachine功能给恢复回来，其他以后慢慢搞。&lt;br&gt;在这过程中，又重新看了以前的
-    
+
     </summary>
-    
-    
+
+
       <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
-    
+
       <category term="samba" scheme="http://leoatchina.github.io/tags/samba/"/>
-    
+
       <category term="ftp" scheme="http://leoatchina.github.io/tags/ftp/"/>
-    
+
       <category term="timemachine" scheme="http://leoatchina.github.io/tags/timemachine/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>用ubuntu+owncloud+nginx+php-fpm+mysql+aria2打造私有云+远程下载器</title>
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-owncloud-nginx-php-fpm-mysql-aria2-private-storage/</id>
     <published>2017-03-02T10:14:34.000Z</published>
     <updated>2017-03-05T14:44:27.000Z</updated>
-    
+
     <content type="html"><![CDATA[<hr>
 <h4 id="起由"><a href="#起由" class="headerlink" title="起由"></a>起由</h4><ul>
 <li>由于最近的“净网”行动，很多网盘包括我一直在使用的快盘关停，仍然存活的百度云、360云等又没有linux客户端，用Dropbox等国外网盘受空间和墙的限制比较大。</li>
@@ -617,35 +617,35 @@
 </li>
 </ul>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;hr&gt;
 &lt;h4 id=&quot;起由&quot;&gt;&lt;a href=&quot;#起由&quot; class=&quot;headerlink&quot; title=&quot;起由&quot;&gt;&lt;/a&gt;起由&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;由于最近的“净网”行动，很多网盘包括我一直在使用的快盘关停，仍然存活的百度云、360云等又没有linux客户端，用Dr
-    
+
     </summary>
-    
-    
+
+
       <category term="owncloud" scheme="http://leoatchina.github.io/tags/owncloud/"/>
-    
+
       <category term="ubuntu" scheme="http://leoatchina.github.io/tags/ubuntu/"/>
-    
+
       <category term="nginix" scheme="http://leoatchina.github.io/tags/nginix/"/>
-    
+
       <category term="mysql" scheme="http://leoatchina.github.io/tags/mysql/"/>
-    
+
       <category term="aria2" scheme="http://leoatchina.github.io/tags/aria2/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>linux下 各种解压文件使用方法</title>
     <link href="http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/"/>
     <id>http://leoatchina.github.io/2017/03/02/unpress-method-in-linux-with-cmd/</id>
     <published>2017-03-02T10:04:49.000Z</published>
     <updated>2017-03-02T02:17:44.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>.xz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解包：tar xvf FileName.tar.xz</div><div class="line">打包：tar cvf FileName.tar DirName</div></pre></td></tr></table></figure></p>
 <p>.tar<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 解包：tar xvf FileName.tar</div><div class="line"> 打包：tar cvf FileName.tar DirName</div><div class="line">（注：tar是打包，不是压缩！）</div></pre></td></tr></table></figure></p>
 <p> .gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　解压1：gunzip FileName.gz</div><div class="line">　　解压2：gzip -d FileName.gz</div><div class="line">　　压缩：gzip FileName</div></pre></td></tr></table></figure></p>
@@ -697,23 +697,23 @@
 <p>13.以.deb为扩展名的文件解压缩:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dpkg-deb -fsys-tarfile file.deb | tar xvf - ar p</div><div class="line">file.deb data.tar.gz | tar xvzf -</div></pre></td></tr></table></figure></p>
 <p>14.以.zip为扩展名的文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip file.zip</div></pre></td></tr></table></figure></p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;.xz&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;t
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>没有X的vps上怎么配置才能复制vim界面里的文字</title>
     <link href="http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/"/>
     <id>http://leoatchina.github.io/2017/03/02/copy-vim-words-from-vps-without-x/</id>
     <published>2017-03-02T10:02:33.000Z</published>
     <updated>2017-03-02T02:03:17.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>讨论见我在知乎上的提问<a href="https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card" target="_blank" rel="external">知乎讨论，没有X的vps上怎么配置才能复制vim界面里的文字？</a></p>
 <p>环境阿里云，centos，无论是编译还是yum安装vim,在本地都不能在远程的vim上复制文字</p>
 <blockquote>
@@ -727,23 +727,23 @@
 </blockquote>
 <p>如果你用 windows ssh过去，应该是 nvim+本地 lemonade或者doitclent的组合</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;讨论见我在知乎上的提问&lt;a href=&quot;https://www.zhihu.com/question/51838774/answer/128467453?from=profile_answer_card&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;知乎讨
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>ubuntu-MATE  16.04 LTS 安装笔记</title>
     <link href="http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/"/>
     <id>http://leoatchina.github.io/2017/03/02/ubuntu-install-notes/</id>
     <published>2017-03-02T09:56:34.000Z</published>
     <updated>2017-03-02T01:59:30.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>在 bash 下删除libreoffice<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove --purge libreoffice*</div><div class="line"></div><div class="line">sudo apt-get clean</div><div class="line"></div><div class="line">sudo apt-get autoremove</div></pre></td></tr></table></figure></p>
 <p>安装vim 等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:wiznote-team ppa:plushuang-tw/uget-stable ppa:t-tujikawa/ppa</div><div class="line"></div><div class="line">sudo apt-get remove vim</div><div class="line"></div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">sudo apt-get install vim-gnome wiznote fcitx-table-wbpy exfat-fuse exfat-utils uget aria2 clipit git zsh openssh-server grub-customizer software-center terminator okular</div></pre></td></tr></table></figure></p>
 <p>安装编译相关<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev</div></pre></td></tr></table></figure></p>
@@ -755,43 +755,43 @@
 <p>安装spf13<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/leoatchina/spf13-leoatchina-vim.git  </div><div class="line">cd spf13-leoatchina-vim </div><div class="line">bash bootstrap.sh</div></pre></td></tr></table></figure></p>
 <p>安装atom<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">https://atom.io/download/deb</div><div class="line">注意同步</div></pre></td></tr></table></figure></p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;在 bash 下删除libreoffice&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>aria2+chrome+BaiduExporter破除速度限制下载百度云上的内容</title>
     <link href="http://leoatchina.github.io/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/"/>
     <id>http://leoatchina.github.io/2017/03/01/chrome-baiduexporter-aria2-baiduyun-download-no-limit/</id>
     <published>2017-03-01T14:51:46.000Z</published>
     <updated>2017-03-01T07:14:11.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>以前我在windows下面时曾经写过一篇<br><a href="http://www.jianshu.com/p/540b20f1a6a3" target="_blank" rel="external">aria2+chrome+BaiduExporter下载百度云</a></p>
 <p>转到mac平台后，方法有所调整</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;以前我在windows下面时曾经写过一篇&lt;br&gt;&lt;a href=&quot;http://www.jianshu.com/p/540b20f1a6a3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;aria2+chrome+BaiduExporter下载百度云&lt;/a
-    
+
     </summary>
-    
-    
+
+
   </entry>
-  
+
   <entry>
     <title>sslocal+proxychains4解决阿里云vps访问github过慢问题</title>
     <link href="http://leoatchina.github.io/2017/03/01/proxychain-aliyun-shadowsocks/"/>
     <id>http://leoatchina.github.io/2017/03/01/proxychain-aliyun-shadowsocks/</id>
     <published>2017-03-01T14:47:56.000Z</published>
     <updated>2017-03-25T03:09:11.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>阿里云从github clone一些软件后再编译安装 ，速度都很慢。<br>试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。</p>
 <p><strong>1. 安装pip</strong></p>
 <blockquote>
@@ -828,31 +828,31 @@
 </blockquote>
 <p>下面是我的一个测试结果，速度从4k提升到了1.5m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">[proxychains] Strict chain  ...  127.0.0.1:1080  ...  github.com:443  ...  OK</div><div class="line">remote: Counting objects: 120391, done.</div><div class="line">[proxychains] DLL init: proxychains-ng 4.11</div><div class="line">remote: Total 120391 (delta 0), reused 0 (delta 0), pack-reused 120390</div><div class="line">Receiving objects: 100% (120391/120391), 84.22 MiB | 1.51 MiB/s, done.</div><div class="line">Resolving deltas: 100% (81308/81308), done.</div></pre></td></tr></table></figure></p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;阿里云从github clone一些软件后再编译安装 ，速度都很慢。&lt;br&gt;试过改host或者设置 git的proxy，效果都不好，后来用 sslocal+proxychains4解决问题。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 安装pip&lt;/strong&gt;&lt;/p&gt;
 &lt;blo
-    
+
     </summary>
-    
-    
+
+
       <category term="shadowsocks" scheme="http://leoatchina.github.io/tags/shadowsocks/"/>
-    
+
       <category term="github" scheme="http://leoatchina.github.io/tags/github/"/>
-    
+
       <category term="阿里云" scheme="http://leoatchina.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>在服务器上装r时踩到的坑</title>
     <link href="http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/"/>
     <id>http://leoatchina.github.io/2017/02/21/install-r-with-zlib-support/</id>
     <published>2017-02-21T09:53:13.000Z</published>
     <updated>2017-02-21T09:17:58.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h3 id="为什么要在服务器上装R"><a href="#为什么要在服务器上装R" class="headerlink" title="为什么要在服务器上装R"></a>为什么要在服务器上装R</h3><p>其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有比较理想的“云界面”，所以想要扩展R</p>
 <h3 id="下载，安装"><a href="#下载，安装" class="headerlink" title="下载，安装"></a>下载，安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget &amp;&amp; tar &amp;&amp; <span class="built_in">cd</span> <span class="comment"># 这个都是常规，不表。出于实验的目的，我试了下无root权限安装</span></div><div class="line"><span class="comment"># 进行onfigure 这一步就出问题</span></div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/R/R-3.3.2  --enable-R-shlib</div></pre></td></tr></table></figure>
 <h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><p>上一步时一直提醒我缺少安装zlib1.2.5以上版本，将就下载，也是无root安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget -c  http://www.zlib.net/zlib1211.zip  <span class="comment">#注意我下载 的是1.2.11版本</span></div><div class="line">unzip zlibi1211</div><div class="line"><span class="built_in">cd</span> zlib-1.2.11</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/packages</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
@@ -875,31 +875,31 @@
 <p>会有这样一句话 <code>[InstallKernelSpec] Installed kernelspec ir in /home/xx/.local/share/jupyter/kernels/ir</code>,同时你看到你可以生成R的文本了<br><img src="/2017/02/21/install-r-with-zlib-support/3dbfd2c7ddf1db7cf2235f26a560786c.png" alt=""></p>
 <h4 id="在安装R包时可能碰到的问题"><a href="#在安装R包时可能碰到的问题" class="headerlink" title="在安装R包时可能碰到的问题"></a>在安装R包时可能碰到的问题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 首先，是不能下载包</span></div><div class="line">options(download.file.method = <span class="string">"wget"</span>)  </div><div class="line"><span class="comment"># 编译时碰到的  libssl  libcrypto 文件找不到的问题</span></div><div class="line"><span class="built_in">cd</span> /usr/lib64</div><div class="line">sudo ln <span class="_">-s</span> libcrypto.so.1.0.1e libcrypto.so.1.0.0</div><div class="line">sudo ln <span class="_">-s</span> libssl.so.1.0.1e libssl.so.1.0.0</div></pre></td></tr></table></figure>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h3 id=&quot;为什么要在服务器上装R&quot;&gt;&lt;a href=&quot;#为什么要在服务器上装R&quot; class=&quot;headerlink&quot; title=&quot;为什么要在服务器上装R&quot;&gt;&lt;/a&gt;为什么要在服务器上装R&lt;/h3&gt;&lt;p&gt;其实原因很简单，服务器的性能更强，而且在装了anaconda2后，有
-    
+
     </summary>
-    
-    
+
+
       <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
-    
+
       <category term="r" scheme="http://leoatchina.github.io/tags/r/"/>
-    
+
       <category term="zlib" scheme="http://leoatchina.github.io/tags/zlib/"/>
-    
+
       <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>学习Anaconda过程中的一些笔记，或者说踩过的坑</title>
     <link href="http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/"/>
     <id>http://leoatchina.github.io/2017/02/20/anaconda-starter-turtorials/</id>
     <published>2017-02-20T14:12:52.000Z</published>
     <updated>2017-02-20T09:26:49.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h3 id="Anaconda概述"><a href="#Anaconda概述" class="headerlink" title="Anaconda概述"></a>Anaconda概述</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux, Mac, Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。Anaconda利用工具/命令conda来进行package和environment的管理，并且已经包含了Python和相关的配套工具。<br><strong>conda</strong>可以理解为一个工具，也是一个可执行命令，其核心功能是包管理与环境管理。</p>
 <ul>
 <li>包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换。</li>
@@ -934,55 +934,55 @@
 <h3 id="启动jupyter"><a href="#启动jupyter" class="headerlink" title="启动jupyter"></a>启动jupyter</h3><p><code>jupyter notebook</code><br>然后你通过 <code>http://ip:8888就可以访问你的工作目录了</code></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.jianshu.com/p/2f3be7781451" target="_blank" rel="external">Anaconda使用总结 ypyb PeterYuan</a><br><a href="http://www.voidcn.com/blog/SA14023053/article/p-6066215.html" target="_blank" rel="external">Jupyter notebook 服务器端部署</a></p>
 ]]></content>
-    
+
     <summary type="html">
-    
-      &lt;h3 id=&quot;Anaconda概述&quot;&gt;&lt;a href=&quot;#Anaconda概述&quot; class=&quot;headerlink&quot; title=&quot;Anaconda概述&quot;&gt;&lt;/a&gt;Anaconda概述&lt;/h3&gt;&lt;p&gt;Anaconda是一个用于科学计算的Python发行版，支持 Linux, 
-    
+
+      &lt;h3 id=&quot;Anaconda概述&quot;&gt;&lt;a href=&quot;#Anaconda概述&quot; class=&quot;headerlink&quot; title=&quot;Anaconda概述&quot;&gt;&lt;/a&gt;Anaconda概述&lt;/h3&gt;&lt;p&gt;Anaconda是一个用于科学计算的Python发行版，支持 Linux,
+
     </summary>
-    
-    
+
+
       <category term="anacond" scheme="http://leoatchina.github.io/tags/anacond/"/>
-    
+
       <category term="python" scheme="http://leoatchina.github.io/tags/python/"/>
-    
+
       <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>atom-shortcuts-windows</title>
     <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/"/>
     <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-windows/</id>
     <published>2017-02-16T14:00:08.000Z</published>
     <updated>2017-02-16T06:02:10.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>‘ctrl-shift-s’ 保存所有打开的文件<br>‘ctrl-shift-o’ 打开目录<br>‘ctrl-p’ 从添加的项目中查找文件<br>‘ctrl-f’ 向下翻页<br>‘ctrl-b’ 向上翻页<br>alt-b 或 ctrl-left 移动到单词开始<br>alt-f 或 ctrl-right 移动到单词末尾<br>ctrl-g 移动到指定行<br>ctrl-j 将下一行与当前行合并<br>ctrl-up, ctrl-down 使当前行向上或者向下移动<br>ctrl-enter,ctrl-shift-enter在当前行的下一行或上一行插入新的一行<br>ctrl-k ctrl-l使当前字符小写<br>ctrl-k ctrl-u使当前字符大写<br>ctrl-shift-D 复制当前行到下一行<br>ctrl-shift-K 删除当前行<br>ctrl-u删除到当前行开始<br>alt-backspace或ctrl-alt-h删除到当前子单词开始<br>alt-delete或ctrl-alt-d删除到当前子单词结束<br>ctrl-backspace或ctrl-w或alt-h删除到当前单词开始<br>alt-d或ctrl-delete删除到当前子单词开始<br>alt-left: ‘editor:move-to-previous-subword-boundary’<br>alt-right: ‘editor:move-to-next-subword-boundary’<br>alt-shift-left: ‘editor:select-to-previous-subword-boundary’<br>alt-shift-right: ‘editor:select-to-next-subword-boundary’</p>
 <p>选取<br>alt-shift-B或 ctrl-shift-left 选取至字符开始<br>alt-shift-F或ctrl-shift-right 选取至字符结束<br>ctrl-a 全选<br>alt-f3选取文档中和当前单词相同的所有单词<br>shift-end 选取至本行结束<br>ctrl-l 选取一行，继续按回选取下一行<br>ctrl-d 选取文档中和当前单词相同的下一处</p>
 <p>目录树操作<br>ctrl-\ 或 ctrl-k ctrl-b 显示或隐藏目录树<br>a 在目录树下添加文件<br>d 将当前文件另存为<br>alt-right 和 alt-left 展开(隐藏)所有目录<br>ctrl-k left 在左半视图中打开文件<br>ctrl-k down在下半视图中打开文件<br>ctrl-k up 在上半视图中打开文件<br>ctrl-k right 在右半视图中打开文件<br>ctrl-shift-C 复制当前文件绝对路径</p>
 <p>其它<br>ctrl-m 相应括号之间，html tag之间等跳转<br>ctrl-alt-up, ctrl-alt-down 增加上（下）一行光标<br>ctrl-shift-u 调出切换编码选项<br>ctrl-f 在buffer中查找<br>ctrl-shift-f 在整个工程中查找<br>alt-ctrl-[ 折叠<br>alt-ctrl-] 展开<br>ctrl-alt-i调用控制台<br>ctrl-/注释<br>ctrl-alt-c打开color-picker</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h2 id=&quot;文件操作&quot;&gt;&lt;a href=&quot;#文件操作&quot; class=&quot;headerlink&quot; title=&quot;文件操作&quot;&gt;&lt;/a&gt;文件操作&lt;/h2&gt;&lt;p&gt;‘ctrl-shift-s’ 保存所有打开的文件&lt;br&gt;‘ctrl-shift-o’ 打开目录&lt;br&gt;‘ctrl-p’ 从添
-    
+
     </summary>
-    
-    
+
+
       <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
-    
+
       <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>Atom MacOs 快捷键</title>
     <link href="http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/"/>
     <id>http://leoatchina.github.io/2017/02/16/atom-shortcuts-macos/</id>
     <published>2017-02-16T13:39:55.000Z</published>
     <updated>2017-10-15T07:12:30.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><p><code>ctrl-shift-s</code>  保存所有打开的文件<br><code>cmd-shift-o</code>  打开目录<br><code>cmd-\</code>   显示或隐藏目录树<br><code>ctrl-0</code>   焦点移到目录树<br>目录树下，使用a，m，delete来增加，修改和删除<br><code>cmd-t</code>或<code>cmd-p</code> 查找文件<br><code>cmd-b</code> 在打开的文件之间切换<br><code>cmd-shift-b</code> 只搜索从上次git commit后修改或者新增的文件</p>
 <h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>（等价于上下左右）<br><code>ctrl-p</code> 前一行<br><code>ctrl-n</code> 后一行<br><code>ctrl-f</code> 前一个字符<br><code>ctrl-b</code> 后一个字符</p>
 <p><code>alt-B</code>, <code>alt-left</code> 移动到单词开始<br><code>alt-F</code>, <code>alt-right</code> 移动到单词末尾</p>
@@ -1026,27 +1026,27 @@
 </ul>
 <p>就这些了，欢迎pull更多好用的插件！</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h2 id=&quot;文件切换&quot;&gt;&lt;a href=&quot;#文件切换&quot; class=&quot;headerlink&quot; title=&quot;文件切换&quot;&gt;&lt;/a&gt;文件切换&lt;/h2&gt;&lt;p&gt;&lt;code&gt;ctrl-shift-s&lt;/code&gt;  保存所有打开的文件&lt;br&gt;&lt;code&gt;cmd-shift-o&lt;/cod
-    
+
     </summary>
-    
-    
+
+
       <category term="atom" scheme="http://leoatchina.github.io/tags/atom/"/>
-    
+
       <category term="shortcuts" scheme="http://leoatchina.github.io/tags/shortcuts/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>centos升级gcc</title>
     <link href="http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/"/>
     <id>http://leoatchina.github.io/2017/02/15/update-centos-gcc-compile-myself/</id>
     <published>2017-02-15T09:43:18.000Z</published>
     <updated>2017-02-15T04:55:30.000Z</updated>
-    
+
     <content type="html"><![CDATA[<p>我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。</p>
 <ol>
 <li><p>下载最新版gcc并解压</p>
@@ -1086,39 +1086,39 @@
 </li>
 </ol>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;我的生信小型机装的系统是centos6.6,在装vim的插件YouCompleteMe时，需要gcc升级到4.8以上版本。网上搜索了一番后，编译安装最新版。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;下载最新版gcc并解压&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;wget -c &lt;a
-    
+
     </summary>
-    
+
       <category term="linux" scheme="http://leoatchina.github.io/categories/linux/"/>
-    
-    
+
+
       <category term="linux" scheme="http://leoatchina.github.io/tags/linux/"/>
-    
+
       <category term="centos" scheme="http://leoatchina.github.io/tags/centos/"/>
-    
+
       <category term="gcc" scheme="http://leoatchina.github.io/tags/gcc/"/>
-    
+
       <category term="编译" scheme="http://leoatchina.github.io/tags/%E7%BC%96%E8%AF%91/"/>
-    
+
       <category term="c++" scheme="http://leoatchina.github.io/tags/c/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>python_thread_sync</title>
     <link href="http://leoatchina.github.io/2017/02/14/python-thread-sync/"/>
     <id>http://leoatchina.github.io/2017/02/14/python-thread-sync/</id>
     <published>2017-02-14T15:55:14.000Z</published>
     <updated>2017-02-17T07:30:11.000Z</updated>
-    
+
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控制线程在执行，就像单核CPU系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管Python解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。<br>对Python虚拟机的访问是由全局解释锁（GIL）控制的。这个锁就是用来保证同时只能有一个线程运行的。在多线程环境中，Python虚拟机将按下面所述的方式执行。</p>
 <ol>
 <li>设置GIL。</li>
@@ -1143,20 +1143,20 @@
 <p>爬虫作为子线程运行时不受键盘中断信号影响，Ctrl-C无法终止整个爬虫运行。另外的一个场景是多线程压力测试，需要提前终止的情况下，Ctrl-C依旧不能终止整个程序。除了简单粗暴的使用kill命令强行终止之外，本文将给出一个简单可行的解决方案。<br>可能,python2 和python3对于异常的处理逻辑不一致，2中所有的异常在主线程真正退出时才被捕获。   </p>
 </blockquote>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;Python的代码的执行是由Python虚拟机（又名解释器主循环）进行控制的。Python在设计时就是这样考虑的，在主循环中同时只能有一个控
-    
+
     </summary>
-    
+
       <category term="python" scheme="http://leoatchina.github.io/categories/python/"/>
-    
-    
+
+
       <category term="python" scheme="http://leoatchina.github.io/tags/python/"/>
-    
+
       <category term="thread" scheme="http://leoatchina.github.io/tags/thread/"/>
-    
+
   </entry>
-  
+
 </feed>
